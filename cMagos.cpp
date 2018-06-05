@@ -8,7 +8,7 @@
 #include "cMagos.h"
 
 
-cMagos::cMagos(){
+cMagos::cMagos(int at, int hp, string tipo):cUnidades(at, hp, tipo){
 
 }
 

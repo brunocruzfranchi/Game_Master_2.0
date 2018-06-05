@@ -8,7 +8,7 @@
 #include "cCaballeros.h"
 
 
-cCaballeros::cCaballeros(){
+cCaballeros::cCaballeros(int at, int hp, string tipo) :cUnidades(at, hp, tipo) {
 
 }
 

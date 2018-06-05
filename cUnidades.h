@@ -15,7 +15,7 @@ class cUnidades
 {
 
 public:
-	cUnidades();
+	cUnidades(int at, int hp, string tipo);
 	virtual ~cUnidades();
 
 	int getAT();

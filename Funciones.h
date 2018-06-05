@@ -3,8 +3,11 @@
 #include <ctime>
 #include "cJuego.h"
 #include "cJugador.h"
+#define N_PAISES_TOTALES 12
 
-void CrearListaPaises();
+void Generar_Paises(cListaT<cPais> paises);
 
-void Generar_Paises(cListaT<cPaises> *paises);
+cJuego GenerarJuego();
+
+void GenerarJugadores(cListaT<cJugador> listajugadores);
 

@@ -3,11 +3,21 @@
 #include <ctime>
 #include "cListaT.h"
 #include "Funciones.h"
+#define N_PAISES_TOTALES 12
 
-int main(){
+int main() {
 
-	cListaT <cPais> Paises(12);
-    cListaT <cJugador> Jugadores(2);
+	int estado_juego;
+	cListaT <cPais> Paises(N_PAISES_TOTALES);
+	cListaT <cJugador> Jugadores(2);
+	cJuego Juego;
 
-    return 0;
+	Juego = GenerarJuego();
+
+	Generar_Paises(Paises);
+	GenerarJugadores(Jugadores);
+	Juego.Iniciar_Partida();
+	estado_juego = Juego.Jugar();
+
+	return 0;
 }

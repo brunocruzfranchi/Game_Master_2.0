@@ -8,7 +8,7 @@
 #include "cTropaCaballeros.h"
 
 
-cTropaCaballeros::cTropaCaballeros(){
+cTropaCaballeros::cTropaCaballeros(int max, int min, string tipo):cTropa(max, min, tipo){
 
 }
 

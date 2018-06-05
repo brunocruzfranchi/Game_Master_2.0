@@ -14,7 +14,7 @@ class cArqueros : public cUnidades
 {
 
 public:
-	cArqueros();
+	cArqueros(int at, int hp, string tipo);
 	virtual ~cArqueros();
 
 };

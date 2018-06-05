@@ -8,7 +8,7 @@
 #include "cJugador.h"
 
 
-cJugador::cJugador(){
+cJugador::cJugador(int n_jugador):N_jugador(n_jugador){
 
 }
 

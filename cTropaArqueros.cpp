@@ -8,7 +8,7 @@
 #include "cTropaArqueros.h"
 
 
-cTropaArqueros::cTropaArqueros(){
+cTropaArqueros::cTropaArqueros(int max, int min, string tipo) :cTropa(max, min, tipo) {
 
 }
 

@@ -7,11 +7,9 @@
 
 #if !defined(EA_B9741D49_13D8_46c1_8B11_F0F70B4304B8__INCLUDED_)
 #define EA_B9741D49_13D8_46c1_8B11_F0F70B4304B8__INCLUDED_
-
 /**
  * Hacer un metodo Random
  */
-#pragma once
 #define NMAX 10
 
 #include <string>
@@ -49,4 +47,5 @@ public:
 
 	unsigned int getCA();
 	unsigned int getTAM();
-};dif // !defined(EA_B9741D49_13D8_46c1_8B11_F0F70B4304B8__INCLUDED_)
+}; 
+#endif // !defined(EA_B9741D49_13D8_46c1_8B11_F0F70B4304B8__INCLUDED_)

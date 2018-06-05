@@ -14,7 +14,7 @@ class cTropaArqueros : public cTropa
 {
 
 public:
-	cTropaArqueros();
+	cTropaArqueros(int max, int min, string tipo);
 	virtual ~cTropaArqueros();
 
 	void Atacar(cTropa* atacante);

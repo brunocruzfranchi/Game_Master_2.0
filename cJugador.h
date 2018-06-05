@@ -15,7 +15,7 @@ class cJugador : public cListaT<class T>
 {
 
 public:
-	cJugador();
+	cJugador(int n_jugador);
 	virtual ~cJugador();
 	const int N_jugador;
 

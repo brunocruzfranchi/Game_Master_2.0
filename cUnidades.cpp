@@ -8,7 +8,9 @@
 #include "cUnidades.h"
 
 
-cUnidades::cUnidades(){
+cUnidades::cUnidades(int at, int hp, string tipo):Tipo(tipo){
+	this->AT = at;
+	this->HP = hp;
 }
 
 cUnidades::~cUnidades(){

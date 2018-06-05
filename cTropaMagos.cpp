@@ -8,7 +8,7 @@
 #include "cTropaMagos.h"
 
 
-cTropaMagos::cTropaMagos(){
+cTropaMagos::cTropaMagos(int max, int min, string tipo) :cTropa(max, min, tipo) {
 
 }
 

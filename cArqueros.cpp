@@ -7,9 +7,8 @@
 
 #include "cArqueros.h"
 
-
-cArqueros::cArqueros(){
-
+cArqueros::cArqueros(int at, int hp, string tipo):cUnidades(at,hp,tipo)
+{
 }
 
 cArqueros::~cArqueros(){

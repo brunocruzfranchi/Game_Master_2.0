@@ -17,17 +17,23 @@ class cPais : public cListaT<class T>
 {
 
 public:
+	static cListaT<cPais> **Lista_Paises;
+	const string Nombre;
+	int Jugador;
 	cPais(string nombre);
 	virtual ~cPais();
-	const string Nombre;
-	void Distribuir(cTropa* t);
+	//void Distribuir(cTropa* t);
 	const string getNombre();
+	//cPais** getLimitrofes();
+	int getJugador() { return Jugador; }
+	void setJugador(int j) { Jugador = j; }
 
 private:
 	/**
-	 * Este jugador es el que domina al pais
-	 */
-	int Jugador;
+	* Este jugador es el que domina al pais
+	*/
+
 
 };
 #endif // !defined(EA_AACE9F59_8DC5_4a64_8EC1_D3B95EB49799__INCLUDED_)
+

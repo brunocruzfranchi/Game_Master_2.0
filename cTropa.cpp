@@ -7,18 +7,17 @@
 
 #include "cTropa.h"
 
-
-cTropa::cTropa(){
+cTropa::cTropa(int max, int min, string tipo):Tipo(tipo),Max_Uni(max),Min_Uni(min){
 
 }
 
 cTropa::~cTropa(){
 }
-
+/*
 int cTropa::getN_Unidades(){
 	return N_Unidades;
 }
 
 void cTropa::setN_Unidades(int n){
-	N_Unidades=n;
-}
+	//N_Unidades=n;
+}*/

@@ -14,7 +14,7 @@ class cMagos : public cUnidades
 {
 
 public:
-	cMagos();
+	cMagos(int at, int hp, string tipo);
 	virtual ~cMagos();
 
 };
