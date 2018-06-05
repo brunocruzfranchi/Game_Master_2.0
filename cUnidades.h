@@ -15,16 +15,21 @@ class cUnidades
 {
 
 public:
+	///Const. y Dest.
 	cUnidades(int at, int hp, string tipo);
 	virtual ~cUnidades();
 
-	int getAT();
-	int getHP();
-	string getTipo();
-	void setAT(int at);
-	void setHP(int hp);
+	///Metodos
+		//getters
+		int getAT();
+		int getHP();
+		string getTipo();
+		//setters
+		void setAT(int at);
+		void setHP(int hp);
 
 protected:
+	///Atributos
 	int AT;
 	int HP;
 	const string Tipo;

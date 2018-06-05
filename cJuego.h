@@ -43,7 +43,7 @@ public:
 		
 		//setters	
 		void setJugador_de_turno(cJugador* j) {
-		if (j->getN_Jugador == 0 || j->getN_Jugador == 1){
+		if (j->getN_Jugador() == 0 || j->getN_Jugador() == 1){
 			Jugador_de_turno = j;
 			}
 		}

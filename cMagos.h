@@ -12,8 +12,9 @@
 
 class cMagos : public cUnidades
 {
-
 public:
+
+	///Const. y Dest.
 	cMagos(int at, int hp, string tipo);
 	virtual ~cMagos();
 

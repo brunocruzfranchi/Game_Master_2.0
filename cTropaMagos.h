@@ -14,9 +14,12 @@ class cTropaMagos : public cTropa
 {
 
 public:
+
+	///Const. y Dest.
 	cTropaMagos(int max, int min, string tipo);
 	virtual ~cTropaMagos();
 
+	///Metodos
 	void Atacar(cTropa* atacado);
 	void Contraatacar(cTropa* t);
 

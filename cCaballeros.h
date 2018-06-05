@@ -14,6 +14,7 @@ class cCaballeros : public cUnidades
 {
 
 public:
+	///Const. y Dest.
 	cCaballeros(int at, int hp, string tipo);
 	virtual ~cCaballeros();
 

@@ -13,12 +13,9 @@ cTropaArqueros::cTropaArqueros(int max, int min, string tipo) :cTropa(max, min, 
 }
 
 
-
 cTropaArqueros::~cTropaArqueros(){
 
 }
-
-
 
 
 

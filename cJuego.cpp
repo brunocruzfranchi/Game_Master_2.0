@@ -22,22 +22,22 @@ void cJuego::AsignarPaises(cJugador jugador) {
 }
 
 void cJuego::AsignarTropas(cJugador jugador) {
-
+	
 }
 
 void cJuego::CambiarPais(cPais* pais, cJugador* ganador) {
-
+	pais->setJugador(ganador->getN_Jugador());
 }
 
 void cJuego::CrearJugadores(int n) {
-
 	cJugador** jugadores = new cJugador*[n];
 	for (int i = 0; i < n; i++) {
-		//jugadores[i] = cJugador(i);
+		jugadores[i] = new cJugador(i);
 	}
 }
 
-void cJuego::CrearPaises(cListaT<cPais> *listapaises) {
+void cJuego::CrearPaises(cListaT<cPais> *listapaises)//Que es lo que hace esta funcion crear los paises individualmente o crear una lista de paises para ser usada 
+{
 	cPais** paises = new cPais*[12];
 	paises[0] = new cPais("Argentina");
 	paises[1] = new cPais("Bolivia");
@@ -53,22 +53,22 @@ void cJuego::CrearPaises(cListaT<cPais> *listapaises) {
 	paises[11] = new cPais("Venezuela");
 	for (int i = 0; i < 12; i++)
 		listapaises->AgregarItem(paises[i]);
-}
+} 
 
 int cJuego::getRondas() {
 	return Rondas;
 }
 
-
 int cJuego::Jugar() {
 	int opcion;
 	for (Rondas = 0; Rondas < N_MAX_TURNOS; Rondas++)	{
+
 		//Turnos
 		for ( int k = 0; k < N_MAX_JUGADORES; k++)
 		{
-			CambiarTurno(/*lista jugadores del template*/, k);
+			//CambiarTurno(/*lista jugadores del template*/, k);
 			//Listar paises dominados y pedir atacante
-			//Listo y pido tropa (magos,arqueros,caballeros);
+			//Pido tropa (magos,arqueros,caballeros);
 		}
 		
 		if (Rondas == 10)
