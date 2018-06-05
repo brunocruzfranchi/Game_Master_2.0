@@ -7,19 +7,18 @@
 
 #include "cJuego.h"
 #include <iostream>
-
+#define N_MAX_TURNOS 500
+#define N_MAX_JUGADORES 2
 using namespace std;
 
-cJuego::cJuego(int jugador) {
-	this->Jugador_de_turno = jugador;
+cJuego::cJuego() {
 }
 
 cJuego::~cJuego() {
-
 }
 
 void cJuego::AsignarPaises(cJugador jugador) {
-
+	
 }
 
 void cJuego::AsignarTropas(cJugador jugador) {
@@ -63,29 +62,40 @@ int cJuego::getRondas() {
 
 int cJuego::Jugar() {
 	int opcion;
-	if (Rondas == 10)
-	{
-		cout << endl << "Desea continuar el juego?" << endl
-			<< " Presione 1 para finalizar. Cualquier otra tecla para continuar" << endl;
-		cin >> opcion;
-		cout << endl;
-		if (opcion == 1)
+	for (Rondas = 0; Rondas < N_MAX_TURNOS; Rondas++)	{
+		//Turnos
+		for ( int k = 0; k < N_MAX_JUGADORES; k++)
 		{
-			ImprimirGanador();
-			return 0;
+			CambiarTurno(/*lista jugadores del template*/, k);
+			//Listar paises dominados y pedir atacante
+			//Pido tropa (magos,arqueros,caballeros);
+		}
+		
+		if (Rondas == 10)
+		{
+			cout << endl << "Desea continuar el juego?" << endl
+				<< " Presione 1 para finalizar. Cualquier otra tecla para continuar" << endl;
+			cin >> opcion;
+			cout << endl;
+			if (opcion == 1)
+			{
+				ImprimirGanador();
+				return 0; // conviene usar una excepcion?
+			}
 		}
 	}
+
 	return 0;
 }
 
-void cJuego::TurnoAtaque(cJugador** Jugador) {
+void cJuego::CambiarTurno(cJugador** Jugador, int k) {
+	Jugador_de_turno = Jugador[k];
 }
 
-void cJuego::Iniciar_Partida()
-{
+void cJuego::Iniciar_Partida() {
+	
 }
 
 void cJuego::ImprimirGanador() {
-
 	//determinar ganador e imprimir
 };

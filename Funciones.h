@@ -6,8 +6,3 @@
 #define N_PAISES_TOTALES 12
 
 void Generar_Paises(cListaT<cPais> paises);
-
-cJuego GenerarJuego();
-
-void GenerarJugadores(cListaT<cJugador> listajugadores);
-

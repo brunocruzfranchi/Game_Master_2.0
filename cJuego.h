@@ -18,24 +18,42 @@ class cJuego : public cListaT<class T>
 {
 
 public:
-	cJuego(int jugador = -1);
-	virtual ~cJuego();
-	void AsignarPaises(cJugador Jug);
-	void AsignarTropas(cJugador Jug);
-	void CambiarPais(cPais* pais, cJugador* ganador);
-	void CrearJugadores(int n = 2);
-	void CrearPaises(cListaT<cPais> *listapaises);
-	int getRondas();
-	int Jugar();
-	void TurnoAtaque(cJugador **Jugador);
+	///Atributos
 	int Rondas;
-	int Jugador_de_turno;
-	void Iniciar_Partida();
-	void ImprimirGanador();
-	int getJugador_de_turno() { return Jugador_de_turno; }
-	void setJugador_de_turno(int j) {
-		if (j == 0 || j == 1) Jugador_de_turno = j;
-	}
+	cJugador* Jugador_de_turno;
+
+	///Const y Dest
+	cJuego();
+	virtual ~cJuego();
+
+	///Metodos
+		//Crear
+		void CrearJugadores(int n = 2);								
+		void CrearPaises(cListaT<cPais> *listapaises);	
+
+		//Inicio Juego
+		int Jugar();
+		void Iniciar_Partida();
+		void AsignarPaises(cJugador Jug);							
+		void AsignarTropas(cJugador Jug);	
+		
+		//getters
+		int getRondas();	
+		cJugador* getJugador_de_turno() { return Jugador_de_turno; }
+		
+		//setters	
+		void setJugador_de_turno(cJugador* j) {
+		if (j->getN_Jugador == 0 || j->getN_Jugador == 1){
+			Jugador_de_turno = j;
+			}
+		}
+
+		//Extras
+		void CambiarPais(cPais* pais, cJugador* ganador);
+		void CambiarTurno(cJugador **Jugador, int k);
+		void ImprimirGanador();
+
+
 
 };
 #endif // !defined(EA_25249AF9_B8BF_441f_95EC_C0B1C8876E76__INCLUDED_)

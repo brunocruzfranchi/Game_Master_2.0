@@ -5,35 +5,42 @@
 //  Original author: gasto
 ///////////////////////////////////////////////////////////
 
-#if !defined(EA_AACE9F59_8DC5_4a64_8EC1_D3B95EB49799__INCLUDED_)
-#define EA_AACE9F59_8DC5_4a64_8EC1_D3B95EB49799__INCLUDED_
+#pragma once
 
 #include "cListaT.h"
 #include "cTropa.h"
 #include <string>
 using namespace std;
 
-class cPais : public cListaT<class T>
-{
+class cPais:public cListaT<class T>{	
+	private:
+		/**
+		* Este jugador es el que domina al pais
+		*/
 
-public:
-	static cListaT<cPais> **Lista_Paises;
-	const string Nombre;
-	int Jugador;
-	cPais(string nombre);
-	virtual ~cPais();
-	//void Distribuir(cTropa* t);
-	const string getNombre();
-	//cPais** getLimitrofes();
-	int getJugador() { return Jugador; }
-	void setJugador(int j) { Jugador = j; }
+	public:
+		///Atributos
+		static cListaT<cPais>**Lista_Paises;
+		const string Nombre;
+		int Jugador;
 
-private:
-	/**
-	* Este jugador es el que domina al pais
-	*/
+		///Const. y Dest.
+		cPais(string nombre);
+		virtual ~cPais();
 
+		///Metodos
+			//Principales
 
+			//Setters
+			void setJugador(int j) { Jugador = j; }
+
+			//Getters
+			int getJugador() { return Jugador; }
+			string getNombre() const { return Nombre; }
+		
+			//Posibilidades
+			//void Distribuir(cTropa* t);
+			//cPais** getLimitrofes();
 };
-#endif // !defined(EA_AACE9F59_8DC5_4a64_8EC1_D3B95EB49799__INCLUDED_)
+
 

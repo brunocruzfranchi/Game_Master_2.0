@@ -15,12 +15,15 @@ class cJugador : public cListaT<class T>
 {
 
 public:
+	///Atributos
+	///Const. y Dest.
 	cJugador(int n_jugador);
 	virtual ~cJugador();
 	const int N_jugador;
 
 	void Distribuir(cTropa* t);
 	void MoverTropas(cTropa* t);
+	int getN_Jugador() const { return N_jugador; }
 
 };
 #endif // !defined(EA_ECAD8CBF_DBA6_4277_A538_57274982E741__INCLUDED_)
