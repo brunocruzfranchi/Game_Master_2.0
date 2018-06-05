@@ -68,7 +68,7 @@ int cJuego::Jugar() {
 		{
 			CambiarTurno(/*lista jugadores del template*/, k);
 			//Listar paises dominados y pedir atacante
-			//Pido tropa (magos,arqueros,caballeros);
+			//Listo y pido tropa (magos,arqueros,caballeros);
 		}
 		
 		if (Rondas == 10)

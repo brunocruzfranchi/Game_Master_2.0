@@ -15,9 +15,11 @@ class cJugador : public cListaT<class T>
 {
 
 public:
+	cListaT<class cTropa> *Tropas;
 	///Atributos
 	///Const. y Dest.
 	cJugador(int n_jugador);
+
 	virtual ~cJugador();
 	const int N_jugador;
 
