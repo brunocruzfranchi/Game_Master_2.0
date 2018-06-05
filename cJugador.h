@@ -10,7 +10,7 @@
 
 #include "cPais.h"
 #include "cListaT.h"
-
+//hereda una lista en la que voy a acargar los paises dominados
 class cJugador : public cListaT<class T>
 {
 
@@ -26,6 +26,7 @@ public:
 	void Distribuir(cTropa* t);
 	void MoverTropas(cTropa* t);
 	int getN_Jugador() const { return N_jugador; }
+	cListaT<class cTropa> *getTropas() { return Tropas; }// manejo de tipos de punteros
 
 };
 #endif // !defined(EA_ECAD8CBF_DBA6_4277_A538_57274982E741__INCLUDED_)
