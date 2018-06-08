@@ -12,7 +12,7 @@
 #include <string>
 using namespace std;
 
-class cPais:public cListaT<class T>{	
+class cPais:public cListaT<cPais>{	
 	private:
 		/**
 		* Este jugador es el que domina al pais
@@ -20,7 +20,7 @@ class cPais:public cListaT<class T>{
 
 	public:
 		///Atributos
-		static cListaT<cPais>**Lista_Paises;
+		//static cListaT<cPais> *Lista_Paises;
 		const string Nombre;
 		int Jugador;
 

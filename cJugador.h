@@ -10,14 +10,16 @@
 
 #include "cPais.h"
 #include "cListaT.h"
-//hereda una lista en la que voy a acargar los paises dominados
+//hereda una lista en la que voy a acargar los paises dominados
+
 class cJugador:public cListaT<class T>
 {
 
 public:
 	///Atributos
 	const int N_jugador;
-	cListaT<class cTropa>* Tropas;	//TIENE COMO 
+	//cListaT<cTropa>* Tropas;
+	//TIENE COMO 
 
 	///Const. y Dest.
 	cJugador(int n_jugador);

@@ -12,6 +12,11 @@
 #include "cListaT.h"
 #include <string>
 
+#define N_MAX_TURNOS 500
+#define N_MAX_JUGADORES 2
+#define N_RONDAS 10
+#define N_PAISES_TOTALES 12
+
 using namespace std;
 
 class cJuego : public cListaT<class T>
@@ -19,26 +24,27 @@ class cJuego : public cListaT<class T>
 
 public:
 	///Atributos
-	int Rondas;
+	int Ronda;
 	cJugador* Jugador_de_turno;
-
+	cListaT<cPais> *Paises;
+	cListaT<cJugador> *Jugadores;
 	///Const y Dest
-	cJuego();
+	cJuego(int cant_jug=2);
 	virtual ~cJuego();
 
 	///Metodos
 		//Crear
 		void CrearJugadores(int n = 2);								
-		void CrearPaises(cListaT<cPais> *listapaises);	
+		void CrearPaises();	
 
 		//Inicio Juego
 		int Jugar();
 		void Iniciar_Partida();
-		void AsignarPaises(cJugador Jug);							
-		void AsignarTropas(cJugador Jug);	
+		void AsignarPaises(cJugador *Jug);							
+		void AsignarTropas(cJugador *Jug);	
 		
 		//getters
-		int getRondas();	
+		int getRonda();	
 		cJugador* getJugador_de_turno() { return Jugador_de_turno; }
 		
 		//setters	

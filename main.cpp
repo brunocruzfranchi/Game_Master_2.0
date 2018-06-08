@@ -1,21 +1,19 @@
 #include <string>
 #include <iostream>
 #include <ctime>
-#include "cListaT.h"
+#include "cJuego.h"
 #include "Funciones.h"
-#define N_PAISES_TOTALES 12
-#define N_MAX_JUGADORES 2
+
 
 int main() {
 
 	int estado_juego;
-	cListaT<cPais> Paises[N_PAISES_TOTALES];
-	cListaT<cJugador> Jugadores[N_MAX_JUGADORES];
 
-	cJuego* Juego = new cJuego;	
+	//pido cant jugadores
+	int cant_jug = N_MAX_JUGADORES;
+	cJuego* Juego = new cJuego(cant_jug);
 
-	Generar_Paises(Paises);					
-	Juego->Iniciar_Partida();
+	Juego->Iniciar_Partida();//si es static la accedo desde todo el juego o se la paso a Juego
 	estado_juego = Juego->Jugar();
 
 	return 0;

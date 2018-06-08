@@ -7,40 +7,45 @@
 
 #include "cJuego.h"
 #include <iostream>
-#define N_MAX_TURNOS 500
-#define N_MAX_JUGADORES 2
+
 using namespace std;
 
-cJuego::cJuego() {
-}
+cJuego::cJuego(int cant_jug) {
+	CrearJugadores(cant_jug);
+	CrearPaises();
 
+}
 cJuego::~cJuego() {
 }
 
-void cJuego::AsignarPaises(cJugador jugador) {
+void cJuego::AsignarPaises(cJugador *jugador) {
 	
 }
 
-void cJuego::AsignarTropas(cJugador jugador) {
+void cJuego::AsignarTropas(cJugador *jugador) {
 	
 }
 
 void cJuego::CambiarPais(cPais* pais, cJugador* ganador) {
-	pais->setJugador(ganador->getN_Jugador());
+	pais->setJugador(ganador->getN_Jugador());//sacar lista del perdedor
 }
 
 void cJuego::CrearJugadores(int n) {
-	cJugador** jugadores = new cJugador*[n];
+
+	Jugadores = new cListaT<cJugador>(n);
 	for (int i = 0; i < n; i++) {
-		jugadores[i] = new cJugador(i);
+		Jugadores->AgregarItem(new cJugador(i));
 	}
 }
 
-void cJuego::CrearPaises(cListaT<cPais> *listapaises)//Que es lo que hace esta funcion crear los paises individualmente o crear una lista de paises para ser usada 
+void cJuego::CrearPaises()//Que es lo que hace esta funcion crear los paises individualmente o crear una lista de paises para ser usada 
 {
-	cPais** paises = new cPais*[12];
-	paises[0] = new cPais("Argentina");
-	paises[1] = new cPais("Bolivia");
+	Paises=new cListaT<cPais>(12);//
+	cPais *pais;
+	
+	cPais *paises[N_PAISES_TOTALES];
+	paises[0]=new cPais("Argentina");
+	paises[1]=new cPais("Bolivia");
 	paises[2] = new cPais("Brasil");
 	paises[3] = new cPais("Chile");
 	paises[4] = new cPais("Colombia");
@@ -51,38 +56,50 @@ void cJuego::CrearPaises(cListaT<cPais> *listapaises)//Que es lo que hace esta f
 	paises[9] = new cPais("Surinam");
 	paises[10] = new cPais("Uruguay");
 	paises[11] = new cPais("Venezuela");
-	for (int i = 0; i < 12; i++)
-		listapaises->AgregarItem(paises[i]);
+
+	//genero mapa con paises limitrofes
+	paises[0]->AgregarItem(paises[3]);
+
+
+	//for agregando pais a lista paises;
 } 
 
-int cJuego::getRondas() {
-	return Rondas;
+int cJuego::getRonda() {
+	return Ronda;
 }
 
 int cJuego::Jugar() {
 	int opcion;
-	for (Rondas = 0; Rondas < N_MAX_TURNOS; Rondas++)	{
+	for (Ronda = 1; Ronda <= N_MAX_TURNOS; Ronda++)	{
 
+		
 		//Turnos
-		for ( int k = 0; k < N_MAX_JUGADORES; k++)
+		for ( int k = 0; k < Jugadores->getCA(); k++)
 		{
 			//CambiarTurno(/*lista jugadores del template*/, k);
 			//Listar paises dominados y pedir atacante
 			//Pido tropa (magos,arqueros,caballeros);
 		}
+		if (Ronda == N_RONDAS)
+				{
+					cout << endl << "Desea continuar el juego?" << endl
+						<< " Presione 1 para finalizar. Cualquier otra tecla para continuar" << endl;
+					cin >> opcion;
+					cout << endl;
+					if (opcion == 1)
+					{
+						ImprimirGanador();
+						return 0; // conviene usar una excepcion?
+					}
+				}
 		
-		if (Rondas == 10)
+		//Repartir paises
+
+		for (int k = 0; k < N_MAX_JUGADORES; k++)
 		{
-			cout << endl << "Desea continuar el juego?" << endl
-				<< " Presione 1 para finalizar. Cualquier otra tecla para continuar" << endl;
-			cin >> opcion;
-			cout << endl;
-			if (opcion == 1)
-			{
-				ImprimirGanador();
-				return 0; // conviene usar una excepcion?
-			}
+			//Mover  Tropas
 		}
+		
 	}
 
 	return 0;
@@ -94,6 +111,10 @@ void cJuego::CambiarTurno(cJugador** Jugador, int k) {
 
 void cJuego::Iniciar_Partida() {
 	
+	//asignar paises inicial
+	//asignacion inicial de tropas
+	//bienvenido, juego iniciado
+	//
 }
 
 void cJuego::ImprimirGanador() {
