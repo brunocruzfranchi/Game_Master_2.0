@@ -8,7 +8,6 @@
 int main() {
 
 	int estado_juego;
-
 	//pido cant jugadores
 	int cant_jug = N_MAX_JUGADORES;
 	cJuego* Juego = new cJuego(cant_jug);

@@ -18,15 +18,16 @@ cJuego::cJuego(int cant_jug) {
 cJuego::~cJuego() {
 }
 
-void cJuego::AsignarPaises(cJugador *jugador) {
+void cJuego::AsignarPaises(cJugador *Jug) {
 	
 }
 
-void cJuego::AsignarTropas(cJugador *jugador) {
+void cJuego::AsignarTropas(cJugador *Jug) {
 	
 }
 
-void cJuego::CambiarPais(cPais* pais, cJugador* ganador) {
+void cJuego::ReasignarPais(cPais* pais, cJugador* ganador) {
+
 	pais->setJugador(ganador->getN_Jugador());//sacar lista del perdedor
 }
 
@@ -40,8 +41,7 @@ void cJuego::CrearJugadores(int n) {
 
 void cJuego::CrearPaises()//Que es lo que hace esta funcion crear los paises individualmente o crear una lista de paises para ser usada 
 {
-	Paises=new cListaT<cPais>(12);//
-	cPais *pais;
+	Paises=new cListaT<cPais>(13);//
 	
 	cPais *paises[N_PAISES_TOTALES];
 	paises[0]=new cPais("Argentina");
@@ -56,10 +56,60 @@ void cJuego::CrearPaises()//Que es lo que hace esta funcion crear los paises ind
 	paises[9] = new cPais("Surinam");
 	paises[10] = new cPais("Uruguay");
 	paises[11] = new cPais("Venezuela");
-
+	paises[12] = new cPais("Guayana Francesa");
 	//genero mapa con paises limitrofes
-	paises[0]->AgregarItem(paises[3]);
 
+	paises[12]->AgregarItem(paises[9]);
+	paises[12]->AgregarItem(paises[2]);
+	paises[11]->AgregarItem(paises[4]);
+	paises[11]->AgregarItem(paises[2]);
+	paises[11]->AgregarItem(paises[6]);
+	paises[10]->AgregarItem(paises[0]);
+	paises[10]->AgregarItem(paises[2]);
+	paises[9]->AgregarItem(paises[6]);
+	paises[9]->AgregarItem(paises[2]);
+	paises[9]->AgregarItem(paises[12]);
+	paises[8]->AgregarItem(paises[5]);
+	paises[8]->AgregarItem(paises[4]);
+	paises[8]->AgregarItem(paises[2]);
+	paises[8]->AgregarItem(paises[1]);
+	paises[8]->AgregarItem(paises[3]);
+	paises[7]->AgregarItem(paises[1]);
+	paises[7]->AgregarItem(paises[2]);
+	paises[7]->AgregarItem(paises[0]);
+	paises[6]->AgregarItem(paises[9]);
+	paises[6]->AgregarItem(paises[2]);
+	paises[6]->AgregarItem(paises[11]);
+	paises[5]->AgregarItem(paises[8]);
+	paises[5]->AgregarItem(paises[4]);
+	paises[4]->AgregarItem(paises[11]);
+	paises[4]->AgregarItem(paises[5]);
+	paises[4]->AgregarItem(paises[8]);
+	paises[4]->AgregarItem(paises[2]);
+	paises[3]->AgregarItem(paises[8]);
+	paises[3]->AgregarItem(paises[1]);
+	paises[3]->AgregarItem(paises[0]);
+	paises[0]->AgregarItem(paises[3]);
+	paises[0]->AgregarItem(paises[2]);
+	paises[0]->AgregarItem(paises[1]);
+	paises[0]->AgregarItem(paises[10]);
+	paises[0]->AgregarItem(paises[7]);
+	paises[1]->AgregarItem(paises[0]);
+	paises[1]->AgregarItem(paises[7]);
+	paises[1]->AgregarItem(paises[2]);
+	paises[1]->AgregarItem(paises[3]);
+	paises[1]->AgregarItem(paises[8]);
+	paises[2]->AgregarItem(paises[10]);
+	paises[2]->AgregarItem(paises[0]);
+	paises[2]->AgregarItem(paises[7]);
+	paises[2]->AgregarItem(paises[1]);
+	paises[2]->AgregarItem(paises[8]);
+	paises[2]->AgregarItem(paises[11]);
+	paises[2]->AgregarItem(paises[4]);
+	paises[2]->AgregarItem(paises[12]);
+	paises[2]->AgregarItem(paises[10]);
+	paises[2]->AgregarItem(paises[6]);
+	paises[2]->AgregarItem(paises[9]);
 
 	//for agregando pais a lista paises;
 } 

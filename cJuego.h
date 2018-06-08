@@ -15,7 +15,7 @@
 #define N_MAX_TURNOS 500
 #define N_MAX_JUGADORES 2
 #define N_RONDAS 10
-#define N_PAISES_TOTALES 12
+#define N_PAISES_TOTALES 13
 
 using namespace std;
 
@@ -24,6 +24,7 @@ class cJuego : public cListaT<class T>
 
 public:
 	///Atributos
+	
 	int Ronda;
 	cJugador* Jugador_de_turno;
 	cListaT<cPais> *Paises;
@@ -48,14 +49,10 @@ public:
 		cJugador* getJugador_de_turno() { return Jugador_de_turno; }
 		
 		//setters	
-		void setJugador_de_turno(cJugador* j) {
-		if (j->getN_Jugador() == 0 || j->getN_Jugador() == 1){
-			Jugador_de_turno = j;
-			}
-		}
+		void setJugador_de_turno(cJugador* j) {	Jugador_de_turno = j;}
 
 		//Extras
-		void CambiarPais(cPais* pais, cJugador* ganador);
+		void ReasignarPais(cPais* pais, cJugador* ganador);
 		void CambiarTurno(cJugador **Jugador, int k);
 		void ImprimirGanador();
 

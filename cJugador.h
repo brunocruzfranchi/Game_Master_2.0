@@ -12,7 +12,7 @@
 #include "cListaT.h"
 //hereda una lista en la que voy a acargar los paises dominados
 
-class cJugador:public cListaT<class T>
+class cJugador:public cListaT<cTropa>
 {
 
 public:
@@ -32,7 +32,7 @@ public:
 
 		//getters
 		int getN_Jugador() const { return N_jugador; }
-		cListaT<class cTropa> *getTropas() { return Tropas; }	// manejo de tipos de punteros
+		//cListaT<class cTropa> *getTropas() { return Lista; }	// manejo de tipos de psunteros
 		//setters
 
 };
