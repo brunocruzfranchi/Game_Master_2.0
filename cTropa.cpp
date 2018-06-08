@@ -7,7 +7,7 @@
 
 #include "cTropa.h"
 
-cTropa::cTropa( string tipo):cListaT<cUnidades>(),Tipo(tipo){
+cTropa::cTropa(int tam):cListaT<cUnidades>(tam){
 	
 }
 

@@ -27,6 +27,8 @@ public:
 		//setters
 		void setAT(int at);
 		void setHP(int hp);
+		virtual void Atacar(cTropa* atacado) = 0;
+		virtual void Contraatacar(cTropa* t) = 0;
 
 protected:
 	///Atributos

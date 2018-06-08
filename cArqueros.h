@@ -15,6 +15,7 @@ class cArqueros : public cUnidades
 
 public:
 	///Const. y Dest.
+	const int Prob_2AT;
 	cArqueros(int at, int hp, string tipo);
 	virtual ~cArqueros();
 
