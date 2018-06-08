@@ -16,9 +16,9 @@ class cUnidades
 
 public:
 	///Const. y Dest.
-	cUnidades(int at, int hp, string tipo);
+	cUnidades(string tipo);
 	virtual ~cUnidades();
-
+	const string Tipo;
 	///Metodos
 		//getters
 		int getAT();
@@ -32,7 +32,7 @@ protected:
 	///Atributos
 	int AT;
 	int HP;
-	const string Tipo;
+	
 
 };
 #endif // !defined(EA_F44D8CC2_4472_4b58_BA7F_3E087AF8782D__INCLUDED_)

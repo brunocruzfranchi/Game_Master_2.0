@@ -8,7 +8,35 @@
 #include "cUnidades.h"
 
 
-cUnidades::cUnidades(int at, int hp, string tipo):Tipo(tipo){
+cUnidades::cUnidades(string tipo):Tipo(tipo){
+	int at, hp, maxat, minat, minhp,maxhp;
+	if (tipo == "Magos")
+	{
+		minat = 10;
+		maxat = 20;
+		minhp = 40;
+		maxhp = 60;
+
+	}
+	if (tipo == "Arqueros")
+	{
+		minat = 20;
+		maxat = 30;
+		minhp = 60;
+		maxhp = 80;
+
+	}
+	if (tipo == "Caballeros")
+	{
+		minat = 30;
+		maxat = 40;
+		minhp = 80;
+		maxhp = 100;
+
+	}
+
+	at = minat + rand() % (maxat - minat + 1);
+	hp = minhp + rand() % (maxhp - minhp + 1);
 	this->AT = at;
 	this->HP = hp;
 }

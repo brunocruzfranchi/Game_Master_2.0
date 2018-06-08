@@ -6,7 +6,7 @@
 ///////////////////////////////////////////////////////////
 
 #include "cJuego.h"
-#include <iostream>
+
 
 using namespace std;
 
@@ -19,7 +19,40 @@ cJuego::~cJuego() {
 }
 
 void cJuego::AsignarPaises(cJugador *Jug) {
-	
+
+	int aux, aleatorio=0,tam_tropa, max, min, M;
+	string * tipo;
+
+	aux = getCA();
+	(aux % 2 != 0) ? aux--:0;
+	aux = aux / 2;
+
+	for (int i = 0; i < aux; i++)
+	{
+		srand(time(NULL));
+		aleatorio = rand() % 3;
+		if (aleatorio == 0)
+		{
+			min = 20;
+			max = 40;
+			*(tipo) = "Magos";
+		}
+		if (aleatorio == 1)
+		{
+			min = 15;
+			max = 40;
+			*(tipo) = "Arqueros";
+		}
+		if (aleatorio == 2)
+		{
+			min = 10;
+			max = 20;
+			*(tipo) = "Caballeros";
+		}
+
+		tam_tropa = min + rand() % (max -min+1);
+
+	}
 }
 
 void cJuego::AsignarTropas(cJugador *Jug) {
@@ -34,6 +67,7 @@ void cJuego::ReasignarPais(cPais* pais, cJugador* ganador) {
 void cJuego::CrearJugadores(int n) {
 
 	Jugadores = new cListaT<cJugador>(n);
+
 	for (int i = 0; i < n; i++) {
 		Jugadores->AgregarItem(new cJugador(i));
 	}
@@ -114,9 +148,6 @@ void cJuego::CrearPaises()//Que es lo que hace esta funcion crear los paises ind
 	//for agregando pais a lista paises;
 } 
 
-int cJuego::getRonda() {
-	return Ronda;
-}
 
 int cJuego::Jugar() {
 	int opcion;
@@ -126,9 +157,14 @@ int cJuego::Jugar() {
 		//Turnos
 		for ( int k = 0; k < Jugadores->getCA(); k++)
 		{
-			//CambiarTurno(/*lista jugadores del template*/, k);
-			//Listar paises dominados y pedir atacante
-			//Pido tropa (magos,arqueros,caballeros);
+			for (int h  = 0; h < N_MAX_ATAQUES; h++)
+			{
+				//CambiarTurno(/*lista jugadores del template*/, k);
+				//Listar paises dominados y pedir atacante
+				//Pido tropa (magos,arqueros,caballeros);
+				//preguntar continuar atacando? if==no break;
+			}
+			
 		}
 		if (Ronda == N_RONDAS)
 				{
@@ -161,7 +197,8 @@ void cJuego::CambiarTurno(cJugador** Jugador, int k) {
 
 void cJuego::Iniciar_Partida() {
 	
-	//asignar paises inicial
+	//asignar paises inicia
+	
 	//asignacion inicial de tropas
 	//bienvenido, juego iniciado
 	//
@@ -170,3 +207,8 @@ void cJuego::Iniciar_Partida() {
 void cJuego::ImprimirGanador() {
 	//determinar ganador e imprimir
 };
+
+
+int cJuego::getRonda() {
+	return Ronda;
+}

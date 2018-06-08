@@ -7,8 +7,8 @@
 
 #include "cTropa.h"
 
-cTropa::cTropa(int max, int min, string tipo):Tipo(tipo),Max_Uni(max),Min_Uni(min){
-
+cTropa::cTropa( string tipo):cListaT<cUnidades>(),Tipo(tipo){
+	
 }
 
 cTropa::~cTropa(){

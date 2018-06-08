@@ -11,11 +11,14 @@
 #include "cJugador.h"
 #include "cListaT.h"
 #include <string>
-
+#include <iostream>
+#include <stdlib.h>
+#include <time.h>
 #define N_MAX_TURNOS 500
 #define N_MAX_JUGADORES 2
 #define N_RONDAS 10
 #define N_PAISES_TOTALES 13
+#define N_MAX_ATAQUES 3
 
 using namespace std;
 

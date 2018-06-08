@@ -11,8 +11,9 @@
 #include "cUnidades.h"
 #include "cListaT.h"
 #include "cPais.h"
+#include <string.h>
 
-class cTropa : public cListaT<class T>
+class cTropa : public cListaT<cUnidades>
 {
 	public:
 		///Atributos
@@ -20,7 +21,7 @@ class cTropa : public cListaT<class T>
 		//cPais* Pais;
 
 		///Const. y Dest.
-		cTropa(int max, int min, string tipo);
+		cTropa( string tipo);
 		virtual ~cTropa();
 
 		///Metodos
@@ -29,8 +30,8 @@ class cTropa : public cListaT<class T>
 		
 	protected:
 		///Atributos
-		const int Max_Uni;
-		const int Min_Uni;
+		//const int Max_Uni;
+		//const int Min_Uni;
 	
 };
 #endif // !defined(EA_8A40037E_4D59_4c58_A939_91FA7C445ABE__INCLUDED_)
