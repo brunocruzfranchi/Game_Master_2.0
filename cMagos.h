@@ -10,13 +10,16 @@
 
 #include "cUnidades.h"
 
-class cMagos : public cUnidades
-{
-public:
-
-	///Const. y Dest.
-	cMagos(int at, int hp, string tipo);
-	virtual ~cMagos();
+class cMagos : public cUnidades{
+	public:
+		///Const. y Dest.
+		cMagos(string tipo);
+		virtual ~cMagos();
+	
+		///Metodos
+		void Atacar(cTropa* atacado);
+		void Contraatacar(cTropa* t);
+		
 
 };
 #endif // !defined(EA_DE5B91F6_445E_4fc9_B196_6D5E1D8C9875__INCLUDED_)

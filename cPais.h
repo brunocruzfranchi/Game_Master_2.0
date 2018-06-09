@@ -10,6 +10,7 @@
 #include "cListaT.h"
 #include "cTropa.h"
 #include <string>
+#include <iostream>
 using namespace std;
 
 class cPais:public cListaT<cPais>{	
@@ -30,7 +31,6 @@ class cPais:public cListaT<cPais>{
 
 		///Metodos
 			//Principales
-
 			//Setters
 			void setJugador(int j) { Jugador = j; }
 
@@ -41,6 +41,11 @@ class cPais:public cListaT<cPais>{
 			//Posibilidades
 			//void Distribuir(cTropa* t);
 			//cPais** getLimitrofes();
+
+			//Lista Template
+			string getclave() { return Nombre;}
+			void Imprimir() { cout << Nombre << endl; }
+			
 };
 
 

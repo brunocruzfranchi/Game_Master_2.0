@@ -8,12 +8,19 @@
 #include "cMagos.h"
 
 
-cMagos::cMagos(int at, int hp, string tipo):cUnidades(at, hp, tipo){
-
+cMagos::cMagos(string tipo):cUnidades(tipo){
 }
 
 
 
 cMagos::~cMagos(){
 
+}
+
+void cMagos::Atacar(cTropa * atacado)
+{
+}
+
+void cMagos::Contraatacar(cTropa * t)
+{
 }

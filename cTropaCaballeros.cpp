@@ -7,19 +7,9 @@
 
 #include "cTropaCaballeros.h"
 
-
-cTropaCaballeros::cTropaCaballeros(int max, int min, string tipo):cTropa(max, min, tipo){
-
+cTropaCaballeros::cTropaCaballeros(int tam/*int max, int min, string tipo*/):cTropa(tam){
 }
 
 cTropaCaballeros::~cTropaCaballeros(){
-
-}
-
-void cTropaCaballeros::Atacar(cTropa* atacante){
-
-}
-
-void cTropaCaballeros::Contratacar(cTropa* tt){
 
 }

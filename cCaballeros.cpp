@@ -8,12 +8,18 @@
 #include "cCaballeros.h"
 
 
-cCaballeros::cCaballeros(int at, int hp, string tipo) :cUnidades(at, hp, tipo) {
-
+cCaballeros::cCaballeros(string tipo):cUnidades(tipo){
 }
-
-
 
 cCaballeros::~cCaballeros(){
 
 }
+
+void cCaballeros::Atacar(cTropa * atacado)
+{
+}
+
+void cCaballeros::Contraatacar(cTropa * t)
+{
+}
+

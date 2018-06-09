@@ -13,11 +13,17 @@
 class cArqueros : public cUnidades
 {
 
-public:
+public:	
+	///Atributos
+	const int Prob_2AT; 
+	
 	///Const. y Dest.
-	const int Prob_2AT;
-	cArqueros(int at, int hp, string tipo);
+	cArqueros(int prob, string tipo);
 	virtual ~cArqueros();
 
+	///Metodos
+	void Atacar(cTropa* atacado);
+	void Contraatacar(cTropa* t);
+	
 };
 #endif // !defined(EA_15DC52D4_8D07_4cb9_BFA9_653F9D1BDF5D__INCLUDED_)

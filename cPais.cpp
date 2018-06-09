@@ -9,11 +9,9 @@
 
 
 cPais::cPais(string nombre):Nombre(nombre){
-
 }
 
 cPais::~cPais(){
-
 }
 
 /*

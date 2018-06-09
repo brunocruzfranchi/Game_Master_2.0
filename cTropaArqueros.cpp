@@ -8,22 +8,11 @@
 #include "cTropaArqueros.h"
 
 
-cTropaArqueros::cTropaArqueros(int max, int min, string tipo) :cTropa(max, min, tipo) {
+cTropaArqueros::cTropaArqueros(int tam/*int max, int min, string tipo*/) :cTropa(tam){
 
 }
 
 
 cTropaArqueros::~cTropaArqueros(){
-
-}
-
-
-
-void cTropaArqueros::Atacar(cTropa* atacante){
-
-}
-
-
-void cTropaArqueros::Contraatacar(cTropa* t){
 
 }

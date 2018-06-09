@@ -7,10 +7,16 @@
 
 #include "cArqueros.h"
 
-cArqueros::cArqueros(int at, int hp, string tipo):cUnidades(at,hp,tipo)
-{
+cArqueros::cArqueros(int prob, string tipo):cUnidades(tipo),Prob_2AT(prob){
 }
 
 cArqueros::~cArqueros(){
+}
 
+void cArqueros::Atacar(cTropa * atacado)
+{
+}
+
+void cArqueros::Contraatacar(cTropa * t)
+{
 }

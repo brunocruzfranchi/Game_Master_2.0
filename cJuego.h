@@ -14,6 +14,7 @@
 #include <iostream>
 #include <stdlib.h>
 #include <time.h>
+
 #define N_MAX_TURNOS 500
 #define N_MAX_JUGADORES 2
 #define N_RONDAS 10
@@ -27,11 +28,11 @@ class cJuego : public cListaT<class T>
 
 public:
 	///Atributos
-	
 	int Ronda;
 	cJugador* Jugador_de_turno;
 	cListaT<cPais> *Paises;
 	cListaT<cJugador> *Jugadores;
+
 	///Const y Dest
 	cJuego(int cant_jug=2);
 	virtual ~cJuego();
@@ -54,12 +55,11 @@ public:
 		//setters	
 		void setJugador_de_turno(cJugador* j) {	Jugador_de_turno = j;}
 
-		//Extras
+		//extras
 		void ReasignarPais(cPais* pais, cJugador* ganador);
 		void CambiarTurno(cJugador **Jugador, int k);
 		void ImprimirGanador();
-
-
-
 };
 #endif // !defined(EA_25249AF9_B8BF_441f_95EC_C0B1C8876E76__INCLUDED_)
+
+bool repetidos(int n, int num[]);

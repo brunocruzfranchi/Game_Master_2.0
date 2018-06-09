@@ -16,7 +16,7 @@ class cTropaMagos : public cTropa
 public:
 
 	///Const. y Dest.
-	cTropaMagos(int max, int min, string tipo);
+	cTropaMagos(int tam);
 	virtual ~cTropaMagos();
 
 	///Metodos

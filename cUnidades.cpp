@@ -9,7 +9,9 @@
 
 
 cUnidades::cUnidades(string tipo):Tipo(tipo){
+
 	int at, hp, maxat, minat, minhp,maxhp;
+
 	if (tipo == "Magos")
 	{
 		minat = 10;
@@ -66,3 +68,4 @@ void cUnidades::setAT(int at){
 void cUnidades::setHP(int hp){
 	HP=hp;
 }
+

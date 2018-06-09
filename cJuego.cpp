@@ -13,57 +13,12 @@ using namespace std;
 cJuego::cJuego(int cant_jug) {
 	CrearJugadores(cant_jug);
 	CrearPaises();
-
 }
+
 cJuego::~cJuego() {
 }
 
-void cJuego::AsignarPaises(cJugador *Jug) {
-
-	int aux, aleatorio=0,tam_tropa, max, min, M;
-	string * tipo;
-
-	aux = getCA();
-	(aux % 2 != 0) ? aux--:0;
-	aux = aux / 2;
-
-	for (int i = 0; i < aux; i++)
-	{
-		srand(time(NULL));
-		aleatorio = rand() % 3;
-		if (aleatorio == 0)
-		{
-			min = 20;
-			max = 40;
-			*(tipo) = "Magos";
-		}
-		if (aleatorio == 1)
-		{
-			min = 15;
-			max = 40;
-			*(tipo) = "Arqueros";
-		}
-		if (aleatorio == 2)
-		{
-			min = 10;
-			max = 20;
-			*(tipo) = "Caballeros";
-		}
-
-		tam_tropa = min + rand() % (max -min+1);
-
-	}
-}
-
-void cJuego::AsignarTropas(cJugador *Jug) {
-	
-}
-
-void cJuego::ReasignarPais(cPais* pais, cJugador* ganador) {
-
-	pais->setJugador(ganador->getN_Jugador());//sacar lista del perdedor
-}
-
+//CREAR
 void cJuego::CrearJugadores(int n) {
 
 	Jugadores = new cListaT<cJugador>(n);
@@ -73,13 +28,12 @@ void cJuego::CrearJugadores(int n) {
 	}
 }
 
-void cJuego::CrearPaises()//Que es lo que hace esta funcion crear los paises individualmente o crear una lista de paises para ser usada 
-{
-	Paises=new cListaT<cPais>(13);//
-	
+void cJuego::CrearPaises() {
+	Paises = new cListaT<cPais>();
 	cPais *paises[N_PAISES_TOTALES];
-	paises[0]=new cPais("Argentina");
-	paises[1]=new cPais("Bolivia");
+
+	paises[0] = new cPais("Argentina");
+	paises[1] = new cPais("Bolivia");
 	paises[2] = new cPais("Brasil");
 	paises[3] = new cPais("Chile");
 	paises[4] = new cPais("Colombia");
@@ -93,46 +47,47 @@ void cJuego::CrearPaises()//Que es lo que hace esta funcion crear los paises ind
 	paises[12] = new cPais("Guayana Francesa");
 	//genero mapa con paises limitrofes
 
+	//Guayana Francesa
 	paises[12]->AgregarItem(paises[9]);
 	paises[12]->AgregarItem(paises[2]);
+	//Venezuela
 	paises[11]->AgregarItem(paises[4]);
 	paises[11]->AgregarItem(paises[2]);
 	paises[11]->AgregarItem(paises[6]);
+	//Uruguay
 	paises[10]->AgregarItem(paises[0]);
 	paises[10]->AgregarItem(paises[2]);
+	//Surinam
 	paises[9]->AgregarItem(paises[6]);
 	paises[9]->AgregarItem(paises[2]);
 	paises[9]->AgregarItem(paises[12]);
+	//Peru
 	paises[8]->AgregarItem(paises[5]);
 	paises[8]->AgregarItem(paises[4]);
 	paises[8]->AgregarItem(paises[2]);
 	paises[8]->AgregarItem(paises[1]);
 	paises[8]->AgregarItem(paises[3]);
+	//Paraguay
 	paises[7]->AgregarItem(paises[1]);
 	paises[7]->AgregarItem(paises[2]);
 	paises[7]->AgregarItem(paises[0]);
+	//Guyana
 	paises[6]->AgregarItem(paises[9]);
 	paises[6]->AgregarItem(paises[2]);
 	paises[6]->AgregarItem(paises[11]);
+	//Ecuador
 	paises[5]->AgregarItem(paises[8]);
 	paises[5]->AgregarItem(paises[4]);
+	//Colombia
 	paises[4]->AgregarItem(paises[11]);
 	paises[4]->AgregarItem(paises[5]);
 	paises[4]->AgregarItem(paises[8]);
 	paises[4]->AgregarItem(paises[2]);
+	//Chile
 	paises[3]->AgregarItem(paises[8]);
 	paises[3]->AgregarItem(paises[1]);
 	paises[3]->AgregarItem(paises[0]);
-	paises[0]->AgregarItem(paises[3]);
-	paises[0]->AgregarItem(paises[2]);
-	paises[0]->AgregarItem(paises[1]);
-	paises[0]->AgregarItem(paises[10]);
-	paises[0]->AgregarItem(paises[7]);
-	paises[1]->AgregarItem(paises[0]);
-	paises[1]->AgregarItem(paises[7]);
-	paises[1]->AgregarItem(paises[2]);
-	paises[1]->AgregarItem(paises[3]);
-	paises[1]->AgregarItem(paises[8]);
+	//Brasil
 	paises[2]->AgregarItem(paises[10]);
 	paises[2]->AgregarItem(paises[0]);
 	paises[2]->AgregarItem(paises[7]);
@@ -141,21 +96,130 @@ void cJuego::CrearPaises()//Que es lo que hace esta funcion crear los paises ind
 	paises[2]->AgregarItem(paises[11]);
 	paises[2]->AgregarItem(paises[4]);
 	paises[2]->AgregarItem(paises[12]);
-	paises[2]->AgregarItem(paises[10]);
 	paises[2]->AgregarItem(paises[6]);
 	paises[2]->AgregarItem(paises[9]);
+	//Bolivia
+	paises[1]->AgregarItem(paises[0]);
+	paises[1]->AgregarItem(paises[7]);
+	paises[1]->AgregarItem(paises[2]);
+	paises[1]->AgregarItem(paises[3]);
+	paises[1]->AgregarItem(paises[8]);
+	//Argentina
+	paises[0]->AgregarItem(paises[3]);
+	paises[0]->AgregarItem(paises[2]);
+	paises[0]->AgregarItem(paises[1]);
+	paises[0]->AgregarItem(paises[10]);
+	paises[0]->AgregarItem(paises[7]);
 
 	//for agregando pais a lista paises;
-} 
+	for (int i = 0; i < 13; i++){
+		Paises->AgregarItem(paises[i]);
+	}
+}
+
+//ASIGNACIONES
+void cJuego::AsignarPaises(cJugador *Jug) {
+
+	int n, num[N_PAISES_TOTALES];
+	for (int i = 0; i<13; i++)						//Genero un array de numero aleatorios y no repetidos
+	{
+		do
+			n = rand() % N_PAISES_TOTALES;
+		while (repetidos(n, num));
+		num[i] = n;
+	}
+	if (Jug->getN_Jugador() == 0)
+		for(int i = 0; i < 7; i++){
+			cPais* aux = Paises->getItem(num[i]);
+			Jug->PaisesDominados->AgregarItem(aux);
+		}
+	else
+		for (int i = 7; i < N_PAISES_TOTALES; i++) {
+			cPais* aux2 = Paises->getItem(num[i]);
+			Jug->PaisesDominados->AgregarItem(aux2);
+		}
+}
+
+void cJuego::AsignarTropas(cJugador *Jug) {
+
+	int aux = Jug->PaisesDominados->getCA();
+	int aleatorio = -1, tam_tropa, min, max;
+	string tipo;
+
+	for (int i = 0; i < aux; i++)
+	{
+		aleatorio = rand() % 3;
+		switch (aleatorio)
+		{
+		case 0:
+			min = 20;
+			max = 40;
+			tipo = "Magos";
+			break;
+		case 1:
+			min = 15;
+			max = 40;
+			tipo = "Arqueros";
+			break;
+		case 2:
+			min = 10;
+			max = 20;
+			tipo = "Caballeros";
+			break;
+		default:
+			break;
+		}
+		tam_tropa = min + rand() % (max - min + 1);
+		
+	}
 
 
+	/*
+	int aux, aleatorio = -1, tam_tropa, max, min, M;
+	string tipo;
+	aux = getCA();
+	(aux % 2 != 0) ? aux-- : 0;
+	aux = aux / 2;
+
+	for (int i = 0; i < aux; i++)
+	{
+		aleatorio = rand() % 3;
+		switch (aleatorio)
+		{
+			case 0:
+				min = 20;
+				max = 40;
+				tipo = "Magos";
+				break;
+			case 1:
+				min = 15;
+				max = 40;
+				tipo = "Arqueros";
+				break;
+			case 2:
+				min = 10;
+				max = 20;
+				tipo = "Caballeros";
+				break;
+			default:
+				break;
+		}
+		tam_tropa = min + rand() % (max - min + 1);
+	}
+	*/
+}
+
+void cJuego::ReasignarPais(cPais* pais, cJugador* ganador) {
+
+	pais->setJugador(ganador->getN_Jugador());//sacar lista del perdedor
+}
+
+//PARTIDA
 int cJuego::Jugar() {
 	int opcion;
 	for (Ronda = 1; Ronda <= N_MAX_TURNOS; Ronda++)	{
-
-		
 		//Turnos
-		for ( int k = 0; k < Jugadores->getCA(); k++)
+		for ( int k = 0; k < (Jugadores->getCA()); k++)
 		{
 			for (int h  = 0; h < N_MAX_ATAQUES; h++)
 			{
@@ -196,19 +260,38 @@ void cJuego::CambiarTurno(cJugador** Jugador, int k) {
 }
 
 void cJuego::Iniciar_Partida() {
-	
-	//asignar paises inicia
-	
-	//asignacion inicial de tropas
-	//bienvenido, juego iniciado
-	//
+	//Jugadores
+	cJugador* Jug1 = Jugadores->getItem(0);
+	cJugador* Jug2 = Jugadores->getItem(1);
+
+	//Asignacion de Paises
+	AsignarPaises(Jug1);
+	AsignarPaises(Jug2);
+
+	//Asignacion inicial de tropas
+	AsignarTropas(Jug1);
+	AsignarTropas(Jug2);
+
+	//bienvenido, juego iniciado*/
+
+
+
 }
-
-void cJuego::ImprimirGanador() {
-	//determinar ganador e imprimir
-};
-
 
 int cJuego::getRonda() {
 	return Ronda;
+}
+
+//IMPRIMIR
+void cJuego::ImprimirGanador() {
+	//determinar ganador e imprimir
+}
+
+//EXTERNA
+bool repetidos(int n, int num[])
+{
+	for (int i = 0; i<N_PAISES_TOTALES; i++)
+		if (n == num[i])
+			return true;
+	return false;
 }

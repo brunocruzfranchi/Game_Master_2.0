@@ -15,8 +15,12 @@ class cCaballeros : public cUnidades
 
 public:
 	///Const. y Dest.
-	cCaballeros(int at, int hp, string tipo);
+	cCaballeros(string tipo);
 	virtual ~cCaballeros();
 
+	///Metodos
+	void Atacar(cTropa* atacado);
+	void Contraatacar(cTropa* t);
+	
 };
 #endif // !defined(EA_D1A310EB_FD53_491b_82BB_23005E2C328D__INCLUDED_)

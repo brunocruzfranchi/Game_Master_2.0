@@ -12,8 +12,11 @@
 #include "cListaT.h"
 #include "cPais.h"
 #include <string.h>
+#include <iostream>
 
-class cTropa : public cListaT<cUnidades>
+using namespace std;
+
+class cTropa : public cListaT<class cUnidades>
 {
 	public:
 		///Atributos
@@ -21,11 +24,13 @@ class cTropa : public cListaT<cUnidades>
 		//cPais* Pais;
 
 		///Const. y Dest.
-		cTropa( int tam);
+		cTropa(int tam);
 		virtual ~cTropa();
 
 		///Metodos
 		
+		///Template
+		void Imprimir() { cout << Tipo << endl; }
 		
 	protected:
 		///Atributos

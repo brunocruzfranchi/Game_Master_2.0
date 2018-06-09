@@ -8,7 +8,7 @@
 #include "cTropaMagos.h"
 
 
-cTropaMagos::cTropaMagos(int max, int min, string tipo) :cTropa(max, min, tipo) {
+cTropaMagos::cTropaMagos(int tam/*int max, int min, string tipo*/):cTropa(tam){
 
 }
 
@@ -18,15 +18,3 @@ cTropaMagos::~cTropaMagos(){
 
 }
 
-
-
-
-
-void cTropaMagos::Atacar(cTropa* atacado){
-
-}
-
-
-void cTropaMagos::Contraatacar(cTropa* t){
-
-}

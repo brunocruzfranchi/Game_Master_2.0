@@ -9,7 +9,7 @@
 
 
 cJugador::cJugador(int n_jugador):N_jugador(n_jugador){
-
+	this->PaisesDominados = new cListaT<cPais>();
 }
 
 cJugador::~cJugador(){
