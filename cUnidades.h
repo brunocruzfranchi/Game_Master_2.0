@@ -24,6 +24,9 @@ public:
 	virtual ~cUnidades();
 
 	///Metodos
+
+	bool DisminuirHP(int v = 1);
+	
 		//getters
 		int getAT();
 		int getHP();

@@ -23,7 +23,7 @@
 
 using namespace std;
 
-class cJuego : public cListaT<class T>
+class cJuego : public cListaT<cJugador>
 {
 
 public:
@@ -58,6 +58,7 @@ public:
 		//extras
 		void ReasignarPais(cPais* pais, cJugador* ganador);
 		void CambiarTurno(cJugador **Jugador, int k);
+		void Imprimir();
 		void ImprimirGanador();
 };
 #endif // !defined(EA_25249AF9_B8BF_441f_95EC_C0B1C8876E76__INCLUDED_)

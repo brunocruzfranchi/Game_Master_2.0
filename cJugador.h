@@ -20,11 +20,11 @@ class cJugador:public cListaT<cTropa>
 
 public:
 	///Atributos
-	const int N_jugador;
+	const string N_jugador;
 	cListaT<cPais>* PaisesDominados;
 
 	///Const. y Dest.
-	cJugador(int n_jugador);
+	cJugador(string n_jugador);
 	virtual ~cJugador();
 
 	///Metodos
@@ -33,15 +33,16 @@ public:
 		void MoverTropas(cTropa* t);
 
 		//getters
-		int getN_Jugador() const { return N_jugador; }
+		string getN_Jugador() const { return N_jugador; }
 		cListaT<class cPais> *getPaisesD() { return PaisesDominados; }	// manejo de tipos de psunteros
 
 		//setters
 		//void setPaisesD(cListaT<class cPais> *listad) { PaisesDominados = listad; }
 
 		//Lista Template
-		string getclave() { return to_string(N_jugador); }
-		void Imprimir() { cout << "Jugador " << N_jugador+1 << endl;}
+		string getclave() { return N_jugador; }
+		void ImprimirJugador() { cout << "Jugador " << N_jugador << endl;}
+		void Imprimir();
 
 };
 #endif // !defined(EA_ECAD8CBF_DBA6_4277_A538_57274982E741__INCLUDED_)

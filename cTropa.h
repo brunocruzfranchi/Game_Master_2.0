@@ -28,8 +28,11 @@ class cTropa : public cListaT<class cUnidades>
 		virtual ~cTropa();
 
 		///Metodos
+		virtual void Atacar();
+		virtual void RecibirDanio(int danio);
 		
 		///Template
+		
 		void Imprimir() { cout << Tipo << endl; }
 		
 	protected:

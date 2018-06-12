@@ -13,11 +13,19 @@ cTropa::cTropa(int tam):cListaT<cUnidades>(tam){
 
 cTropa::~cTropa(){
 }
-/*
-int cTropa::getN_Unidades(){
-	return N_Unidades;
+void cTropa::Atacar()
+{
+	int ataque_total = 0;
+
+	for (int  i = 0; i < getCA(); i++)
+	{
+		/*ataque_total=*/
+	}
+
+
 }
 
-void cTropa::setN_Unidades(int n){
-	//N_Unidades=n;
-}*/
+void cTropa::RecibirDanio(int danio)
+{
+	
+}

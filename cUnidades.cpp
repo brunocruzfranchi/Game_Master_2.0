@@ -46,6 +46,17 @@ cUnidades::cUnidades(string tipo):Tipo(tipo){
 cUnidades::~cUnidades(){
 }
 
+bool cUnidades::DisminuirHP(int v)
+{
+	HP=HP-v;
+	if (HP < 10)  return false;
+	else
+	 return true;
+		
+}
+
+
+
 int cUnidades::getAT(){
 	return AT;
 }

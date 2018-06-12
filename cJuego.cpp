@@ -115,16 +115,16 @@ void cJuego::CrearPaises() {
 	for (int i = 0; i < 13; i++){
 		Paises->AgregarItem(paises[i]);
 	}
-}
+} //listo
 
 //ASIGNACIONES
 void cJuego::AsignarPaises(cJugador *Jug) {
 
 	int n, num[N_PAISES_TOTALES];
-	for (int i = 0; i<13; i++)						//Genero un array de numero aleatorios y no repetidos
+	for (int i = 0; i<N_PAISES_TOTALES; i++)						//Genero un array de numero aleatorios y no repetidos
 	{
 		do
-			n = rand() % N_PAISES_TOTALES;
+			n = rand() % N_PAISES_TOTALES/*+1?*/;
 		while (repetidos(n, num));
 		num[i] = n;
 	}
@@ -158,7 +158,7 @@ void cJuego::AsignarTropas(cJugador *Jug) {
 			break;
 		case 1:
 			min = 15;
-			max = 40;
+			max = 30;
 			tipo = "Arqueros";
 			break;
 		case 2:
@@ -206,13 +206,17 @@ void cJuego::AsignarTropas(cJugador *Jug) {
 		}
 		tam_tropa = min + rand() % (max - min + 1);
 	}
-	*/
+	*/ //Borrar?
 }
 
-void cJuego::ReasignarPais(cPais* pais, cJugador* ganador) {
+void cJuego::ReasignarPais(cPais* pais, cJugador* ganador) { //listo
 
-	pais->setJugador(ganador->getN_Jugador());//sacar lista del perdedor
-}
+	pais->setJugador(ganador->getN_Jugador());
+	string n_perdedor;
+	n_perdedor = pais->getJugador();
+	cJugador*perdedor = BuscarItem(n_perdedor);
+	perdedor->Eliminar(pais->getNombre());
+} //listo
 
 //PARTIDA
 int cJuego::Jugar() {
@@ -223,9 +227,11 @@ int cJuego::Jugar() {
 		{
 			for (int h  = 0; h < N_MAX_ATAQUES; h++)
 			{
-				//CambiarTurno(/*lista jugadores del template*/, k);
-				//Listar paises dominados y pedir atacante
+				CambiarTurno(vector, k);
+				vector[k]->Listar();//?? not sure yet
+				//pedir atacante
 				//Pido tropa (magos,arqueros,caballeros);
+				//ataque-contraataque
 				//preguntar continuar atacando? if==no break;
 			}
 			
@@ -257,6 +263,10 @@ int cJuego::Jugar() {
 
 void cJuego::CambiarTurno(cJugador** Jugador, int k) {
 	Jugador_de_turno = Jugador[k];
+}
+
+void cJuego::Imprimir()
+{
 }
 
 void cJuego::Iniciar_Partida() {

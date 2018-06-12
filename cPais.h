@@ -23,7 +23,7 @@ class cPais:public cListaT<cPais>{
 		///Atributos
 		//static cListaT<cPais> *Lista_Paises;
 		const string Nombre;
-		int Jugador;
+		string Jugador;
 
 		///Const. y Dest.
 		cPais(string nombre);
@@ -32,10 +32,10 @@ class cPais:public cListaT<cPais>{
 		///Metodos
 			//Principales
 			//Setters
-			void setJugador(int j) { Jugador = j; }
+			void setJugador(string j) { Jugador = j; }
 
 			//Getters
-			int getJugador() { return Jugador; }
+			string getJugador() { return Jugador; }
 			string getNombre() const { return Nombre; }
 		
 			//Posibilidades

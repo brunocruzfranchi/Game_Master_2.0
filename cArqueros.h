@@ -9,16 +9,16 @@
 #define EA_15DC52D4_8D07_4cb9_BFA9_653F9D1BDF5D__INCLUDED_
 
 #include "cUnidades.h"
-
+#include <ctime>
 class cArqueros : public cUnidades
 {
 
 public:	
 	///Atributos
-	const int Prob_2AT; 
+	int Prob_2AT; 
 	
 	///Const. y Dest.
-	cArqueros(int prob, string tipo);
+	cArqueros( string tipo);
 	virtual ~cArqueros();
 
 	///Metodos

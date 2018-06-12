@@ -8,7 +8,7 @@
 #include "cJugador.h"
 
 
-cJugador::cJugador(int n_jugador):N_jugador(n_jugador){
+cJugador::cJugador(string n_jugador):N_jugador(n_jugador){
 	this->PaisesDominados = new cListaT<cPais>();
 }
 
@@ -22,4 +22,9 @@ void cJugador::Distribuir(cTropa* t){
 
 void cJugador::MoverTropas(cTropa* t){
 
+}
+
+void cJugador::Imprimir()
+{
+	cout<< 
 }
