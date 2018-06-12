@@ -10,6 +10,8 @@
 
 
 #include <string>
+#define COD_MAX 5000
+#define N_COD 6
 using namespace std;
 class cTropa;
 class cUnidades
@@ -18,6 +20,8 @@ class cUnidades
 public:
 	///Atributos
 	const string Tipo;
+	const string Clave;
+	static cListaT<string> Claves_en_uso;
 
 	///Const. y Dest.
 	cUnidades(string tipo);
@@ -26,11 +30,12 @@ public:
 	///Metodos
 
 	bool DisminuirHP(int v = 1);
-	
+
 		//getters
 		int getAT();
 		int getHP();
-		string getTipo();
+		string getTipo() const {return Tipo;}
+		string getclave() const { return Clave; }
 		//setters
 		void setAT(int at);
 		void setHP(int hp);

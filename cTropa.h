@@ -13,27 +13,30 @@
 #include "cPais.h"
 #include <string.h>
 #include <iostream>
-
+#include <iomanip>
 using namespace std;
 
 class cTropa : public cListaT<class cUnidades>
 {
 	public:
 		///Atributos
+		//agregar numero de serie o simil???
 		const string Tipo;
+		int ATTotal;
 		//cPais* Pais;
 
 		///Const. y Dest.
-		cTropa(int tam);
+		cTropa(string tipo, int tam);
 		virtual ~cTropa();
 
 		///Metodos
 		virtual void Atacar();
 		virtual void RecibirDanio(int danio);
+		void Morir(cUnidades*u);
 		
 		///Template
-		
-		void Imprimir() { cout << Tipo << endl; }
+		string getclave() { return Tipo; }
+		void Imprimir() { cout <<"  Tipo: "<< Tipo << setw(8)<< "Ataque: "<< endl; }
 		
 	protected:
 		///Atributos

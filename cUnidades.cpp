@@ -6,6 +6,12 @@
 ///////////////////////////////////////////////////////////
 
 #include "cUnidades.h"
+#include <ctime>
+
+const char cadena[] = { "ABCDEFGHIJKLMNOPQRSTUVWXYZ" "0123456789" };
+
+cListaT<string> cUnidades::Claves_en_uso = cListaT<string>();
+
 
 
 cUnidades::cUnidades(string tipo):Tipo(tipo){
@@ -36,11 +42,48 @@ cUnidades::cUnidades(string tipo):Tipo(tipo){
 		maxhp = 100;
 
 	}
-
+	srand(time(NULL));
 	at = minat + rand() % (maxat - minat + 1);
+	srand(time(NULL));
 	hp = minhp + rand() % (maxhp - minhp + 1);
 	this->AT = at;
 	this->HP = hp;
+
+
+	int aux, flag = 0;
+	cUnidades * aux_p;
+
+		while (flag == 0)
+		{
+			
+			Clave = "";
+			srand(time(NULL));
+			for (unsigned int i = 0; i < N_COD; i++)
+			{
+				aux = rand() % (sizeof(cadena) - 1);
+				Clave += cadena[aux];
+			}
+			/*unsigned int h;
+			for (h = 0; h < Claves_en_uso[0]->CA; h++)
+			{
+				if (Claves_en_uso[h] == Clave)
+					break;
+			}
+			*/
+
+			aux_p=Claves_en_uso->BuscarItem(Clave); // busco repetidos
+
+			if (aux_p==NULL)// no encontre repetidos
+			{
+				flag = 1;
+
+				Claves_en_uso->AgregarItem(Clave);// agrego a lista static
+			}
+
+
+		}
+		
+		delete aux_p;
 }
 
 cUnidades::~cUnidades(){
@@ -66,9 +109,6 @@ int cUnidades::getHP(){
 	return HP;
 }
 
-string cUnidades::getTipo(){
-	return Tipo;
-}
 
 
 void cUnidades::setAT(int at){

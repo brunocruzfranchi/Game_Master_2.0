@@ -170,7 +170,7 @@ void cJuego::AsignarTropas(cJugador *Jug) {
 			break;
 		}
 		tam_tropa = min + rand() % (max - min + 1);
-		
+		Jug->AgregarItem(cTropa(tipo,tam_tropa))
 	}
 
 

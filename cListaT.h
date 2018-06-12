@@ -10,7 +10,7 @@
 /**
  * Hacer un metodo Random
  */
-#define NMAX 50
+#define NMAX 10000
 
 #include <string>
 
