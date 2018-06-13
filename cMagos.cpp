@@ -9,18 +9,18 @@
 
 
 cMagos::cMagos(string tipo):cUnidades(tipo){
+
 }
-
-
 
 cMagos::~cMagos(){
 
 }
+/*
+void cMagos::Atacar(cTropa * atacado){
 
-void cMagos::Atacar(cTropa * atacado)
-{
 }
 
-void cMagos::Contraatacar(cTropa * t)
-{
+void cMagos::Contraatacar(cTropa * t){
+
 }
+*/

@@ -15,11 +15,12 @@ cCaballeros::~cCaballeros(){
 
 }
 
-void cCaballeros::Atacar(cTropa * atacado)
-{
+/*
+void cCaballeros::Atacar(cTropa * atacado){
+
 }
 
-void cCaballeros::Contraatacar(cTropa * t)
-{
-}
+void cCaballeros::Contraatacar(cTropa * t){
 
+}
+*/

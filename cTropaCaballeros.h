@@ -19,7 +19,7 @@ public:
 	virtual ~cTropaCaballeros();
 
 	///Metodos
-	void Atacar(cTropa* atacante);
+	void Atacar(cTropa* atacado);
 	void Contratacar(cTropa* tt);
 
 };

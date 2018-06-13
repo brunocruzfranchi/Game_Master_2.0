@@ -7,8 +7,10 @@
 
 #include "cTropa.h"
 
-cTropa::cTropa(string tipo,int tam,cPais*pais):cListaT<cUnidades>(tam) ,Tipo(tipo){ //como inicializo las unidades de la lista? 
+cTropa::cTropa(string tipo,int tam,cPais*pais):cListaT<cUnidades>(tam),Tipo(tipo){ //como inicializo las unidades de la lista? 
 	int atq = 0;
+	int hpp = 0;
+
 	for (int  i = 0; i < tam; i++)
 	{
 		vector[i] = &cUnidades(tipo);
@@ -16,26 +18,26 @@ cTropa::cTropa(string tipo,int tam,cPais*pais):cListaT<cUnidades>(tam) ,Tipo(tip
 
 	for (int i = 0; i < CA; i++) {
 
-		atq = atq + vector[i]->getAT;
+		atq = atq + vector[i]->getAT();
+		hpp = hpp + vector[i]->getHP();
 	}
 
 	this->ATTotal = atq;
+	this->HPTotal = hpp;
 	this->Pais = pais;
 }
 
 cTropa::~cTropa(){
-}
-void cTropa::Atacar()
-{
-	
-
 
 }
 
 void cTropa::RecibirDanio(int danio)
 {
-	cUnidades* min;
+	cUnidades*min;
+
 	do {
+		min = getHPMinimo();				//Busco la unidad de menor HP
+
 		if (danio >= min->getHP())
 		{
 			danio = danio - min->getHP();
@@ -52,11 +54,13 @@ void cTropa::RecibirDanio(int danio)
 		}
 
 	} while (danio > 0);
+
+
 }
 
 void cTropa::Morir(cUnidades * u)
 {
-	ATTotal = ATTotal - u->getAT();
-	u->Claves_en_uso->Eliminar(u->getclave());
+	ATTotal = ATTotal - u->getHP();
+	u->Claves_en_uso.Eliminar(u->Clave);
 	Eliminar(u);
 }

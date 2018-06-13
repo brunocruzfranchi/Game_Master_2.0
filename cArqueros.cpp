@@ -17,10 +17,12 @@ cArqueros::cArqueros(string tipo):cUnidades(tipo){
 cArqueros::~cArqueros(){
 }
 
-void cArqueros::Atacar(cTropa * atacado)
-{
+/*
+void cArqueros::Atacar(cTropa * atacado){
+
 }
 
-void cArqueros::Contraatacar(cTropa * t)
-{
+void cArqueros::Contraatacar(cTropa * t){
+
 }
+*/

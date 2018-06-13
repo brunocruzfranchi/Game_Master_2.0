@@ -11,13 +11,13 @@
 #include "cPais.h"
 #include "cListaT.h"
 #include <iostream>
+#include <string>
 #include <stdlib.h>
 //hereda una lista en la que voy a acargar los paises dominados
 
 using namespace std;
 
-class cJugador:public cListaT<cTropa>
-{
+class cJugador:public cListaT<class cTropa>{
 
 public:
 	///Atributos

@@ -11,7 +11,6 @@
  * Hacer un metodo Random
  */
 #define NMAX 10000
-
 #include <string>
 //Programar redimensionalizar??
 using namespace std;
@@ -21,9 +20,8 @@ class cListaT
 protected:
 	T **vector;
 	unsigned int CA, TAM;
-
-
 	void Redimensionalizar();
+
 public:
 	cListaT(unsigned int TAM = NMAX);
 	~cListaT();
@@ -42,6 +40,7 @@ public:
 	void Listar();
 	T* BuscarItem(string clave);
 	T* getItem(unsigned int pos);
+	T* getHPMinimo();
 
 	unsigned int getItemPos(string clave);
 	unsigned int getMinimo;
@@ -134,6 +133,7 @@ bool cListaT<T>::AgregarItemOrdenado(const T * item)
 	*/
 	return false;
 }
+
 template<class T>
 T* cListaT<T>::Quitar(string clave) {
 
@@ -142,12 +142,14 @@ T* cListaT<T>::Quitar(string clave) {
 	return QuitarenPos(pos);
 
 }
+
 template<class T>
 T* cListaT<T>::Quitar(const T *item) {
 	unsigned int pos = getItemPos(item->getclave());
 	if (pos >= CA)return NULL;
 	return QuitarenPos(pos);
 }
+
 template<class T>
 T* cListaT<T>::QuitarenPos(unsigned int pos) {
 
@@ -176,11 +178,13 @@ void cListaT<T>::Eliminar(string clave) {
 	//sino algo
 
 }
+
 template<class T>
 void cListaT<T>::Eliminar(const T *item) {
 
 	Eliminar(item->getclave());
 }
+
 template<class T>
 void cListaT<T>::Eliminar(unsigned int pos) {
 	if (pos >= CA)return;// o Throw no pude eliminar
@@ -213,6 +217,7 @@ T* cListaT<T>::getItem(unsigned int pos)
 		return vector[pos];
 	else return NULL;
 }
+
 template<class T>
 unsigned int cListaT<T>::getItemPos(string clave)
 {
@@ -224,6 +229,7 @@ unsigned int cListaT<T>::getItemPos(string clave)
 
 	return INT_MAX;
 }
+
 template<class T>
 T* cListaT<T>::getHPMinimo()
 {

@@ -12,8 +12,6 @@ const char cadena[] = { "ABCDEFGHIJKLMNOPQRSTUVWXYZ" "0123456789" };
 
 cListaT<string> cUnidades::Claves_en_uso = cListaT<string>(COD_MAX);
 
-
-
 cUnidades::cUnidades(string tipo):Tipo(tipo){
 
 	int at, hp, maxat, minat, minhp,maxhp;
@@ -42,9 +40,9 @@ cUnidades::cUnidades(string tipo):Tipo(tipo){
 		maxhp = 100;
 
 	}
-	srand(time(NULL));
+	//srand(time(NULL));
 	at = minat + rand() % (maxat - minat + 1);
-	srand(time(NULL));
+	//srand(time(NULL));
 	hp = minhp + rand() % (maxhp - minhp + 1);
 	this->AT = at;
 	this->HP = hp;
@@ -55,21 +53,20 @@ cUnidades::cUnidades(string tipo):Tipo(tipo){
 	while (flag == 0)
 		{
 			
-			Clave = "";
-			srand(time(NULL));
+			Clave = " ";
+			//srand(time(NULL));
 			for (unsigned int i = 0; i < N_COD; i++)
 			{
 				aux = rand() % (sizeof(cadena) - 1);
 				Clave += cadena[aux];
 			}
-			/*unsigned int h;
+			unsigned int h;
 			for (h = 0; h < Claves_en_uso[0]->CA; h++)
 			{
 				if (Claves_en_uso[h] == Clave)
 					break;
 			}
-			*/
-
+			
 			aux_p=Claves_en_uso->BuscarItem(Clave); // busco repetidos
 
 			if (aux_p==NULL)// no encontre repetidos
@@ -78,8 +75,6 @@ cUnidades::cUnidades(string tipo):Tipo(tipo){
 
 				Claves_en_uso->AgregarItem(Clave);// agrego a lista static
 			}
-
-
 		}
 		
 	delete aux_p;
@@ -97,11 +92,11 @@ bool cUnidades::DisminuirHP(int v)
 		
 }
 
-int cUnidades::getAT(){	return AT;}
+int cUnidades::getAT(){return AT;}
 
-int cUnidades::getHP(){	return HP;}
+int cUnidades::getHP(){return HP;}
 
-void cUnidades::setAT(int at){	AT=at;}
+void cUnidades::setAT(int at){AT=at;}
 
-void cUnidades::setHP(int hp){	HP=hp;}
+void cUnidades::setHP(int hp){HP=hp;}
 

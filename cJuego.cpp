@@ -24,12 +24,13 @@ void cJuego::CrearJugadores(int n) {
 	Jugadores = new cListaT<cJugador>(n);
 
 	for (int i = 0; i < n; i++) {
-		//int to string???
-		Jugadores->AgregarItem(new cJugador(i));
+		string aux = to_string(i);
+		Jugadores->AgregarItem(new cJugador(aux));
 	}
 }
 
 void cJuego::CrearPaises() {
+
 	Paises = new cListaT<cPais>();
 	cPais *paises[N_PAISES_TOTALES];
 
@@ -129,7 +130,7 @@ void cJuego::AsignarPaises(cJugador *Jug) {
 		while (repetidos(n, num));
 		num[i] = n;
 	}
-	if (Jug->getN_Jugador() == 0)//????
+	if (Jug->getN_Jugador() == "0")
 		for(int i = 0; i < 7; i++){
 			cPais* aux = Paises->getItem(num[i]);
 			Jug->PaisesDominados->AgregarItem(aux);
@@ -143,7 +144,7 @@ void cJuego::AsignarPaises(cJugador *Jug) {
 
 void cJuego::AsignarTropas() {
 
-	for(int k=0;k<CA;k++ )
+	for(int k = 0; k < CA ; k++ )
 	{
 		int aux = vector[k]->PaisesDominados->getCA();
 		(aux % 2 != 0) ? aux = aux / 2 : aux = (aux - 1) / 2;
@@ -224,16 +225,21 @@ void cJuego::ReasignarPais(cPais* atacado, cPais* atacante) { //listo
 	cJugador*perdedor = BuscarItem(atacado->getJugador()->getN_Jugador());
 
 	perdedor->PaisesDominados->Eliminar(atacado);
+
 	atacado->setJugador(ganador);
+	
 	ganador->MoverTropas(atacado, atacante);
 } //listo
 
 //PARTIDA
 int cJuego::Jugar() {
 	int opcion;
+
 	for (Ronda = 1; Ronda <= N_MAX_TURNOS; Ronda++)	{
 		//Turnos
+
 		AsignarTropas();// asigno tropas al principio de la ronda
+
 		for ( int k = 0; k < (Jugadores->getCA()); k++)
 		{
 			for (int h  = 0; h < N_MAX_ATAQUES; h++)
@@ -247,6 +253,7 @@ int cJuego::Jugar() {
 			}
 			
 		}
+
 		if (Ronda == N_RONDAS)
 				{
 					cout << endl << "Desea continuar el juego?" << endl
@@ -272,12 +279,12 @@ int cJuego::Jugar() {
 	return 0;
 }
 
-void cJuego::CambiarTurno(cJugador** Jugador, int k) {
+void cJuego::CambiarTurno(cJugador** Jugador, int k){
 	Jugador_de_turno = Jugador[k];
 }
 
-void cJuego::Imprimir()
-{
+void cJuego::Imprimir(){
+
 }
 
 void cJuego::Iniciar_Partida() {

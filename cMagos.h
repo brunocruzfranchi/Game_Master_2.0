@@ -17,9 +17,8 @@ class cMagos : public cUnidades{
 		virtual ~cMagos();
 	
 		///Metodos
-		void Atacar(cTropa* atacado);
-		void Contraatacar(cTropa* t);
-		
+		/*void Atacar(cTropa* atacado);
+		void Contraatacar(cTropa* t);*/
 
 };
 #endif // !defined(EA_DE5B91F6_445E_4fc9_B196_6D5E1D8C9875__INCLUDED_)

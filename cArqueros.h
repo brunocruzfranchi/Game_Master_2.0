@@ -15,15 +15,15 @@ class cArqueros : public cUnidades
 
 public:	
 	///Atributos
-	int Prob_2AT; 
+	int Prob_2AT;
 	
 	///Const. y Dest.
-	cArqueros( string tipo);
+	cArqueros(string tipo);
 	virtual ~cArqueros();
 
 	///Metodos
-	void Atacar(cTropa* atacado);
-	void Contraatacar(cTropa* t);
+	/*void Atacar(cTropa* atacado);
+	void Contraatacar(cTropa* t);*/
 	
 };
 #endif // !defined(EA_15DC52D4_8D07_4cb9_BFA9_653F9D1BDF5D__INCLUDED_)

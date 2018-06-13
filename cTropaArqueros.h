@@ -19,7 +19,7 @@ public:
 	virtual ~cTropaArqueros();
 
 	///Const. y Dest.
-	void Atacar(cTropa* atacante);
+	void Atacar(cTropa* atacado);
 	void Contraatacar(cTropa* t);
 	
 };

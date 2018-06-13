@@ -20,8 +20,10 @@ void cJugador::Distribuir(cTropa* t){
 
 }
 
-void cJugador::MoverTropas(cPais*ganado,cPais*atacante){
+void cJugador::MoverTropas(cPais*ganado , cPais*atacante){
+
 	int opcion_pais, opcion_mover, N_tropas=0, flag=0;
+
 	N_tropas = Contar_e_ImpTropasenPais(atacante);
 		
 	for (int i = 0; i < N_tropas-1; i++)
@@ -30,16 +32,18 @@ void cJugador::MoverTropas(cPais*ganado,cPais*atacante){
 		{
 			ImprimirTropasenPais(atacante);
 		}
+
 		flag++;
 		cout << "Que tropa desea mover? " << endl;
+
 		do {			
 			cin >> opcion_pais; cout << endl;
 						
 		} while (opcion_pais < 1||opcion_pais>N_tropas);
 
 		vector[opcion_pais]->setPais(ganado);
-
 		cout <<endl<< "Tropa trasladada satisfactoriamente";
+
 		do {
 			cout << endl << "Desea mover mas tropas?" << endl << "1. Si " << endl << "2. No" << endl;
 			cin >> opcion_mover; cout << endl;
@@ -48,7 +52,6 @@ void cJugador::MoverTropas(cPais*ganado,cPais*atacante){
 				system ("cls");
 				return;
 			}
-			
 		} while (opcion_mover != 1);
 
 		system("cls");
@@ -83,8 +86,6 @@ int cJugador::Contar_e_ImpTropasenPais(cPais * pais)
 	}
 	return N_tropas;
 }
-
-
 
 void cJugador::Imprimir()//terminar
 {
