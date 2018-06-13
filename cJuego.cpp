@@ -24,6 +24,7 @@ void cJuego::CrearJugadores(int n) {
 	Jugadores = new cListaT<cJugador>(n);
 
 	for (int i = 0; i < n; i++) {
+		//int to string???
 		Jugadores->AgregarItem(new cJugador(i));
 	}
 }
@@ -128,7 +129,7 @@ void cJuego::AsignarPaises(cJugador *Jug) {
 		while (repetidos(n, num));
 		num[i] = n;
 	}
-	if (Jug->getN_Jugador() == 0)
+	if (Jug->getN_Jugador() == 0)//????
 		for(int i = 0; i < 7; i++){
 			cPais* aux = Paises->getItem(num[i]);
 			Jug->PaisesDominados->AgregarItem(aux);
@@ -140,39 +141,46 @@ void cJuego::AsignarPaises(cJugador *Jug) {
 		}
 }
 
-void cJuego::AsignarTropas(cJugador *Jug) {
+void cJuego::AsignarTropas() {
 
-	int aux = Jug->PaisesDominados->getCA();
-	int aleatorio = -1, tam_tropa, min, max;
-	string tipo;
-
-	for (int i = 0; i < aux; i++)
+	for(int k=0;k<CA;k++ )
 	{
-		aleatorio = rand() % 3;
-		switch (aleatorio)
+		int aux = vector[k]->PaisesDominados->getCA();
+		(aux % 2 != 0) ? aux = aux / 2 : aux = (aux - 1) / 2;
+		int aleatorio = -1, tam_tropa, min, max;
+		string tipo,nombre_pais;
+		cPais*asignado;
+		for (int i = 0; i < aux; i++)
 		{
-		case 0:
-			min = 20;
-			max = 40;
-			tipo = "Magos";
-			break;
-		case 1:
-			min = 15;
-			max = 30;
-			tipo = "Arqueros";
-			break;
-		case 2:
-			min = 10;
-			max = 20;
-			tipo = "Caballeros";
-			break;
-		default:
-			break;
+			srand(time(NULL));
+			aleatorio = rand() % 3;
+			switch (aleatorio)
+			{
+			case 0:
+				min = 20;
+				max = 40;
+				tipo = "Magos";
+				break;
+			case 1:
+				min = 15;
+				max = 30;
+				tipo = "Arqueros";
+				break;
+			case 2:
+				min = 10;
+				max = 20;
+				tipo = "Caballeros";
+				break;
+			default:
+				break;
+			}
+			tam_tropa = min + rand() % (max - min + 1);
+			
+			//preguntar pais
+			
+			vector[k]->AgregarItem(&cTropa(tipo, tam_tropa, asignado));
 		}
-		tam_tropa = min + rand() % (max - min + 1);
-		Jug->AgregarItem(cTropa(tipo,tam_tropa))
 	}
-
 
 	/*
 	int aux, aleatorio = -1, tam_tropa, max, min, M;
@@ -206,16 +214,18 @@ void cJuego::AsignarTropas(cJugador *Jug) {
 		}
 		tam_tropa = min + rand() % (max - min + 1);
 	}
-	*/ //Borrar?
+	*/ 
 }
 
-void cJuego::ReasignarPais(cPais* pais, cJugador* ganador) { //listo
+void cJuego::ReasignarPais(cPais* atacado, cPais* atacante) { //listo
+		
+	cJugador *ganador = BuscarItem(atacante->getJugador()->getN_Jugador());
+	
+	cJugador*perdedor = BuscarItem(atacado->getJugador()->getN_Jugador());
 
-	pais->setJugador(ganador->getN_Jugador());
-	string n_perdedor;
-	n_perdedor = pais->getJugador();
-	cJugador*perdedor = BuscarItem(n_perdedor);
-	perdedor->Eliminar(pais->getNombre());
+	perdedor->PaisesDominados->Eliminar(atacado);
+	atacado->setJugador(ganador);
+	ganador->MoverTropas(atacado, atacante);
 } //listo
 
 //PARTIDA
@@ -223,12 +233,13 @@ int cJuego::Jugar() {
 	int opcion;
 	for (Ronda = 1; Ronda <= N_MAX_TURNOS; Ronda++)	{
 		//Turnos
+		AsignarTropas();// asigno tropas al principio de la ronda
 		for ( int k = 0; k < (Jugadores->getCA()); k++)
 		{
 			for (int h  = 0; h < N_MAX_ATAQUES; h++)
 			{
 				CambiarTurno(vector, k);
-				vector[k]->Listar();//?? not sure yet
+				vector[k]->getPaisesD()->Listar();//?? not sure yet
 				//pedir atacante
 				//Pido tropa (magos,arqueros,caballeros);
 				//ataque-contraataque
@@ -279,8 +290,7 @@ void cJuego::Iniciar_Partida() {
 	AsignarPaises(Jug2);
 
 	//Asignacion inicial de tropas
-	AsignarTropas(Jug1);
-	AsignarTropas(Jug2);
+
 
 	//bienvenido, juego iniciado*/
 

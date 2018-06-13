@@ -11,6 +11,7 @@
 #include "cPais.h"
 #include "cListaT.h"
 #include <iostream>
+#include <stdlib.h>
 //hereda una lista en la que voy a acargar los paises dominados
 
 using namespace std;
@@ -30,7 +31,9 @@ public:
 	///Metodos
 		//principales
 		void Distribuir(cTropa* t);
-		void MoverTropas(cTropa* t);
+		void MoverTropas(cPais*pais, cPais*atacante);
+		void ImprimirTropasenPais(cPais*pais);
+		int Contar_e_ImpTropasenPais(cPais*pais);
 
 		//getters
 		string getN_Jugador() const { return N_jugador; }

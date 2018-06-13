@@ -13,7 +13,7 @@
 #define NMAX 10000
 
 #include <string>
-
+//Programar redimensionalizar??
 using namespace std;
 template<class T>
 class cListaT
@@ -44,7 +44,7 @@ public:
 	T* getItem(unsigned int pos);
 
 	unsigned int getItemPos(string clave);
-
+	unsigned int getMinimo;
 	unsigned int getCA();
 	unsigned int getTAM();
 }; 
@@ -224,5 +224,15 @@ unsigned int cListaT<T>::getItemPos(string clave)
 
 	return INT_MAX;
 }
-
+template<class T>
+T* cListaT<T>::getHPMinimo()
+{
+	T* min = vector[0];
+	for (int i = 0; i < CA; i++)
+	{
+		if (vector[i]->getHP() < min->getHP())
+			min = vector[i];
+	}
+	return min;
+}
 #endif // !defined(EA_B9741D49_13D8_46c1_8B11_F0F70B4304B8__INCLUDED_)

@@ -9,8 +9,10 @@
 
 #include "cListaT.h"
 #include "cTropa.h"
+#include "cJugador.h"
 #include <string>
 #include <iostream>
+#define N_PAISES_TOTALES 13
 using namespace std;
 
 class cPais:public cListaT<cPais>{	
@@ -21,9 +23,9 @@ class cPais:public cListaT<cPais>{
 
 	public:
 		///Atributos
-		//static cListaT<cPais> *Lista_Paises;
+		static cListaT<cPais> Lista_Paises;
 		const string Nombre;
-		string Jugador;
+		cJugador*Jugador;//	string Jugador;
 
 		///Const. y Dest.
 		cPais(string nombre);
@@ -32,11 +34,12 @@ class cPais:public cListaT<cPais>{
 		///Metodos
 			//Principales
 			//Setters
-			void setJugador(string j) { Jugador = j; }
+			void setJugador(cJugador* j) { Jugador = j; }
 
 			//Getters
-			string getJugador() { return Jugador; }
+			string getNJugador() { return Jugador->getN_Jugador; }
 			string getNombre() const { return Nombre; }
+			cJugador* getJugador() { return Jugador; }
 		
 			//Posibilidades
 			//void Distribuir(cTropa* t);

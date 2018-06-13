@@ -14,6 +14,7 @@
 #include <string.h>
 #include <iostream>
 #include <iomanip>
+#include <stdlib.h>
 using namespace std;
 
 class cTropa : public cListaT<class cUnidades>
@@ -23,20 +24,25 @@ class cTropa : public cListaT<class cUnidades>
 		//agregar numero de serie o simil???
 		const string Tipo;
 		int ATTotal;
-		//cPais* Pais;
+		cPais* Pais;
 
 		///Const. y Dest.
-		cTropa(string tipo, int tam);
+		cTropa(string tipo, int tam, cPais *pais);
 		virtual ~cTropa();
 
 		///Metodos
 		virtual void Atacar();
 		virtual void RecibirDanio(int danio);
-		void Morir(cUnidades*u);
-		
+		void Morir(cUnidades * u);
+		void setPais(cPais*p) { Pais = p; };
+		cPais*getPais() { return Pais; }
+		string getNombrePais() { return Pais->getNombre(); }
+
 		///Template
 		string getclave() { return Tipo; }
-		void Imprimir() { cout <<"  Tipo: "<< Tipo << setw(8)<< "Ataque: "<< endl; }
+		void Imprimir() { cout <<"  Tipo: "<< Tipo << setw(8)<<
+			"Ataque Total: "<<ATTotal<<setw(8)
+			<<"N de Unidades en la tropa: "<<CA<< endl; }
 		
 	protected:
 		///Atributos

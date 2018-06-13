@@ -10,7 +10,7 @@
 
 const char cadena[] = { "ABCDEFGHIJKLMNOPQRSTUVWXYZ" "0123456789" };
 
-cListaT<string> cUnidades::Claves_en_uso = cListaT<string>();
+cListaT<string> cUnidades::Claves_en_uso = cListaT<string>(COD_MAX);
 
 
 
@@ -48,12 +48,11 @@ cUnidades::cUnidades(string tipo):Tipo(tipo){
 	hp = minhp + rand() % (maxhp - minhp + 1);
 	this->AT = at;
 	this->HP = hp;
-
-
+	
 	int aux, flag = 0;
 	cUnidades * aux_p;
 
-		while (flag == 0)
+	while (flag == 0)
 		{
 			
 			Clave = "";
@@ -83,7 +82,7 @@ cUnidades::cUnidades(string tipo):Tipo(tipo){
 
 		}
 		
-		delete aux_p;
+	delete aux_p;
 }
 
 cUnidades::~cUnidades(){
@@ -98,25 +97,11 @@ bool cUnidades::DisminuirHP(int v)
 		
 }
 
+int cUnidades::getAT(){	return AT;}
 
+int cUnidades::getHP(){	return HP;}
 
-int cUnidades::getAT(){
-	return AT;
-}
+void cUnidades::setAT(int at){	AT=at;}
 
-
-int cUnidades::getHP(){
-	return HP;
-}
-
-
-
-void cUnidades::setAT(int at){
-	AT=at;
-}
-
-
-void cUnidades::setHP(int hp){
-	HP=hp;
-}
+void cUnidades::setHP(int hp){	HP=hp;}
 

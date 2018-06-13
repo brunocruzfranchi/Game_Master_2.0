@@ -7,8 +7,9 @@
 
 #include "cPais.h"
 
-
+cListaT<cPais> cPais::Lista_Paises = cListaT<cPais>(N_PAISES_TOTALES);
 cPais::cPais(string nombre):Nombre(nombre){
+	Lista_Paises.AgregarItem(&cPais(nombre));// loop infinito???
 }
 
 cPais::~cPais(){

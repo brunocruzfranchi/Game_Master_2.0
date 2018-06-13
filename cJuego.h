@@ -46,7 +46,7 @@ public:
 		int Jugar();
 		void Iniciar_Partida();
 		void AsignarPaises(cJugador *Jug);							
-		void AsignarTropas(cJugador *Jug);	
+		void AsignarTropas();	
 		
 		//getters
 		int getRonda();	
@@ -56,7 +56,7 @@ public:
 		void setJugador_de_turno(cJugador* j) {	Jugador_de_turno = j;}
 
 		//extras
-		void ReasignarPais(cPais* pais, cJugador* ganador);
+		void ReasignarPais(cPais* atacado, cPais* atacante);
 		void CambiarTurno(cJugador **Jugador, int k);
 		void Imprimir();
 		void ImprimirGanador();
