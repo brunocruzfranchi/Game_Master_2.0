@@ -12,6 +12,7 @@
 #include "cJugador.h"
 #include <string>
 #include <iostream>
+#include <iomanip>
 #define N_PAISES_TOTALES 13
 using namespace std;
 
@@ -36,6 +37,7 @@ class cPais:public cListaT<cPais>{
 			//Setters
 			void setJugador(cJugador* j) { Jugador = j; }
 			void ListarPosiblesAtaques();
+			bool ListarPosiblesMov();
 
 			//Getters
 			string getNJugador() { return Jugador->getN_Jugador; }

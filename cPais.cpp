@@ -32,6 +32,22 @@ void cPais::ListarPosiblesAtaques()
 
 }
 
+bool cPais::ListarPosiblesMov()
+{
+	bool flag = false;
+	for (int i = 0; i < CA; i++)
+	{
+		if (vector[i]->getJugador() == Jugador)
+		{
+			Imprimir();
+
+			Jugador->ImprimirTropasenPais(Nombre);
+			flag = true;
+		}
+	}
+	return flag;
+}
+
 /*
 void cPais::Distribuir(cTropa* t){
 

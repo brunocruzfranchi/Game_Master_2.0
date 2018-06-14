@@ -48,7 +48,7 @@ void cJugador::MoverTropas(cPais*ganado , cPais*atacante){
 		cout <<endl<< "Tropa trasladada satisfactoriamente";
 
 		do {
-			cout << endl << "Desea mover mas tropas?" << endl << "1. Si " << endl << "2. No" << endl;
+			cout << endl << "Desea mover mas tropas de "<<atacante->getNombre()<<" a "<<ganado->getNombre()<<"?" << endl << "1. Si " << endl << "2. No" << endl;
 			cin >> opcion_mover; cout << endl;
 			if(opcion_mover==2)
 			{
