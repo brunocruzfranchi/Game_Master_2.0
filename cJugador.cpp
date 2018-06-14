@@ -9,7 +9,8 @@
 
 
 cJugador::cJugador(string n_jugador):N_jugador(n_jugador){
-	this->PaisesDominados = new cListaT<cPais>();
+	
+	this->PaisesDominados = new cListaT<cPais>(N_PAISES_TOTALES);
 }
 
 cJugador::~cJugador(){
@@ -22,7 +23,8 @@ void cJugador::Distribuir(cTropa* t){
 
 void cJugador::MoverTropas(cPais*ganado , cPais*atacante){
 
-	int opcion_pais, opcion_mover, N_tropas=0, flag=0;
+	string opcion_tropa;
+	int opcion_mover, N_tropas = 0, flag = 0;
 
 	N_tropas = Contar_e_ImpTropasenPais(atacante);
 		
@@ -35,13 +37,14 @@ void cJugador::MoverTropas(cPais*ganado , cPais*atacante){
 
 		flag++;
 		cout << "Que tropa desea mover? " << endl;
-
+		int aux;
 		do {			
-			cin >> opcion_pais; cout << endl;
-						
-		} while (opcion_pais < 1||opcion_pais>N_tropas);
+			cin >> opcion_tropa; cout << endl; //pido clave de la tropa
+			aux = getItemPos(opcion_tropa);
 
-		vector[opcion_pais]->setPais(ganado);
+		} while (aux==INT_MAX);
+		
+		vector[aux]->setPais(ganado);
 		cout <<endl<< "Tropa trasladada satisfactoriamente";
 
 		do {
@@ -53,7 +56,7 @@ void cJugador::MoverTropas(cPais*ganado , cPais*atacante){
 				return;
 			}
 		} while (opcion_mover != 1);
-
+		
 		system("cls");
 	}
 
@@ -62,10 +65,22 @@ void cJugador::MoverTropas(cPais*ganado , cPais*atacante){
 
 void cJugador::ImprimirTropasenPais(cPais * pais)
 {
-	cout << endl << "Tropas disponibles" << endl;
+	cout << endl << "Tropas disponibles en "<<pais->getNombre() << endl;
 	for (int i = 0; i < CA; i++)
 	{
 		if (vector[i]->getPais() == pais)
+		{
+			vector[i]->Imprimir();
+		}
+	}
+}
+
+void cJugador::ImprimirTropasenPais(string nombre)
+{
+	cout << endl << "Tropas disponibles en " << nombre << endl;
+	for (int i = 0; i < CA; i++)
+	{
+		if (vector[i]->getPais()->getNombre() == nombre)
 		{
 			vector[i]->Imprimir();
 		}

@@ -33,6 +33,7 @@ public:
 		void Distribuir(cTropa* t);
 		void MoverTropas(cPais*pais, cPais*atacante);
 		void ImprimirTropasenPais(cPais*pais);
+		void ImprimirTropasenPais(string nombre);
 		int Contar_e_ImpTropasenPais(cPais*pais);
 
 		//getters

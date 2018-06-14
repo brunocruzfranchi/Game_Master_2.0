@@ -35,6 +35,7 @@ class cTropa:public cListaT<class cUnidades>{
 		virtual void Atacar(cTropa* atacado) = 0;
 		virtual void Contraatacar(cTropa* t) = 0;
 		virtual void RecibirDanio(int danio);
+		
 
 		void Morir(cUnidades * u);
 		void setPais(cPais*p) { Pais = p; };

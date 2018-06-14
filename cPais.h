@@ -35,11 +35,13 @@ class cPais:public cListaT<cPais>{
 			//Principales
 			//Setters
 			void setJugador(cJugador* j) { Jugador = j; }
+			void ListarPosiblesAtaques();
 
 			//Getters
 			string getNJugador() { return Jugador->getN_Jugador; }
 			string getNombre() const { return Nombre; }
 			cJugador* getJugador() { return Jugador; }
+			static cListaT<cPais>*getLista_Paises() { return &Lista_Paises; }
 		
 			//Posibilidades
 			//void Distribuir(cTropa* t);
@@ -47,7 +49,7 @@ class cPais:public cListaT<cPais>{
 
 			//Lista Template
 			string getclave() { return Nombre;}
-			void Imprimir() { cout << Nombre << endl; }
+			void Imprimir() { cout << Nombre <<setw(8)<<Jugador->getN_Jugador()<< endl; }
 			
 };
 

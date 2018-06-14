@@ -31,7 +31,7 @@ public:
 	int Ronda;
 	cJugador* Jugador_de_turno;
 	cListaT<cPais> *Paises;
-	cListaT<cJugador> *Jugadores;
+	
 
 	///Const y Dest
 	cJuego(int cant_jug=2);
@@ -60,6 +60,8 @@ public:
 		void CambiarTurno(cJugador **Jugador, int k);
 		void Imprimir();
 		void ImprimirGanador();
+		void ImprimirTropasenPais(cPais * pais);
+		int Contar_e_ImpTropasenPais(cPais * pais);
 };
 #endif // !defined(EA_25249AF9_B8BF_441f_95EC_C0B1C8876E76__INCLUDED_)
 

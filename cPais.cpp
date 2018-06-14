@@ -18,6 +18,20 @@ cPais::cPais(string nombre):Nombre(nombre){
 cPais::~cPais(){
 }
 
+void cPais::ListarPosiblesAtaques()
+{
+	for (int i = 0; i < CA; i++)
+	{
+		if (vector[i]->getJugador() != Jugador)
+		{
+			Imprimir();
+			
+			Jugador->ImprimirTropasenPais(Nombre);
+		}
+	}
+
+}
+
 /*
 void cPais::Distribuir(cTropa* t){
 
