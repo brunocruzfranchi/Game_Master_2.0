@@ -12,6 +12,7 @@
 
 class cMagos : public cUnidades{
 	public:
+//TEST
 		///Const. y Dest.
 		cMagos();
 		virtual ~cMagos();
