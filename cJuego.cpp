@@ -160,7 +160,7 @@ void cJuego::AsignarTropas() {
 		cPais* asignado;
 		for (int i = 0; i < aux; i++) 
 		{
-			//srand(time(NULL));
+			srand(time(NULL));
 			aleatorio = rand() % 3;
 			switch (aleatorio)
 			{

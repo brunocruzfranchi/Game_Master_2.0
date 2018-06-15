@@ -6,20 +6,32 @@
 ///////////////////////////////////////////////////////////
 
 #include "cTropa.h"
+#include "cMagos.h"
+#include "cArqueros.h"
+#include "cCaballeros.h"
 
-const char cadena[] = { "ABCDEFGHIJKLMNOPQRSTUVWXYZ" "0123456789" };
+unsigned int cTropa::Contador = 0;
 
-cListaT<string> cUnidades::Claves_en_uso = cListaT<string>(COD_MAX);
-
-cTropa::cTropa(string tipo,int tam,cPais*pais):cListaT<cUnidades>(tam),Tipo(tipo){ //como inicializo las unidades de la lista? 
+cTropa::cTropa(string tipo,int tam,cPais*pais):cListaT<cUnidades>(tam),Tipo(tipo),Clave(to_string(Contador)){ 
 	
 	int atq = 0;
 	int hpp = 0;
-
+//cambiar constructor
+	if(tipo=="Magos")
 	for (int  i = 0; i < tam; i++)
 	{
-		vector[i] = &cUnidades(tipo);
+		vector[i] = new cMagos();
 	}
+	if (tipo == "Arqueros")
+		for (int i = 0; i < tam; i++)
+		{
+			vector[i] = new cArqueros();
+		}
+	if (tipo == "Caballeros")
+		for (int i = 0; i < tam; i++)
+		{
+			vector[i] = new cCaballeros();
+		}
 
 	for (int i = 0; i < CA; i++) {
 
@@ -30,38 +42,8 @@ cTropa::cTropa(string tipo,int tam,cPais*pais):cListaT<cUnidades>(tam),Tipo(tipo
 	this->ATTotal = atq;
 	this->HPTotal = hpp;
 	this->Pais = pais;
-
-	int aux, flag = 0;
-	string * aux_p;
-
-	while (flag == 0)
-	{
-
-		Clave = " ";
-		//srand(time(NULL));
-		for (unsigned int i = 0; i < N_COD; i++)
-		{
-			aux = rand() % (sizeof(cadena) - 1);
-			Clave += cadena[aux];
-		}
-		unsigned int h;
-		for (h = 0; h < Claves_en_uso.getCA(); h++)
-		{
-			if (*(Claves_en_uso.getItem(h)) == Clave)
-				break;
-		}
-
-		aux_p = Claves_en_uso.BuscarItem(Clave); // busco repetidos
-
-		if (aux_p == NULL)// no encontre repetidos
-		{
-			flag = 1;
-
-			Claves_en_uso.AgregarItem(&Clave);// agrego a lista static
-		}
-	}
-
-	delete aux_p;
+	Contador++;
+	
 }
 
 cTropa::~cTropa(){
@@ -102,6 +84,6 @@ void cTropa::RecibirDanio(int danio)
 void cTropa::Morir(cUnidades * u)
 {
 	ATTotal = ATTotal - u->getHP();
-	u->Claves_en_uso.Eliminar(u->Clave);
+	u->Contador--;
 	Eliminar(u);
 }

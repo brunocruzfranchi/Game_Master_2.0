@@ -27,8 +27,8 @@ class cTropa:public cListaT<class cUnidades>{
 		///Atributos
 		
 		const string Tipo;
-		string Clave;
-		static cListaT<string> Claves_en_uso;
+		const string Clave;
+		static unsigned int Contador;
 		int ATTotal;
 		int HPTotal;
 		cPais* Pais;
