@@ -25,33 +25,45 @@ bool cTropaArqueros::Atacar(cTropa* atacado){
 	float Incremento;
 	int NuevoATTotal;
 
-	if (opcion == "arqueros")
+	if (opcion == "arqueros") {
 		Incremento = 0;
+	}
+		
 	
-	if (opcion == "magos")
+	if (opcion == "magos") {
 		Incremento = 0.25;
 
-	if (opcion == "caballeros") 
+	}
+	
+
+	if (opcion == "caballeros") {
 		Incremento = -0.25;
+
+	}
 
 	NuevoATTotal = ATTotal + ATTotal * Incremento;
 
 	//ATACO
 	atacado->RecibirDanio((int)NuevoATTotal);
 
+
+	//SEGUNDA PROBABILIDAD DE ATAQUE	(SUPER OP)
 	int aux_ataque2;
 	float AT_2ataque=0;
-
-
 
 	for (int i = 0; i <CA; i++)
 	{
 		Incremento = 0.5;
 		aux_ataque2 = rand() % 100;
-		if (aux_ataque2 < vector[i]->get2_AT())
-			AT_2ataque = vector[i]->getAT()+vector[i]->getAT()*Incremento;
+
+		cArqueros* aux = dynamic_cast<cArqueros*>(vector[i]);
+
+		if (aux_ataque2 < aux->get2AT()) {
+			AT_2ataque = AT_2ataque + vector[i]->getAT() + vector[i]->getAT()*Incremento;
+		}
 	}
 
+	atacado->RecibirDanio((int)AT_2ataque);
 
 	if (atacado->getCA() == 0)
 		return true;

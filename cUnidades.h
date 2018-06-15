@@ -10,8 +10,10 @@
 
 #include "cListaT.h"
 #include <string>
+
 #define COD_MAX 5000
 #define N_COD 6
+
 using namespace std;
 
 class cTropa;

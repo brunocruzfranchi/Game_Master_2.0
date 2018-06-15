@@ -10,6 +10,7 @@
 
 #include "cTropa.h"
 
+
 class cTropaArqueros : public cTropa
 {
 
