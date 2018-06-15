@@ -29,13 +29,11 @@ bool cTropaArqueros::Atacar(cTropa* atacado){
 		Incremento = 0;
 	}
 		
-	
 	if (opcion == "magos") {
 		Incremento = 0.25;
 
 	}
 	
-
 	if (opcion == "caballeros") {
 		Incremento = -0.25;
 

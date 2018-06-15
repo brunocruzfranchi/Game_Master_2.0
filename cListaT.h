@@ -204,7 +204,7 @@ T* cListaT<T>::BuscarItem(string clave)
 {
 	for (unsigned int i = 0; i < CA; i++)
 	{
-		if (vector[i]->getclave() == clave)
+		if (vector[i]->getclave() == clave)//SOBRECARGA!!!!!!
 			return vector[i];
 	}
 	return NULL;

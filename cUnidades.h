@@ -16,8 +16,6 @@
 
 using namespace std;
 
-class cTropa;
-
 class cUnidades
 {
 
@@ -39,7 +37,7 @@ class cUnidades
 			int getAT();
 			int getHP();
 			string getTipo() const {return Tipo;}
-			string getclave() { return Clave; }
+			string getclave()const { return Clave; }
 			//setters
 			void setAT(int at);
 			void setHP(int hp);

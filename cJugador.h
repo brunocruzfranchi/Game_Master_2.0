@@ -4,11 +4,11 @@
 //  Created on:      01-Jun.-2018 2:57:07 p. m.
 //  Original author: gasto
 ///////////////////////////////////////////////////////////
-
+#pragma once
 #if !defined(EA_ECAD8CBF_DBA6_4277_A538_57274982E741__INCLUDED_)
 #define EA_ECAD8CBF_DBA6_4277_A538_57274982E741__INCLUDED_
 
-#include "cPais.h"
+
 #include "cListaT.h"
 #include <iostream>
 #include <string>
@@ -16,7 +16,7 @@
 //hereda una lista en la que voy a acargar los paises dominados
 
 using namespace std;
-
+class cPais;
 class cJugador:public cListaT<class cTropa>{
 
 public:
@@ -31,7 +31,7 @@ public:
 	///Metodos
 		//principales
 		void Distribuir(cTropa* t);
-		void MoverTropas(cPais*pais, cPais*atacante);
+		void MoverTropas(cPais *pais, cPais*atacante);
 		void ImprimirTropasenPais(cPais*pais);
 		void ImprimirTropasenPais(string nombre);
 		int Contar_e_ImpTropasenPais(cPais*pais);

@@ -8,13 +8,13 @@
 #pragma once
 
 #include "cListaT.h"
-#include "cTropa.h"
 #include "cJugador.h"
 #include <string>
 #include <iostream>
 #include <iomanip>
 #define N_PAISES_TOTALES 13
 using namespace std;
+
 
 class cPais:public cListaT<cPais>{	
 	private:
@@ -50,7 +50,7 @@ class cPais:public cListaT<cPais>{
 			//cPais** getLimitrofes();
 
 			//Lista Template
-			string getclave() { return Nombre;}
+			string getclave() const{ return Nombre;}
 			void Imprimir() { cout << Nombre << setw(8) << Jugador->getN_Jugador() << endl; }
 			
 };

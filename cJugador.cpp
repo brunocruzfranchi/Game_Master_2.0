@@ -5,8 +5,9 @@
 //  Original author: gasto
 ///////////////////////////////////////////////////////////
 
-#include "cJugador.h"
 
+#include "cTropa.h"
+#include "cPais.h"
 
 cJugador::cJugador(string n_jugador):N_jugador(n_jugador){
 	

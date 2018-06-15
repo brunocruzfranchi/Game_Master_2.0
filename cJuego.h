@@ -10,6 +10,7 @@
 
 #include "cJugador.h"
 #include "cListaT.h"
+
 #include <string>
 #include <iostream>
 #include <stdlib.h>
@@ -23,6 +24,7 @@
 
 using namespace std;
 
+class cPais;
 class cJuego : public cListaT<cJugador>
 {
 

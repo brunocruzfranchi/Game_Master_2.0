@@ -7,7 +7,7 @@
 
 #include "cTropaCaballeros.h"
 
-cTropaCaballeros::cTropaCaballeros(int tam/*int max, int min, string tipo*/):cTropa(tam){
+cTropaCaballeros::cTropaCaballeros(int tam,cPais*pais):cTropa("Caballeros",tam,pais){
 }
 
 cTropaCaballeros::~cTropaCaballeros(){

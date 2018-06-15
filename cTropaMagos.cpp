@@ -8,7 +8,7 @@
 #include "cTropaMagos.h"
 
 
-cTropaMagos::cTropaMagos(int tam):cTropa(tam){
+cTropaMagos::cTropaMagos(int tam,cPais*pais):cTropa("Magos",tam,pais){
 
 }
 
@@ -18,20 +18,21 @@ cTropaMagos::~cTropaMagos(){
 
 }
 
-void cTropaMagos::Atacar(cTropa * atacado){
+bool cTropaMagos::Atacar(cTropa * atacado){
 
 	string opcion = atacado->Tipo;
+	float NuevoATTotal = 0;
 
 	if (opcion == "arqueros") {
 
-		for 
+		
 		//Primero ataco a la tropa
 		//Si esta sobrevivio, me haces el contraataque
 		//Sino tengo que hacer la reubicacion de las tropas
 
 		//Como los magos son debiles contra los arqueros el ATTotal decrementa en un 25% 
 
-		int NuevoATTotal = ATTotal - ATTotal * 0.25;
+		//NuevoATTotal = ATTotal + ATTotal * 0.25;
 
 		//TODO: DETERMINAR COMO VOY A HACER PARA QUE EL MAGO ATAQUE DIRECTAMENTE CON EL MISMO AT A TODAS LAS UNIDADES
 		//TODO: VOY A TENER QUE HACER UN VIRTUAL DE RECIBIR ATAQUE?
@@ -84,7 +85,7 @@ void cTropaMagos::Atacar(cTropa * atacado){
 		}
 
 		if (atacado->getCA() > 0) {
-			atacado->Contraatacar(/*como accedo a mi misma tropa?*/);
+			atacado->Contraatacar(this/*como accedo a mi misma tropa?*/);
 			//devolver false para indicar que el ataque no fue exitoso y que la topa recibio daño
 		}
 

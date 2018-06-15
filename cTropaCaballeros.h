@@ -15,7 +15,7 @@ class cTropaCaballeros : public cTropa
 
 public:
 	///Const. y Dest.
-	cTropaCaballeros(int tam);
+	cTropaCaballeros(int tam, cPais*pais);
 	virtual ~cTropaCaballeros();
 
 	///Metodos

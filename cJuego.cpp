@@ -6,10 +6,15 @@
 ///////////////////////////////////////////////////////////
 
 #include "cJuego.h"
-
+#include "cPais.h"
+#include "cUnidades.h"
+#include "cTropa.h"
+#include "cTropaArqueros.h"
+#include "cTropaCaballeros.h"
+#include "cTropaMagos.h"
 
 using namespace std;
-
+ //enum tipos{Magos=0,Arqueros=1,Caballeros=2};
 cJuego::cJuego(int cant_jug):cListaT<cJugador>(cant_jug) {
 
 	CrearJugadores(cant_jug);
@@ -209,7 +214,23 @@ void cJuego::AsignarTropas() {
 
 				if (opcion_distribuir == 1)
 				{
-					cTropa *tropa;//= cTropa(tipo, tam_tropa, pais);//No me deja crear tropa
+					cTropa *tropa;
+						switch (aleatorio)
+						{
+						case 0:
+							tropa = new cTropaMagos(tam_tropa,pais);
+							break;
+
+						case 1:
+							tropa = new cTropaArqueros(tam_tropa,pais);
+							break;
+
+						case 2:
+							tropa = new cTropaCaballeros(tam_tropa, pais);
+							break;
+
+						}
+					
 					vector[k]->AgregarItem(tropa);
 					cout << endl << "Tropa agregada satisfactoriamente" << endl;
 				}
@@ -225,7 +246,7 @@ void cJuego::AsignarTropas() {
 
 						} while (aux == INT_MAX);
 
-						cUnidades*u = &cUnidades(tipo);
+						cUnidades*u = new cUnidades(tipo);
 						for (int j = 0; j < tam_tropa; j++)
 						{
 							
@@ -244,7 +265,7 @@ void cJuego::ReasignarPais(cPais* atacado, cPais* atacante) { //listo
 		
 	cJugador *ganador = BuscarItem(atacante->getJugador()->getN_Jugador());
 	
-	cJugador* perdedor = BuscarItem(atacado->getJugador()->getN_Jugador());
+	cJugador *perdedor = BuscarItem(atacado->getJugador()->getN_Jugador());
 
 	perdedor->PaisesDominados->Eliminar(atacado);
 
@@ -420,8 +441,6 @@ int cJuego::Jugar() {
 						return 0; // conviene usar una excepcion?
 					}
 				}
-		
-			
 	}
 
 	return 0;
