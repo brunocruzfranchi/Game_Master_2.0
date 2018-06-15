@@ -22,7 +22,7 @@ class cUnidades
 	public:
 		///Atributos
 		const string Tipo;
-		const string Clave;
+		string Clave;
 		static cListaT<string> Claves_en_uso;
 
 		///Const. y Dest.
@@ -37,7 +37,7 @@ class cUnidades
 			int getAT();
 			int getHP();
 			string getTipo() const {return Tipo;}
-			string getclave() const { return Clave; }
+			string getclave() { return Clave; }
 			//setters
 			void setAT(int at);
 			void setHP(int hp);

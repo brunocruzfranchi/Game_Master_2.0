@@ -21,8 +21,10 @@ class cTropa:public cListaT<class cUnidades>{
 
 	public:
 		///Atributos
-		//agregar numero de serie o simil???
+		
 		const string Tipo;
+		string Clave;
+		static cListaT<string> Claves_en_uso;
 		int ATTotal;
 		int HPTotal;
 		cPais* Pais;
@@ -32,7 +34,7 @@ class cTropa:public cListaT<class cUnidades>{
 		virtual ~cTropa();
 
 		///Metodos
-		virtual void Atacar(cTropa* atacado) = 0;
+		virtual bool Atacar(cTropa* atacado) = 0;
 		virtual void Contraatacar(cTropa* t) = 0;
 		virtual void RecibirDanio(int danio);
 		
@@ -41,12 +43,14 @@ class cTropa:public cListaT<class cUnidades>{
 		void setPais(cPais*p) { Pais = p; };
 		
 		///getters
-		cPais*getPais() { return Pais; }
+		cPais* getPais() { return Pais; }
 		string getNombrePais() { return Pais->getNombre(); }
 
 		///Template
-		string getclave() { return Tipo; }
-		void Imprimir() { cout <<"  Tipo: "<< Tipo << setw(8)<<
+		string getclave() { return Clave; }
+		string getTipo() { return Tipo; }
+		void Imprimir() { cout <<endl<<"Clave: "<<Clave<<setw(8)<<
+			" Tipo: "<< Tipo << setw(8)<<
 			"Ataque Total: "<< ATTotal <<setw(8) << 
 			"Vida Total: " << HPTotal << setw(8)<<
 			"N de Unidades en la tropa: "<< CA << endl; }

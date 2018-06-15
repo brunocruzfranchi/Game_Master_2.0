@@ -48,7 +48,7 @@ cUnidades::cUnidades(string tipo):Tipo(tipo){
 	this->HP = hp;
 	
 	int aux, flag = 0;
-	cUnidades * aux_p;
+	string * aux_p;
 
 	while (flag == 0)
 		{
@@ -61,19 +61,19 @@ cUnidades::cUnidades(string tipo):Tipo(tipo){
 				Clave += cadena[aux];
 			}
 			unsigned int h;
-			for (h = 0; h < Claves_en_uso[0]->CA; h++)
+			for (h = 0; h < Claves_en_uso.getCA(); h++)
 			{
-				if (Claves_en_uso[h] == Clave)
+				if (*(Claves_en_uso.getItem(h)) == Clave)
 					break;
 			}
 			
-			aux_p=Claves_en_uso->BuscarItem(Clave); // busco repetidos
+			aux_p = Claves_en_uso.BuscarItem(Clave); // busco repetidos
 
 			if (aux_p==NULL)// no encontre repetidos
 			{
 				flag = 1;
 
-				Claves_en_uso->AgregarItem(Clave);// agrego a lista static
+				Claves_en_uso.AgregarItem(&Clave);// agrego a lista static
 			}
 		}
 		
@@ -86,9 +86,10 @@ cUnidades::~cUnidades(){
 bool cUnidades::DisminuirHP(int v)
 {
 	HP=HP-v;
-	if (HP < 10)  return false;
+	if (HP < 10)  
+		return false;
 	else
-	 return true;
+		return true;
 		
 }
 

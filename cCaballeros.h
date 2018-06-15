@@ -15,7 +15,7 @@ class cCaballeros : public cUnidades
 
 public:
 	///Const. y Dest.
-	cCaballeros(string tipo);
+	cCaballeros();
 	virtual ~cCaballeros();
 
 

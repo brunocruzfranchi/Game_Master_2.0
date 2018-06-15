@@ -35,6 +35,8 @@ public:
 		void ImprimirTropasenPais(cPais*pais);
 		void ImprimirTropasenPais(string nombre);
 		int Contar_e_ImpTropasenPais(cPais*pais);
+		int Contar_Tropas_en_Pais(cPais*pais);
+		int Contar_Tropas_en_Pais(string nombre);
 
 		//getters
 		string getN_Jugador() const { return N_jugador; }

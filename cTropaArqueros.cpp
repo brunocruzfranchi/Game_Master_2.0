@@ -8,7 +8,7 @@
 #include "cTropaArqueros.h"
 
 
-cTropaArqueros::cTropaArqueros(int tam/*int max, int min, string tipo*/):cTropa(tam){
+cTropaArqueros::cTropaArqueros( int tam, cPais* pais):cTropa("Arqueros", tam, pais){
 
 }
 
@@ -17,75 +17,77 @@ cTropaArqueros::~cTropaArqueros(){
 
 }
 
-void cTropaArqueros::Atacar(cTropa* atacado){
+bool cTropaArqueros::Atacar(cTropa* atacado){
 
-	string opcion = atacado->Tipo;
+	//TODO: Ver todo este metodo 
 
-	if (opcion == "arqueros") {
-		//Primero ataco a la tropa
-		//Si esta sobrevivio, me haces el contraataque
-		//Sino tengo que hacer la reubicacion de las tropas
+	string opcion = atacado->getTipo();
+	float Incremento;
+	int NuevoATTotal;
 
-		atacado->RecibirDanio(ATTotal);
-
-		if (atacado->getCA() == 0) {
-			//El Jugador ha ganado devolver TRUE para realizar la Reubicacion de las tropas
-		}
-
-		if (atacado->getCA() > 0) {
-			atacado->Contraatacar(/*como accedo a mi misma tropa?*/);
-			//devolver false para indicar que el ataque no fue exitoso y que la topa recibio daño
-		}
-
-	}
+	if (opcion == "arqueros")
+		Incremento = 0;
 	
-	if (opcion == "magos") {
-		//Primero ataco a la tropa
-		//Si esta sobrevivio, me haces el contraataque
-		//Sino tengo que hacer la reubicacion de las tropas
+	if (opcion == "magos")
+		Incremento = 0.25;
 
-		//Como los arqueros son fuertes contra los magos el ATTotal incrementa en un 25% 
-		
-		int NuevoATTotal = ATTotal + ATTotal * 0.25;
+	if (opcion == "caballeros") 
+		Incremento = -0.25;
 
-		atacado->RecibirDanio((int)NuevoATTotal);
+	NuevoATTotal = ATTotal + ATTotal * Incremento;
 
-		if (atacado->getCA() == 0) {
-			//El Jugador ha ganado devolver TRUE para realizar la Reubicacion de las tropas
-		}
+	//ATACO
+	atacado->RecibirDanio((int)NuevoATTotal);
 
-		if (atacado->getCA() > 0) {
-			atacado->Contraatacar(/*como accedo a mi misma tropa?*/);
-			//devolver false para indicar que el ataque no fue exitoso y que la topa recibio daño
-		}
+	int aux_ataque2;
+	float AT_2ataque=0;
 
+
+
+	for (int i = 0; i <CA; i++)
+	{
+		Incremento = 0.5;
+		aux_ataque2 = rand() % 100;
+		if (aux_ataque2 < vector[i]->get2_AT())
+			AT_2ataque = vector[i]->getAT()+vector[i]->getAT()*Incremento;
 	}
 
-	if (opcion == "caballeros") {
 
-		//Primero ataco a la tropa
-		//Si esta sobrevivio, me haces el contraataque
-		//Sino tengo que hacer la reubicacion de las tropas
+	if (atacado->getCA() == 0)
+		return true;
+		//El Jugador ha ganado devolver TRUE para realizar la Reubicacion de las tropas
 
-		//Como los arqueros son debiles contra los caballeros el ATTotal disminuye en un 25% 
-
-		int NuevoATTotal = ATTotal - ATTotal * 0.25;
-
-		atacado->RecibirDanio((int)NuevoATTotal);
-
-		if (atacado->getCA() == 0) {
-			//El Jugador ha ganado devolver TRUE para realizar la Reubicacion de las tropas
-		}
-
-		if (atacado->getCA() > 0) {
-			atacado->Contraatacar(/*como accedo a mi misma tropa?*/);
-			//devolver false para indicar que el ataque no fue exitoso y que la topa recibio daño
-		}
-
-	}
-
+	//if (atacado->getCA() > 0) 
+	//Contraatacar(atacado);
+	//devolver false para indicar que el ataque no fue exitoso y que la topa recibio daño
 }
 
-void cTropaArqueros::Contraatacar(cTropa * t)
-{
+void cTropaArqueros::Contraatacar(cTropa * atacante) {
+
+	string opcion = atacante->getTipo();
+
+	float Incremento;
+
+	int NuevoATTotal;
+
+	if (opcion == "arqueros")
+		Incremento = 0;
+
+	if (opcion == "magos")
+		Incremento = 0.25;
+
+	if (opcion == "caballeros")
+		Incremento = -0.25;
+
+	NuevoATTotal = ATTotal + ATTotal * Incremento;
+
+	//ATACO
+	atacante->RecibirDanio((int)NuevoATTotal);
+		
+	
+	//El Jugador ha ganado devolver TRUE para realizar la Reubicacion de las tropas
+
+	//if (atacado->getCA() > 0) 
+	//Contraatacar(atacado);
+	//devolver false para indicar que el ataque no fue exitoso y que la topa recibio daño
 }

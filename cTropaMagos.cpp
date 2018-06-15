@@ -8,7 +8,7 @@
 #include "cTropaMagos.h"
 
 
-cTropaMagos::cTropaMagos(int tam/*int max, int min, string tipo*/):cTropa(tam){
+cTropaMagos::cTropaMagos(int tam):cTropa(tam){
 
 }
 
@@ -23,6 +23,8 @@ void cTropaMagos::Atacar(cTropa * atacado){
 	string opcion = atacado->Tipo;
 
 	if (opcion == "arqueros") {
+
+		for 
 		//Primero ataco a la tropa
 		//Si esta sobrevivio, me haces el contraataque
 		//Sino tengo que hacer la reubicacion de las tropas

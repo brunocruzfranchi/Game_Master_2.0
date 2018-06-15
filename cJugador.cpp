@@ -68,7 +68,7 @@ void cJugador::ImprimirTropasenPais(cPais * pais)
 	cout << endl << "Tropas disponibles en "<<pais->getNombre() << endl;
 	for (int i = 0; i < CA; i++)
 	{
-		if (vector[i]->getPais() == pais)
+		if (vector[i]->getPais()->getclave() == pais->getclave())
 		{
 			vector[i]->Imprimir();
 		}
@@ -100,6 +100,33 @@ int cJugador::Contar_e_ImpTropasenPais(cPais * pais)
 		}
 	}
 	return N_tropas;
+}
+
+int cJugador::Contar_Tropas_en_Pais(cPais * pais)
+{
+	int N_tropas = 0;
+	for (int i = 0; i < CA; i++)
+	{
+		if (vector[i]->getPais() == pais)
+		{
+			N_tropas++;
+		}
+	}
+	return N_tropas;
+}
+
+int cJugador::Contar_Tropas_en_Pais(string nombre)
+{
+	int cont = 0;
+	for (int i = 0; i < CA; i++)
+	{
+		if (vector[i]->getPais()->getNombre() == nombre)
+		{
+			cont++;
+		}
+	}
+
+	return cont;
 }
 
 void cJugador::Imprimir()//terminar

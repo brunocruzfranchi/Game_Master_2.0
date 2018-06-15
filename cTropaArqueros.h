@@ -15,12 +15,12 @@ class cTropaArqueros : public cTropa
 
 public:
 	///Metodos
-	cTropaArqueros(int tam);
+	cTropaArqueros(int tam, cPais* pais);
 	virtual ~cTropaArqueros();
 
 	///Const. y Dest.
-	void Atacar(cTropa* atacado);
-	void Contraatacar(cTropa* t);
+	bool Atacar(cTropa* atacado);
+	void Contraatacar(cTropa* atacante);
 	
 };
 #endif // !defined(EA_F8D5B892_CDDD_49eb_8FA4_F17C4DA02B86__INCLUDED_)

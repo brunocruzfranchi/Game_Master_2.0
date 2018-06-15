@@ -26,7 +26,7 @@ class cPais:public cListaT<cPais>{
 		///Atributos
 		static cListaT<cPais> Lista_Paises;
 		const string Nombre;
-		cJugador*Jugador;//	string Jugador;
+		cJugador* Jugador; //string Jugador;
 
 		///Const. y Dest.
 		cPais(string nombre);
@@ -40,7 +40,7 @@ class cPais:public cListaT<cPais>{
 			bool ListarPosiblesMov();
 
 			//Getters
-			string getNJugador() { return Jugador->getN_Jugador; }
+			string getNJugador() { return Jugador->getN_Jugador(); }
 			string getNombre() const { return Nombre; }
 			cJugador* getJugador() { return Jugador; }
 			static cListaT<cPais>*getLista_Paises() { return &Lista_Paises; }
@@ -51,7 +51,7 @@ class cPais:public cListaT<cPais>{
 
 			//Lista Template
 			string getclave() { return Nombre;}
-			void Imprimir() { cout << Nombre <<setw(8)<<Jugador->getN_Jugador()<< endl; }
+			void Imprimir() { cout << Nombre << setw(8) << Jugador->getN_Jugador() << endl; }
 			
 };
 
