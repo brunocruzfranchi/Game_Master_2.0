@@ -13,7 +13,7 @@
 #include "cTropaCaballeros.h"
 #include "cTropaMagos.h"
 
-enum PAISES{ARGENTINA = 0, BOLOVIA, BRASIL, CHILE, COLOMBIA, ECUADOR, GUYANA, PARAGUAY, PERU, SURINAM, URUGUAY, VENEZUELA, GUAYANAFRANCESA};
+enum PAISES{ARGENTINA = 0, BOLIVIA, BRASIL, CHILE, COLOMBIA, ECUADOR, GUYANA, PARAGUAY, PERU, SURINAM, URUGUAY, VENEZUELA, GUAYANAFRANCESA};
 
 //enum tipos{Magos=0,Arqueros=1,Caballeros=2};
 
@@ -48,7 +48,7 @@ void cJuego::CrearPaises() {
 			//Argentina
 			paises[0] = new cPais("Argentina");
 			break;
-		case BOLOVIA:
+		case BOLIVIA:
 			//Bolivia
 			paises[1] = new cPais("Bolivia");
 			break;
@@ -113,7 +113,7 @@ void cJuego::CrearPaises() {
 			paises[0]->AgregarItem(paises[10]);
 			paises[0]->AgregarItem(paises[7]);
 			break;
-		case BOLOVIA:
+		case BOLIVIA:
 			//Bolivia
 			paises[1]->AgregarItem(paises[0]);
 			paises[1]->AgregarItem(paises[7]);
@@ -280,11 +280,11 @@ void cJuego::AsignarTropas() {
 			do //listo y pido pais
 			{
 				vector[k]->PaisesDominados->Listar(); //ERROR
-				/*
+				
 				cListaT<cPais>* PaisesDominados = vector[k]->getPaisesD(); //ERROR
 				PaisesDominados->Listar();
-				*/
-				cout << "En que pa�s quiere ubicar su tropa?" << endl<< "Ingrese el nombre del pais: ";
+				
+				cout << "En que pais quiere ubicar su tropa?" << endl<< "Ingrese el nombre del pais: ";
 				cin >> opcion_pais;
 				cout << endl;
 				aux = getItemPos(opcion_pais);
@@ -301,24 +301,27 @@ void cJuego::AsignarTropas() {
 				string opcion_tropa;
 
 				if (opcion_distribuir == 1){
-
-					cTropa* tropa_m = new cTropaMagos(tam_tropa, pais);
-					cTropa* tropa_a = new cTropaArqueros(tam_tropa, pais);
-					cTropa* tropa_c = new cTropaCaballeros(tam_tropa, pais);
+					
+					cTropa * tropa_m = new cTropaMagos(tam_tropa, pais);
+					cTropa * tropa_a = new cTropaArqueros(tam_tropa, pais);
+					cTropa * tropa_c = new cTropaCaballeros(tam_tropa, pais);
 
 						switch (aleatorio){
 
 							case 0:
+								
 								vector[k]->AgregarItem(tropa_m);
 								cout << endl << "Tropa agregada satisfactoriamente" << endl;
 								break;
 
 							case 1:
+								
 								vector[k]->AgregarItem(tropa_a);
 								cout << endl << "Tropa agregada satisfactoriamente" << endl;
 								break;
 
 							case 2:
+								
 								vector[k]->AgregarItem(tropa_c);
 								cout << endl << "Tropa agregada satisfactoriamente" << endl;
 								break;
@@ -327,23 +330,18 @@ void cJuego::AsignarTropas() {
 				if (opcion_distribuir == 2)
 				{
 					//elegir tropa
-					vector[k]->ImprimirTropasenPais(pais);
+					vector[k]->ImprimirTropasenPais(pais,tipo);
 					cout <<endl<< "A que tropa desea sumarlo?" << endl;
 					int aux;
 					do {
 							cin >> opcion_tropa; cout << endl; //pido clave de la tropa
-							aux = vector[k]-> getItemPos(opcion_tropa);
+							aux = vector[k]-> getItemPos(opcion_tropa);//Chequear que la tropa sea del tipo correcto!!
 
 						} while (aux == INT_MAX);
 
-						cUnidades*u = new cUnidades(tipo);
-						for (int j = 0; j < tam_tropa; j++)
-						{
-							
-							vector[k]->getItem(aux)->AgregarItem(u);
-						}
-
-						cout << endl << "Tropa distribuida satisfactoriamente" << endl;
+						cTropa* tropa_agregar = vector[k]->getItem(aux);
+						tropa_agregar->Distribuir(aleatorio, tam_tropa);
+					
 				}
 			} while (opcion_distribuir != 1 && opcion_distribuir != 2);	
 		}

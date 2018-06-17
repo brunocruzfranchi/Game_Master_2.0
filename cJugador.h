@@ -30,10 +30,12 @@ public:
 
 	///Metodos
 		//principales
-		void Distribuir(cTropa* t);
+		
 		void MoverTropas(cPais *pais, cPais*atacante);
 		void ImprimirTropasenPais(cPais*pais);
 		void ImprimirTropasenPais(string nombre);
+		void ImprimirTropasenPais(string nombre,string tipo);
+		void ImprimirTropasenPais(cPais*pais,string tipo);
 		int Contar_e_ImpTropasenPais(cPais*pais);
 		int Contar_Tropas_en_Pais(cPais*pais);
 		int Contar_Tropas_en_Pais(string nombre);

@@ -18,9 +18,7 @@ cJugador::~cJugador(){
 
 }
 
-void cJugador::Distribuir(cTropa* t){
 
-}
 
 void cJugador::MoverTropas(cPais*ganado , cPais*atacante){
 
@@ -83,6 +81,33 @@ void cJugador::ImprimirTropasenPais(string nombre)
 	{
 		if (vector[i]->getPais()->getNombre() == nombre)
 		{
+			vector[i]->Imprimir();
+		}
+	}
+}
+
+void cJugador::ImprimirTropasenPais(string nombre, string tipo)
+{
+	cout << endl << "Tropas disponibles en " << nombre <<" del tipo "<<tipo<< endl;
+	for (int i = 0; i < CA; i++)
+	{
+		if (vector[i]->getPais()->getNombre() == nombre)
+		{
+			if (vector[i]->getTipo() == tipo)
+			vector[i]->Imprimir();
+		}
+	}
+}
+
+void cJugador::ImprimirTropasenPais(cPais * pais, string tipo)
+{
+
+	cout << endl << "Tropas disponibles en " << pais->getNombre() << " del tipo " << tipo << endl;
+	for (int i = 0; i < CA; i++)
+	{
+		if (vector[i]->getPais()->getclave() == pais->getclave())
+		{
+			if(vector[i]->getTipo()==tipo)
 			vector[i]->Imprimir();
 		}
 	}

@@ -86,6 +86,39 @@ void cTropa::RecibirDanio(int danio)
 	//return cont;
 }
 
+void cTropa::Distribuir(int tipo, int tam)
+{
+	if (tipo == 0)
+	{
+		for (int i = 0; i < tam; i++)
+		{
+			cMagos*u_m = new cMagos();
+			AgregarItem(u_m);
+		}
+	}
+
+	if (tipo == 1)
+	{
+		for (int i = 0; i < tam; i++)
+		{
+			cArqueros*u_a = new cArqueros();
+			AgregarItem(u_a);
+		}
+	}
+
+	if (tipo == 2)
+	{
+		for (int i = 0; i < tam; i++)
+		{
+			cCaballeros*u_c = new cCaballeros();
+			AgregarItem(u_c);
+		}
+	}
+
+	cout << endl << "Tropa distribuida satisfactoriamente" << endl;
+
+}
+
 void cTropa::Morir(cUnidades * u)
 {
 	ATTotal = ATTotal - u->getHP();

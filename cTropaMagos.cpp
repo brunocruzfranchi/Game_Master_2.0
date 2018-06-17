@@ -17,7 +17,7 @@ cTropaMagos::~cTropaMagos(){
 
 }
 
-/*
+
 bool cTropaMagos::Atacar(cTropa * atacado) {
 
 	//TODO: DETERMINAR COMO VOY A HACER PARA QUE EL MAGO ATAQUE DIRECTAMENTE CON EL MISMO AT A TODAS LAS UNIDADES
@@ -27,13 +27,12 @@ bool cTropaMagos::Atacar(cTropa * atacado) {
 
 		string tipo = aux_atacadoa->getTipo();
 		float aumento = Incremento(tipo);
-		int NuevoATTotal;
-
+		cPais* pais_atacado = atacado->getPais();		
+		float NuevoATTotal;
 		NuevoATTotal = ATTotal + ATTotal * aumento;
 
-		//ATACO
-		//aux_atacadoa->RecibirDanio((int)NuevoATTotal); // Este recibir ataque tiene que ser diferente
-
+		AtaqueMagico(pais_atacado,(int)NuevoATTotal);
+				
 		//QUE PASO EN EL ATAQUE?
 
 		if (aux_atacadoa->getCA() == 0)
@@ -52,17 +51,15 @@ bool cTropaMagos::Atacar(cTropa * atacado) {
 
 		string tipo = aux_atacadom->getTipo();
 		float aumento = Incremento(tipo);
-		int NuevoATTotal;
-
+		cPais* pais_atacado = atacado->getPais();
+		float NuevoATTotal;
 		NuevoATTotal = ATTotal + ATTotal * aumento;
 
-		//ATACO
-		//aux_atacadom->RecibirDanio((int)NuevoATTotal);
+		AtaqueMagico(pais_atacado, (int)NuevoATTotal);
 
 		//QUE PASO EN EL ATAQUE?
 
 		if (aux_atacadom->getCA() == 0) {
-			cout << "Usted ha ganado el ataque." << endl;
 			return true;
 			//El jugador ha ganado, devolver TRUE para realizar la reubicacion de las tropas en el pais conquistado
 		}
@@ -78,12 +75,11 @@ bool cTropaMagos::Atacar(cTropa * atacado) {
 
 		string tipo = aux_atacadoc->getTipo();
 		float aumento = Incremento(tipo);
-		int NuevoATTotal;
-
+		cPais* pais_atacado = atacado->getPais();
+		float NuevoATTotal;
 		NuevoATTotal = ATTotal + ATTotal * aumento;
 
-		//ATACO
-		//aux_atacadoc->RecibirDanio(NuevoATTotal);
+		AtaqueMagico(pais_atacado, (int)NuevoATTotal);
 
 		//QUE PASO EN EL ATAQUE?
 
@@ -97,12 +93,6 @@ bool cTropaMagos::Atacar(cTropa * atacado) {
 			//devolver FALSE para indicar que el ataque no fue exitoso y que la tropa recibio da�o
 		}
 	}
-}
-*/
-
-bool cTropaMagos::Atacar(cTropa * atacado)
-{
-	return false;
 }
 
 void cTropaMagos::Contratacar(cTropa* atacante) {
@@ -179,4 +169,22 @@ float cTropaMagos::Incremento(string tipo)
 
 	if (tipo == "caballeros")
 		return 0.25;
+}
+
+void cTropaMagos::AtaqueMagico(cPais * pais, int ataque)
+{
+	cJugador* jugador = pais->getJugador();
+	int N_tropas = jugador->Contar_Tropas_en_Pais(pais);
+	int cont = 0;
+	for (int i = 0; i < N_tropas; i++)
+	{
+		if (jugador->getItem(i)->getPais() == pais)
+		{
+			jugador->getItem(i)->RecibirDanio(ataque);
+			cont++;
+		}
+		if (cont == N_tropas)
+			break;
+	}
+
 }
