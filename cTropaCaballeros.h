@@ -15,12 +15,13 @@ class cTropaCaballeros : public cTropa
 
 public:
 	///Const. y Dest.
-	cTropaCaballeros(int tam);
+	cTropaCaballeros(int tam, cPais*pais);
 	virtual ~cTropaCaballeros();
 
 	///Metodos
-	void Atacar(cTropa* atacado);
-	void Contratacar(cTropa* tt);
+	bool Atacar(cTropa* atacado);
+	void Contratacar(cTropa* atacante);
+	float Incremento(string tipo);
 
 };
 #endif // !defined(EA_70643682_4B55_4b6c_9B22_45B5CE3C7B8C__INCLUDED_)

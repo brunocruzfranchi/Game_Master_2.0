@@ -10,17 +10,20 @@
 
 #include "cTropa.h"
 
+
 class cTropaArqueros : public cTropa
 {
 
 public:
-	///Metodos
-	cTropaArqueros(int tam);
+	///Const. y Dest.
+	cTropaArqueros(int tam, cPais* pais);
 	virtual ~cTropaArqueros();
 
-	///Const. y Dest.
-	void Atacar(cTropa* atacado);
-	void Contraatacar(cTropa* t);
+	///Metodos
+	bool Atacar(cTropa* atacado);
+	void Contraatacar(cTropa* atacante);
+	float Incremento(string tipo);
+	void Segundo_AT(cTropa* atacado);
 	
 };
 #endif // !defined(EA_F8D5B892_CDDD_49eb_8FA4_F17C4DA02B86__INCLUDED_)

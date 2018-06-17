@@ -6,12 +6,13 @@
 ///////////////////////////////////////////////////////////
 
 #include "cPais.h"
+#include "cJugador.h"
 
 cListaT<cPais> cPais::Lista_Paises = cListaT<cPais>(N_PAISES_TOTALES);
 
 cPais::cPais(string nombre):Nombre(nombre){
 
-	Lista_Paises.AgregarItem(&cPais(nombre));// loop infinito???
+	Lista_Paises.AgregarItem(this);
 
 }
 
@@ -30,6 +31,22 @@ void cPais::ListarPosiblesAtaques()
 		}
 	}
 
+}
+
+bool cPais::ListarPosiblesMov()
+{
+	bool flag = false;
+	for (int i = 0; i < CA; i++)
+	{
+		if (vector[i]->getJugador() == Jugador)
+		{
+			Imprimir();
+
+			Jugador->ImprimirTropasenPais(Nombre);
+			flag = true;
+		}
+	}
+	return flag;
 }
 
 /*

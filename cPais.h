@@ -8,12 +8,13 @@
 #pragma once
 
 #include "cListaT.h"
-#include "cTropa.h"
 #include "cJugador.h"
 #include <string>
 #include <iostream>
+#include <iomanip>
 #define N_PAISES_TOTALES 13
 using namespace std;
+
 
 class cPais:public cListaT<cPais>{	
 	private:
@@ -25,7 +26,7 @@ class cPais:public cListaT<cPais>{
 		///Atributos
 		static cListaT<cPais> Lista_Paises;
 		const string Nombre;
-		cJugador*Jugador;//	string Jugador;
+		cJugador* Jugador; //string Jugador;
 
 		///Const. y Dest.
 		cPais(string nombre);
@@ -36,9 +37,10 @@ class cPais:public cListaT<cPais>{
 			//Setters
 			void setJugador(cJugador* j) { Jugador = j; }
 			void ListarPosiblesAtaques();
+			bool ListarPosiblesMov();
 
 			//Getters
-			string getNJugador() { return Jugador->getN_Jugador; }
+			string getNJugador() { return Jugador->getN_Jugador(); }
 			string getNombre() const { return Nombre; }
 			cJugador* getJugador() { return Jugador; }
 			static cListaT<cPais>*getLista_Paises() { return &Lista_Paises; }
@@ -48,8 +50,8 @@ class cPais:public cListaT<cPais>{
 			//cPais** getLimitrofes();
 
 			//Lista Template
-			string getclave() { return Nombre;}
-			void Imprimir() { cout << Nombre <<setw(8)<<Jugador->getN_Jugador()<< endl; }
+			string getclave() const{ return Nombre;}
+			void Imprimir() { cout << Nombre << setw(8) << Jugador->getN_Jugador() << endl; }
 			
 };
 

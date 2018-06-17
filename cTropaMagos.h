@@ -16,12 +16,13 @@ class cTropaMagos : public cTropa
 public:
 
 	///Const. y Dest.
-	cTropaMagos(int tam);
+	cTropaMagos(int tam,cPais*pais);
 	virtual ~cTropaMagos();
 
 	///Metodos
-	void Atacar(cTropa* atacado);
-	void Contraatacar(cTropa* t);
+	bool Atacar(cTropa* atacado);
+	void Contratacar(cTropa* atacante);
+	float Incremento(string tipo);
 
 };
 #endif // !defined(EA_24685A5A_0EAB_429f_8E3B_0704AF7A41A3__INCLUDED_)

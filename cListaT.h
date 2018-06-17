@@ -153,11 +153,12 @@ T* cListaT<T>::Quitar(const T *item) {
 template<class T>
 T* cListaT<T>::QuitarenPos(unsigned int pos) {
 
-	if (pos >= CA)throw new exception("Posicion invalida");
+	if (pos >= CA)
+		throw new exception("Posicion invalida");
 
 	T *aux = vector[pos];
 
-	for (unsigned int i = 0; i < CA - 1; i++)
+	for (unsigned int i = pos; i < CA - 1; i++)
 	{
 		vector[i] = vector[i + 1];
 	}
@@ -204,7 +205,7 @@ T* cListaT<T>::BuscarItem(string clave)
 {
 	for (unsigned int i = 0; i < CA; i++)
 	{
-		if (vector[i]->getclave() == clave)
+		if (vector[i]->getclave() == clave)//SOBRECARGA!!!!!!
 			return vector[i];
 	}
 	return NULL;

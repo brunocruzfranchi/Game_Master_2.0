@@ -7,9 +7,9 @@
 
 #include "cArqueros.h"
 
-cArqueros::cArqueros(string tipo):cUnidades(tipo){
+cArqueros::cArqueros():cUnidades("Arqueros"){
 	
-	srand(time(NULL));
+	//srand(time(NULL));
 	this->Prob_2AT = rand() % 101;
 
 }

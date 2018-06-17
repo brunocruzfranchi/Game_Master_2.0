@@ -18,9 +18,9 @@ public:
 	int Prob_2AT;
 	
 	///Const. y Dest.
-	cArqueros(string tipo);
+	cArqueros();
 	virtual ~cArqueros();
-
+	int get2AT() { return Prob_2AT; }
 	///Metodos
 	/*void Atacar(cTropa* atacado);
 	void Contraatacar(cTropa* t);*/

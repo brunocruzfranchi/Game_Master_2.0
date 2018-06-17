@@ -6,13 +6,22 @@
 ///////////////////////////////////////////////////////////
 
 #include "cJuego.h"
+#include "cPais.h"
+#include "cUnidades.h"
+#include "cTropa.h"
+#include "cTropaArqueros.h"
+#include "cTropaCaballeros.h"
+#include "cTropaMagos.h"
 
+enum PAISES{ARGENTINA = 0, BOLOVIA, BRASIL, CHILE, COLOMBIA, ECUADOR, GUYANA, PARAGUAY, PERU, SURINAM, URUGUAY, VENEZUELA, GUAYANAFRANCESA};
 
-using namespace std;
+//enum tipos{Magos=0,Arqueros=1,Caballeros=2};
 
 cJuego::cJuego(int cant_jug):cListaT<cJugador>(cant_jug) {
+
 	CrearJugadores(cant_jug);
 	CrearPaises();
+
 }
 
 cJuego::~cJuego() {
@@ -31,103 +40,185 @@ void cJuego::CrearPaises() {
 
 	Paises = new cListaT<cPais>(N_PAISES_TOTALES);
 	cPais *paises[N_PAISES_TOTALES];
+	//Genero los paises
+	for (int i = 0; i < N_PAISES_TOTALES; i++) {
+		int opcion = i;
+		switch (i) {
+		case ARGENTINA:
+			//Argentina
+			paises[0] = new cPais("Argentina");
+			break;
+		case BOLOVIA:
+			//Bolivia
+			paises[1] = new cPais("Bolivia");
+			break;
+		case BRASIL:
+			//Brasil
+			paises[2] = new cPais("Brasil");
+			break;
+		case CHILE:
+			//Chile
+			paises[3] = new cPais("Chile");
+			break;
+		case COLOMBIA:
+			//Colombia
+			paises[4] = new cPais("Colombia");
+			break;
+		case ECUADOR:
+			//Ecuador
+			paises[5] = new cPais("Ecuador");
+			break;
+		case GUYANA:
+			//Guyana
+			paises[6] = new cPais("Guyana");
+			break;
+		case PARAGUAY:
+			//Paraguay
+			paises[7] = new cPais("Paraguay");
+			break;
+		case PERU:
+			//Peru
+			paises[8] = new cPais("Peru");
+			break;
+		case SURINAM:
+			//Surinam
+			paises[9] = new cPais("Surinam");
+			break;
+		case URUGUAY:
+			//Uruguay
+			paises[10] = new cPais("Uruguay");
+			break;
+		case VENEZUELA:
+			//Venezuela
+			paises[11] = new cPais("Venezuela");
+			break;
+		case GUAYANAFRANCESA:
+			//Guayana Francesa
+			paises[12] = new cPais("Guayana Francesa");
+			break;
+		default:
+			break;
+		}
+	}
+	
+	//Genero mapa con paises limitrofes
+	for (int i = 0; i < N_PAISES_TOTALES; i++) {
+		int opcion = i;
+		switch (i){
+		case ARGENTINA:
+			//Argentina
+			paises[0]->AgregarItem(paises[3]);
+			paises[0]->AgregarItem(paises[2]);
+			paises[0]->AgregarItem(paises[1]);
+			paises[0]->AgregarItem(paises[10]);
+			paises[0]->AgregarItem(paises[7]);
+			break;
+		case BOLOVIA:
+			//Bolivia
+			paises[1]->AgregarItem(paises[0]);
+			paises[1]->AgregarItem(paises[7]);
+			paises[1]->AgregarItem(paises[2]);
+			paises[1]->AgregarItem(paises[3]);
+			paises[1]->AgregarItem(paises[8]);
+			break;
+		case BRASIL:
+			//Brasil
+			paises[2]->AgregarItem(paises[10]);
+			paises[2]->AgregarItem(paises[0]);
+			paises[2]->AgregarItem(paises[7]);
+			paises[2]->AgregarItem(paises[1]);
+			paises[2]->AgregarItem(paises[8]);
+			paises[2]->AgregarItem(paises[11]);
+			paises[2]->AgregarItem(paises[4]);
+			paises[2]->AgregarItem(paises[12]);
+			paises[2]->AgregarItem(paises[6]);
+			paises[2]->AgregarItem(paises[9]);
+			break;
+		case CHILE:
+			//Chile
+			paises[3]->AgregarItem(paises[8]);
+			paises[3]->AgregarItem(paises[1]);
+			paises[3]->AgregarItem(paises[0]);
+			break;
+		case COLOMBIA:
+			//Colombia
+			paises[4]->AgregarItem(paises[11]);
+			paises[4]->AgregarItem(paises[5]);
+			paises[4]->AgregarItem(paises[8]);
+			paises[4]->AgregarItem(paises[2]);
+			break;
+		case ECUADOR:
+			//Ecuador
+			paises[5]->AgregarItem(paises[8]);
+			paises[5]->AgregarItem(paises[4]);
+			break;
+		case GUYANA:
+			//Guyana
+			paises[6]->AgregarItem(paises[9]);
+			paises[6]->AgregarItem(paises[2]);
+			paises[6]->AgregarItem(paises[11]);
+			break;
+		case PARAGUAY:
+			//Paraguay
+			paises[7]->AgregarItem(paises[1]);
+			paises[7]->AgregarItem(paises[2]);
+			paises[7]->AgregarItem(paises[0]);
+			break;
+		case PERU:
+			//Peru
+			paises[8]->AgregarItem(paises[5]);
+			paises[8]->AgregarItem(paises[4]);
+			paises[8]->AgregarItem(paises[2]);
+			paises[8]->AgregarItem(paises[1]);
+			paises[8]->AgregarItem(paises[3]);
+			break;
+		case SURINAM:
+			//Surinam
+			paises[9]->AgregarItem(paises[6]);
+			paises[9]->AgregarItem(paises[2]);
+			paises[9]->AgregarItem(paises[12]);
+			break;
+		case URUGUAY:
+			//Uruguay
+			paises[10]->AgregarItem(paises[0]);
+			paises[10]->AgregarItem(paises[2]);
+			break;
+		case VENEZUELA:
+			//Venezuela
+			paises[11]->AgregarItem(paises[4]);
+			paises[11]->AgregarItem(paises[2]);
+			paises[11]->AgregarItem(paises[6]);
+			break;
+		case GUAYANAFRANCESA:
+			//Guayana Francesa
+			paises[12]->AgregarItem(paises[9]);
+			paises[12]->AgregarItem(paises[2]);
+			break;
+		default:
+			break;
+		}
+	}
 
-	paises[0] = new cPais("Argentina");
-	paises[1] = new cPais("Bolivia");
-	paises[2] = new cPais("Brasil");
-	paises[3] = new cPais("Chile");
-	paises[4] = new cPais("Colombia");
-	paises[5] = new cPais("Ecuador");
-	paises[6] = new cPais("Guyana");
-	paises[7] = new cPais("Paraguay");
-	paises[8] = new cPais("Peru");
-	paises[9] = new cPais("Surinam");
-	paises[10] = new cPais("Uruguay");
-	paises[11] = new cPais("Venezuela");
-	paises[12] = new cPais("Guayana Francesa");
-	//genero mapa con paises limitrofes
-
-	//Guayana Francesa
-	paises[12]->AgregarItem(paises[9]);
-	paises[12]->AgregarItem(paises[2]);
-	//Venezuela
-	paises[11]->AgregarItem(paises[4]);
-	paises[11]->AgregarItem(paises[2]);
-	paises[11]->AgregarItem(paises[6]);
-	//Uruguay
-	paises[10]->AgregarItem(paises[0]);
-	paises[10]->AgregarItem(paises[2]);
-	//Surinam
-	paises[9]->AgregarItem(paises[6]);
-	paises[9]->AgregarItem(paises[2]);
-	paises[9]->AgregarItem(paises[12]);
-	//Peru
-	paises[8]->AgregarItem(paises[5]);
-	paises[8]->AgregarItem(paises[4]);
-	paises[8]->AgregarItem(paises[2]);
-	paises[8]->AgregarItem(paises[1]);
-	paises[8]->AgregarItem(paises[3]);
-	//Paraguay
-	paises[7]->AgregarItem(paises[1]);
-	paises[7]->AgregarItem(paises[2]);
-	paises[7]->AgregarItem(paises[0]);
-	//Guyana
-	paises[6]->AgregarItem(paises[9]);
-	paises[6]->AgregarItem(paises[2]);
-	paises[6]->AgregarItem(paises[11]);
-	//Ecuador
-	paises[5]->AgregarItem(paises[8]);
-	paises[5]->AgregarItem(paises[4]);
-	//Colombia
-	paises[4]->AgregarItem(paises[11]);
-	paises[4]->AgregarItem(paises[5]);
-	paises[4]->AgregarItem(paises[8]);
-	paises[4]->AgregarItem(paises[2]);
-	//Chile
-	paises[3]->AgregarItem(paises[8]);
-	paises[3]->AgregarItem(paises[1]);
-	paises[3]->AgregarItem(paises[0]);
-	//Brasil
-	paises[2]->AgregarItem(paises[10]);
-	paises[2]->AgregarItem(paises[0]);
-	paises[2]->AgregarItem(paises[7]);
-	paises[2]->AgregarItem(paises[1]);
-	paises[2]->AgregarItem(paises[8]);
-	paises[2]->AgregarItem(paises[11]);
-	paises[2]->AgregarItem(paises[4]);
-	paises[2]->AgregarItem(paises[12]);
-	paises[2]->AgregarItem(paises[6]);
-	paises[2]->AgregarItem(paises[9]);
-	//Bolivia
-	paises[1]->AgregarItem(paises[0]);
-	paises[1]->AgregarItem(paises[7]);
-	paises[1]->AgregarItem(paises[2]);
-	paises[1]->AgregarItem(paises[3]);
-	paises[1]->AgregarItem(paises[8]);
-	//Argentina
-	paises[0]->AgregarItem(paises[3]);
-	paises[0]->AgregarItem(paises[2]);
-	paises[0]->AgregarItem(paises[1]);
-	paises[0]->AgregarItem(paises[10]);
-	paises[0]->AgregarItem(paises[7]);
-
-	//for agregando pais a lista paises;
-	for (int i = 0; i < 13; i++){
+	//For agregando los pais a lista paises;
+	for (int i = 0; i < N_PAISES_TOTALES; i++){
 		Paises->AgregarItem(paises[i]);
 	}
+
 } //listo
 
 //ASIGNACIONES
 void cJuego::AsignarPaises(cJugador *Jug) {
 
 	int n, num[N_PAISES_TOTALES];
+	
 	for (int i = 0; i<N_PAISES_TOTALES; i++)						//Genero un array de numero aleatorios y no repetidos
 	{
 		do
-			n = rand() % N_PAISES_TOTALES/*+1?*/;
+			n = rand() % N_PAISES_TOTALES;
 		while (repetidos(n, num));
 		num[i] = n;
 	}
+	
 	if (Jug->getN_Jugador() == "0")
 		for(int i = 0; i < 7; i++){
 			cPais* aux = Paises->getItem(num[i]);
@@ -144,14 +235,17 @@ void cJuego::AsignarTropas() {
 
 	for(int k = 0; k < CA ; k++ )
 	{
-		int aux = vector[k]->PaisesDominados->getCA();
-		(aux % 2 != 0) ? aux = aux / 2 : aux = (aux - 1) / 2;
+		int aux_ca = vector[k]->PaisesDominados->getCA();
+		(aux_ca % 2 != 0) ? aux_ca = aux_ca / 2 : aux_ca = (aux_ca - 1) / 2;
+		
 		int aleatorio = -1, tam_tropa, min, max;
-		string tipo,nombre_pais;
-		cPais*asignado;
-		for (int i = 0; i < aux; i++) 
+		string tipo, nombre_pais;
+		
+		cPais* asignado = NULL;
+
+		for (int i = 0; i < aux_ca; i++)
 		{
-			srand(time(NULL));
+			//srand(time(NULL));
 			aleatorio = rand() % 3;
 			switch (aleatorio)
 			{
@@ -177,22 +271,27 @@ void cJuego::AsignarTropas() {
 			tam_tropa = min + rand() % (max - min + 1);//genero tropa
 			
 			cout << endl << "Tropa generada" << endl <<
-				"Tipo: " << tipo << setw(8) << "Numero de Unidades: " << tam_tropa
+				"Tipo: " << tipo << setw(40) << "Numero de Unidades: " << tam_tropa
 				<< endl;
 
 			string opcion_pais;
-			int aux;
-			int opcion_distribuir;
+			int aux = -1, opcion_distribuir = -1;
 
-			do//listo y pido pais
+			do //listo y pido pais
 			{
-				vector[k]->PaisesDominados->Listar();
+				vector[k]->PaisesDominados->Listar(); //ERROR
+				/*
+				cListaT<cPais>* PaisesDominados = vector[k]->getPaisesD(); //ERROR
+				PaisesDominados->Listar();
+				*/
 				cout << "En que país quiere ubicar su tropa?" << endl<< "Ingrese el nombre del pais: ";
 				cin >> opcion_pais;
 				cout << endl;
 				aux = getItemPos(opcion_pais);
 			} while (aux == INT_MAX);// busco la posicion en la lista INT_MAX si no se encontro => vuelvo a pedir
+
 			cPais*pais = vector[k]->PaisesDominados->BuscarItem(opcion_pais);//busco el pais elegido y lo guardo en un puntero
+
 			do {
 				cout << endl<<"Distribucion de tropa" << endl
 					<<" 1. Mantener como tropa separada"<<endl
@@ -200,11 +299,30 @@ void cJuego::AsignarTropas() {
 				cin >> opcion_distribuir; cout << endl;
 				
 				string opcion_tropa;
-				if (opcion_distribuir == 1)
-				{
-					cTropa *tropa = cTropa(tipo, tam_tropa, pais);//No me deja crear tropa
-					vector[k]->AgregarItem(tropa);
-					cout << endl << "Tropa agregada satisfactoriamente" << endl;
+
+				if (opcion_distribuir == 1){
+
+					cTropa* tropa_m = new cTropaMagos(tam_tropa, pais);
+					cTropa* tropa_a = new cTropaArqueros(tam_tropa, pais);
+					cTropa* tropa_c = new cTropaCaballeros(tam_tropa, pais);
+
+						switch (aleatorio){
+
+							case 0:
+								vector[k]->AgregarItem(tropa_m);
+								cout << endl << "Tropa agregada satisfactoriamente" << endl;
+								break;
+
+							case 1:
+								vector[k]->AgregarItem(tropa_a);
+								cout << endl << "Tropa agregada satisfactoriamente" << endl;
+								break;
+
+							case 2:
+								vector[k]->AgregarItem(tropa_c);
+								cout << endl << "Tropa agregada satisfactoriamente" << endl;
+								break;
+						}
 				}
 				if (opcion_distribuir == 2)
 				{
@@ -218,7 +336,7 @@ void cJuego::AsignarTropas() {
 
 						} while (aux == INT_MAX);
 
-						cUnidades*u = &cUnidades(tipo);
+						cUnidades*u = new cUnidades(tipo);
 						for (int j = 0; j < tam_tropa; j++)
 						{
 							
@@ -227,115 +345,93 @@ void cJuego::AsignarTropas() {
 
 						cout << endl << "Tropa distribuida satisfactoriamente" << endl;
 				}
-					
-
-			} while (opcion_distribuir != 1 && opcion_distribuir != 2);
-					
+			} while (opcion_distribuir != 1 && opcion_distribuir != 2);	
 		}
+
 		system("cls");
 	}
-	
 }
 
 void cJuego::ReasignarPais(cPais* atacado, cPais* atacante) { //listo
 		
 	cJugador *ganador = BuscarItem(atacante->getJugador()->getN_Jugador());
 	
-	cJugador*perdedor = BuscarItem(atacado->getJugador()->getN_Jugador());
+	cJugador *perdedor = BuscarItem(atacado->getJugador()->getN_Jugador());
 
 	perdedor->PaisesDominados->Eliminar(atacado);
 
 	atacado->setJugador(ganador);
 	
 	ganador->MoverTropas(atacado, atacante);
+
 } //listo
 
 //PARTIDA
 int cJuego::Jugar() {
+
 	int opcion;
 
 	for (Ronda = 1; Ronda <= N_MAX_TURNOS; Ronda++)	{
+		
 		//Turnos
-
 		AsignarTropas();// asigno tropas al principio de la ronda
 
-		for ( int k = 0; k < (getCA()); k++)
+		for (int k = 0; k < CA; k++)
 		{
-			for (int h  = 0; h < N_MAX_ATAQUES; h++)
+			for (int h = 0; h < N_MAX_ATAQUES; h++)
 			{
+				//Hacer el cambio de turno
+
 				CambiarTurno(vector, k);
+
 				vector[k]->PaisesDominados->Listar();
-				string opcion_pais_atacante,opcion_pais_atacado;
-				int pos_atacante, pos_atacado;
-				int opcion_distribuir;
-				cPais*pais_atacado;
-				do//listo y pido pais atacante
+
+				//Buscar pais atacado, pais atacante, tropa atacante, tropa atacado
+
+				cPais* pais_atacante = Buscar_p_atacante(k); //busco el pais elegido y lo guardo en un puntero
+
+				cPais* pais_atacado = Buscar_p_atacado(pais_atacante);	//buscar pais atacada
+
+				cTropa* tropa_atacante = Buscar_t_atacante(k, pais_atacante);	//pedir tropa atacante
+
+				cTropa* tropa_atacada = Buscar_t_atacada(k, pais_atacado);	//pedir tropa atacada
+
+				//Ataque y Contraataque
+
+				bool aux_exito = tropa_atacante->Atacar(tropa_atacada);
+
+				int at_disp = N_MAX_ATAQUES - h - 1;
+				int opc_continuar = 0;
+
+				if (at_disp > 0)
 				{
-					vector[k]->PaisesDominados->Listar();
-					cout << "Con que país quiere atacar?" << endl << "Ingrese el nombre del pais: ";
-					cin >> opcion_pais_atacante;
-					cout << endl;
-					pos_atacante = getItemPos(opcion_pais_atacante);
-				} while (pos_atacante == INT_MAX);// busco la posicion en la lista INT_MAX si no se encontro => vuelvo a pedir
-				cPais*pais_atacante = vector[k]->PaisesDominados->BuscarItem(opcion_pais_atacante);//busco el pais elegido y lo guardo en un puntero
-				do//listo y pido pais atacado
-				{
-					pais_atacante->ListarPosiblesAtaques();
-					cout << "Que país quiere atacar?" << endl << "Ingrese el nombre del pais: ";
-					cin >> opcion_pais_atacado;
-					cout << endl;
-					pos_atacado = pais_atacante->getItemPos(opcion_pais_atacado);
-					if (pos_atacado != INT_MAX)
-					{
-						pais_atacado = pais_atacante->getItem(pos_atacado);
-						if (pais_atacante->getJugador() == pais_atacado->getJugador())
-							pos_atacado == INT_MAX;
-					}
-				} while (pos_atacado == INT_MAX);// busco la posicion en la lista INT_MAX si no se encontro => vuelvo a pedir
-			
-				cTropa* atacante;
-				string opcion_tropa;
-				
-				//pido tropa atacante
-				
-				ImprimirTropasenPais(pais_atacante);
-					
-					cout << "Con que tropa desea atacar? "<<endl<<"Ingrese clave de la tropa: " ;
-					int aux_tropa_atacante;
 					do {
-						cin >> opcion_tropa; cout << endl; //pido clave de la tropa
-						aux_tropa_atacante = vector[k]->getItemPos(opcion_tropa);
-						if (vector[k]->getItem(aux_tropa_atacante)->getPais() != pais_atacante)//chequeo que la tropa este en mi pais atacante
-							aux_tropa_atacante = INT_MAX;
-						else
-							atacante = vector[k]->getItem(aux_tropa_atacante);
-					} while (aux_tropa_atacante == INT_MAX);
+						cout << endl << "Desea continuar atacando? ( " << at_disp << " ataques disponibles)"
+							<< endl << "1. Si" << endl << "2. No" << endl;
+						cin >> opc_continuar; cout << endl;
+					} while (opc_continuar != 1 && opc_continuar != 2);
 
-					//pedir tropa atacada
-					cTropa*atacada;
-					string opcion_tropa;
-					//pido tropa atacada
-
-					ImprimirTropasenPais(pais_atacado);
-
-					cout << "Con que tropa desea atacar? " << endl << "Ingrese clave de la tropa: ";
-					int aux_tropa_atacada;
-					do {
-						cin >> opcion_tropa; cout << endl; //pido clave de la tropa
-						aux_tropa_atacada = vector[k]->getItemPos(opcion_tropa);
-						if (vector[k]->getItem(aux_tropa_atacada)->getPais() != pais_atacado)//chequeo que la tropa este en mi pais atacante
-							aux_tropa_atacada = INT_MAX;
-						else
-							atacada = vector[k]->getItem(aux_tropa_atacada);
-					} while (aux_tropa_atacada == INT_MAX);
-
-						
-				
-				
-				//ataque-contraataque
-				//preguntar continuar atacando? if==no break;
+					if (opc_continuar == 2)
+						break;
+				}
 			}
-			
+
+			int op;
+
+			do {
+				cout << endl << "Desea movilizar tropas?" << endl << "1. Si" << endl << "2.No" << endl;
+				cin >> op; cout << endl;
+
+				if (op == 1) {
+					Movilizar_tropas(k);
+					op = 2;
+				}
+
+				system("pause");
+				system("cls");
+
+			} while (op != 2);
+
 		}
 
 		if (Ronda == N_RONDAS)
@@ -350,25 +446,18 @@ int cJuego::Jugar() {
 						return 0; // conviene usar una excepcion?
 					}
 				}
-		
-		//Repartir paises
-
-		for (int k = 0; k < N_MAX_JUGADORES; k++)
-		{
-			//Mover  Tropas
-		}
-		
 	}
 
 	return 0;
 }
 
+//JUEGO
 void cJuego::CambiarTurno(cJugador** Jugador, int k){
 	Jugador_de_turno = Jugador[k];
 }
 
-void cJuego::Imprimir(){
-
+int cJuego::getRonda() {
+	return Ronda;
 }
 
 void cJuego::Iniciar_Partida() {
@@ -382,20 +471,151 @@ void cJuego::Iniciar_Partida() {
 
 	//Asignacion inicial de tropas
 
+	//TODO INICIAR TROPAS AL INICIO DE LA PARTIDA
 
 	//bienvenido, juego iniciado*/
 
+}
 
+cPais* cJuego::Buscar_p_atacante(int k){
+
+	cPais* aux_atacante;
+	string opcion_pais_atacante;
+	int pos_atacante;
+	
+	do {	//listo y pido pais atacante
+		vector[k]->PaisesDominados->Listar();
+		cout << "Con que país quiere atacar?" << endl << "Ingrese el nombre del pais: ";
+		cin >> opcion_pais_atacante;
+		cout << endl;
+		pos_atacante = vector[k]->getPaisesD()->getItemPos(opcion_pais_atacante);
+	} while (pos_atacante == INT_MAX);  // busco la posicion en la lista INT_MAX si no se encontro => vuelvo a pedir
+
+	aux_atacante= vector[k]->PaisesDominados->BuscarItem(opcion_pais_atacante);
+
+	return aux_atacante;
+}
+
+cPais* cJuego::Buscar_p_atacado(cPais* atacante){
+
+	cPais* aux_atacado = NULL;
+
+	int pos_atacado;
+	string opcion_pais_atacado;
+
+	do//listo y pido pais atacado
+	{
+		atacante->ListarPosiblesAtaques();
+		cout << "Que país quiere atacar?" << endl << "Ingrese el nombre del pais: ";
+		cin >> opcion_pais_atacado;
+		cout << endl;
+		pos_atacado = atacante->getItemPos(opcion_pais_atacado);
+
+		if (pos_atacado != INT_MAX)
+		{
+			aux_atacado = atacante->getItem(pos_atacado);
+			if (atacante->getJugador() == aux_atacado->getJugador())
+				pos_atacado = INT_MAX;
+		}
+	} while (pos_atacado == INT_MAX);// busco la posicion en la lista INT_MAX si no se encontro => vuelvo a pedir
+
+	return aux_atacado;
+}
+
+cTropa* cJuego::Buscar_t_atacante(int k, cPais* atacante){
+
+	string opcion_tropa;
+	cTropa* tropa_atacante = NULL;
+
+	//pido tropa atacante
+	vector[k]->ImprimirTropasenPais(atacante);
+
+	cout << "Con que tropa desea atacar? " << endl << "Ingrese clave de la tropa: ";
+
+	int aux_tropa_atacante;
+
+	do {
+		cin >> opcion_tropa; cout << endl; //pido clave de la tropa
+		aux_tropa_atacante = vector[k]->getItemPos(opcion_tropa);
+		if (vector[k]->getItem(aux_tropa_atacante)->getPais() != atacante)//chequeo que la tropa este en mi pais atacante
+			aux_tropa_atacante = INT_MAX;
+		else
+			tropa_atacante = vector[k]->getItem(aux_tropa_atacante);
+	} while (aux_tropa_atacante == INT_MAX);
+
+	return tropa_atacante;
 
 }
 
-int cJuego::getRonda() {
-	return Ronda;
+cTropa* cJuego::Buscar_t_atacada(int k, cPais * atacado){
+
+	string opcion_tropa;
+	cTropa* tropa_atacada = NULL;
+
+	vector[k]->ImprimirTropasenPais(atacado);
+
+	cout << "A que tropa desea atacar? " << endl << "Ingrese clave de la tropa: ";
+	int aux_tropa_atacada;
+	do {
+		cin >> opcion_tropa; cout << endl; //pido clave de la tropa
+		aux_tropa_atacada = vector[k]->getItemPos(opcion_tropa);
+		if (vector[k]->getItem(aux_tropa_atacada)->getPais() != atacado)//chequeo que la tropa este en mi pais atacante
+			aux_tropa_atacada = INT_MAX;
+		else
+			tropa_atacada = vector[k]->getItem(aux_tropa_atacada);
+	} while (aux_tropa_atacada == INT_MAX);
+
+	return tropa_atacada;
+
+}
+
+void cJuego::Movilizar_tropas(int k){
+
+	string pais_origen, pais_destino;
+	int pos_origen, pos_destino;
+
+	do //listo y pido pais origen
+	{
+		vector[k]->PaisesDominados->Listar();
+		cout << "Desde que país quiere movilizar tropas?" << endl << "Ingrese el nombre del pais: ";
+		cin >> pais_origen;
+		cout << endl;
+		pos_origen = vector[k]->getPaisesD()->getItemPos(pais_origen);
+	} while (pos_origen == INT_MAX);
+
+	bool aux;
+
+	cPais* origen = vector[k]->getPaisesD()->getItem(pos_origen);
+	cPais* destino;
+
+	do //listo y pido pais atacado
+	{
+		aux = origen->ListarPosiblesMov();
+		if (aux == false) break;	//no hay paises limitrofes del mismo jugador
+		cout << "A que país quiere movilizar tropas?" << endl << "Ingrese el nombre del pais: ";
+		cin >> pais_destino;
+		cout << endl;
+		pos_destino = origen->getItemPos(pais_destino);
+		if (pos_destino != INT_MAX)
+		{
+			destino = origen->getItem(pos_origen);
+			if (origen->getJugador() != destino->getJugador()){
+				pos_destino = INT_MAX;
+				vector[k]->MoverTropas(destino, origen);//movilizo tropas
+			}
+		}
+
+	} while (pos_destino == INT_MAX);
 }
 
 //IMPRIMIR
+void cJuego::Imprimir() {
+}
+
 void cJuego::ImprimirGanador() {
+
 	//determinar ganador e imprimir
+
 }
 
 //EXTERNA
@@ -404,5 +624,6 @@ bool repetidos(int n, int num[])
 	for (int i = 0; i<N_PAISES_TOTALES; i++)
 		if (n == num[i])
 			return true;
+
 	return false;
 }

@@ -10,6 +10,7 @@
 
 #include "cJugador.h"
 #include "cListaT.h"
+
 #include <string>
 #include <iostream>
 #include <stdlib.h>
@@ -23,6 +24,7 @@
 
 using namespace std;
 
+class cPais;
 class cJuego : public cListaT<cJugador>
 {
 
@@ -32,7 +34,6 @@ public:
 	cJugador* Jugador_de_turno;
 	cListaT<cPais> *Paises;
 	
-
 	///Const y Dest
 	cJuego(int cant_jug=2);
 	virtual ~cJuego();
@@ -48,6 +49,13 @@ public:
 		void AsignarPaises(cJugador *Jug);							
 		void AsignarTropas();	
 		
+		//Durante Juego
+		cPais* Buscar_p_atacante(int k);
+		cPais* Buscar_p_atacado(cPais* atacante);
+		cTropa* Buscar_t_atacante(int k,  cPais* atacante);
+		cTropa* Buscar_t_atacada(int k, cPais* atacado);
+		void Movilizar_tropas(int k);
+
 		//getters
 		int getRonda();	
 		cJugador* getJugador_de_turno() { return Jugador_de_turno; }
@@ -60,8 +68,7 @@ public:
 		void CambiarTurno(cJugador **Jugador, int k);
 		void Imprimir();
 		void ImprimirGanador();
-		void ImprimirTropasenPais(cPais * pais);
-		int Contar_e_ImpTropasenPais(cPais * pais);
+
 };
 #endif // !defined(EA_25249AF9_B8BF_441f_95EC_C0B1C8876E76__INCLUDED_)
 
