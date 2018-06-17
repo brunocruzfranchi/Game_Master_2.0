@@ -43,7 +43,7 @@ bool cTropaMagos::Atacar(cTropa * atacado) {
 		if (aux_atacadoa->getCA() > 0) {
 			aux_atacadoa->Contraatacar(this);
 			return false;
-			//devolver FALSE para indicar que el ataque no fue exitoso y que la tropa recibio daño
+			//devolver FALSE para indicar que el ataque no fue exitoso y que la tropa recibio daï¿½o
 		}
 	}
 
@@ -69,7 +69,7 @@ bool cTropaMagos::Atacar(cTropa * atacado) {
 		if (aux_atacadom->getCA() > 0) {
 			aux_atacadom->Contraatacar(this);
 			return false;
-			//devolver FALSE para indicar que el ataque no fue exitoso y que la tropa recibio daño
+			//devolver FALSE para indicar que el ataque no fue exitoso y que la tropa recibio daï¿½o
 		}
 	}
 
@@ -94,7 +94,7 @@ bool cTropaMagos::Atacar(cTropa * atacado) {
 		if (aux_atacadoc->getCA() > 0) {
 			aux_atacadoc->Contraatacar(this);
 			return false;
-			//devolver FALSE para indicar que el ataque no fue exitoso y que la tropa recibio daño
+			//devolver FALSE para indicar que el ataque no fue exitoso y que la tropa recibio daï¿½o
 		}
 	}
 }

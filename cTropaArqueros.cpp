@@ -43,7 +43,7 @@ bool cTropaArqueros::Atacar(cTropa* atacado) {
 		if (aux_atacadoa->getCA() > 0) {
 			aux_atacadoa->Contraatacar(this);
 			return false;
-			//devolver FALSE para indicar que el ataque no fue exitoso y que la tropa recibio daño
+			//devolver FALSE para indicar que el ataque no fue exitoso y que la tropa recibio daï¿½o
 		}
 	}
 	
@@ -72,7 +72,7 @@ bool cTropaArqueros::Atacar(cTropa* atacado) {
 		if (aux_atacadom->getCA() > 0) {
 			aux_atacadom->Contraatacar(this);
 			return false;
-			//devolver FALSE para indicar que el ataque no fue exitoso y que la tropa recibio daño
+			//devolver FALSE para indicar que el ataque no fue exitoso y que la tropa recibio daï¿½o
 		}
 	}
 			
@@ -100,9 +100,8 @@ bool cTropaArqueros::Atacar(cTropa* atacado) {
 		if (aux_atacadoc->getCA() > 0) {
 			aux_atacadoc->Contraatacar(this);
 			return false;
-			//devolver FALSE para indicar que el ataque no fue exitoso y que la tropa recibio daño
+			//devolver FALSE para indicar que el ataque no fue exitoso y que la tropa recibio daï¿½o
 		}
-
 	}
 
 }
@@ -169,7 +168,8 @@ void cTropaArqueros::Contraatacar(cTropa* atacante) {
 			cout << "Su tropa sobrevivio al contrataque" << endl;
 	}
 
-}
+	if (opcion == "magos")
+		Incremento = 0.25;
 
 float cTropaArqueros::Incremento(string tipo){
 
