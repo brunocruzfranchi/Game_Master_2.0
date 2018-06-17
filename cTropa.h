@@ -30,7 +30,6 @@ class cTropa:public cListaT<class cUnidades>{
 		const string Clave;
 		static unsigned int Contador;
 		int ATTotal;
-		int HPTotal;
 		cPais* Pais;
 
 		///Const. y Dest.
@@ -58,7 +57,7 @@ class cTropa:public cListaT<class cUnidades>{
 		void Imprimir() { cout <<endl<<"Clave: "<<Clave<<setw(8)<<
 			" Tipo: "<< Tipo << setw(8)<<
 			"Ataque Total: "<< ATTotal <<setw(8) << 
-			"Vida Total: " << HPTotal << setw(8)<<
+			
 			"N de Unidades en la tropa: "<< CA << endl; }
 		
 	protected:

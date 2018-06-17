@@ -9,38 +9,39 @@
 #include "cMagos.h"
 #include "cArqueros.h"
 #include "cCaballeros.h"
+#define N_MAX_UNIDADES_EN_TROPA 500
 
 unsigned int cTropa::Contador = 0;
 
-cTropa::cTropa(string tipo,int tam,cPais*pais):cListaT<cUnidades>(tam),Tipo(tipo),Clave(to_string(Contador)){ 
+cTropa::cTropa(string tipo,int tam,cPais*pais):cListaT<cUnidades>(N_MAX_UNIDADES_EN_TROPA),Tipo(tipo),Clave(to_string(Contador)){ 
 	
 	int atq = 0;
-	int hpp = 0;
+	
 //cambiar constructor
 	if(tipo=="Magos")
 	for (int  i = 0; i < tam; i++)
 	{
-		vector[i] = new cMagos();
+		AgregarItem( new cMagos());
 	}
 	if (tipo == "Arqueros")
 		for (int i = 0; i < tam; i++)
 		{
-			vector[i] = new cArqueros();
+			AgregarItem( new cArqueros());
 		}
 	if (tipo == "Caballeros")
 		for (int i = 0; i < tam; i++)
 		{
-			vector[i] = new cCaballeros();
+			AgregarItem( new cCaballeros());
 		}
 
 	for (int i = 0; i < CA; i++) {
 
 		atq = atq + vector[i]->getAT();
-		hpp = hpp + vector[i]->getHP();
+		
 	}
 
 	this->ATTotal = atq;
-	this->HPTotal = hpp;
+	
 	this->Pais = pais;
 	Contador++;
 	

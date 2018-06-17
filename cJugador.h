@@ -25,7 +25,7 @@ public:
 	cListaT<cPais>* PaisesDominados;
 
 	///Const. y Dest.
-	cJugador(string n_jugador);
+	cJugador(int n_jugador);
 	virtual ~cJugador();
 
 	///Metodos

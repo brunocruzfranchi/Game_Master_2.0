@@ -12,7 +12,10 @@
 #include "cTropaArqueros.h"
 #include "cTropaCaballeros.h"
 #include "cTropaMagos.h"
+#include <stdlib.h>
 #define N_TROPAS_INICIAL 10
+
+using namespace std;
 enum PAISES{ARGENTINA = 0, BOLIVIA, BRASIL, CHILE, COLOMBIA, ECUADOR, GUYANA, PARAGUAY, PERU, SURINAM, URUGUAY, VENEZUELA, GUAYANAFRANCESA};
 
 //enum tipos{Magos=0,Arqueros=1,Caballeros=2};
@@ -31,8 +34,8 @@ cJuego::~cJuego() {
 void cJuego::CrearJugadores(int n) {
 	
 	for (int i = 0; i < n; i++) {
-		string aux = to_string(i);
-		AgregarItem(new cJugador(aux));
+		
+		AgregarItem(new cJugador(i));
 	}
 }
 
@@ -235,6 +238,7 @@ void cJuego::AsignarTropas(int n) {
 
 	for(int k = 0; k < CA ; k++ )
 	{
+		cout << "Turno Jugador " << vector[k]->getN_Jugador() << endl;
 		int aux_ca = vector[k]->PaisesDominados->getCA();
 		(aux_ca % 2 != 0) ? aux_ca = aux_ca / 2 : aux_ca = (aux_ca - 1) / 2;
 		(n == 0) ? aux_ca = N_TROPAS_INICIAL : 0;
@@ -245,7 +249,7 @@ void cJuego::AsignarTropas(int n) {
 
 		for (int i = 0; i < aux_ca; i++)
 		{
-			//srand(time(NULL));
+			srand(time(NULL));
 			aleatorio = rand() % 3;
 			switch (aleatorio)
 			{
@@ -279,7 +283,7 @@ void cJuego::AsignarTropas(int n) {
 
 			do //listo y pido pais
 			{
-				vector[k]->PaisesDominados->Listar(); //ERROR
+				//vector[k]->PaisesDominados->Listar(); //ERROR
 				
 				cListaT<cPais>* PaisesDominados = vector[k]->getPaisesD(); //ERROR
 				PaisesDominados->Listar();
@@ -287,6 +291,7 @@ void cJuego::AsignarTropas(int n) {
 				cout << "En que pais quiere ubicar su tropa?" << endl<< "Ingrese el nombre del pais: ";
 				cin >> opcion_pais;
 				cout << endl;
+
 				aux = vector[k]->PaisesDominados->getItemPos(opcion_pais);
 			} while (aux == INT_MAX);// busco la posicion en la lista INT_MAX si no se encontro => vuelvo a pedir
 
@@ -302,34 +307,19 @@ void cJuego::AsignarTropas(int n) {
 
 				if (opcion_distribuir == 1){
 					
-					cTropa * tropa_m = new cTropaMagos(tam_tropa, pais);
-					cTropa * tropa_a = new cTropaArqueros(tam_tropa, pais);
-					cTropa * tropa_c = new cTropaCaballeros(tam_tropa, pais);
-
-						switch (aleatorio){
-
-							case 0:
-								
-								vector[k]->AgregarItem(tropa_m);
-								cout << endl << "Tropa agregada satisfactoriamente" << endl;
-								break;
-
-							case 1:
-								
-								vector[k]->AgregarItem(tropa_a);
-								cout << endl << "Tropa agregada satisfactoriamente" << endl;
-								break;
-
-							case 2:
-								
-								vector[k]->AgregarItem(tropa_c);
-								cout << endl << "Tropa agregada satisfactoriamente" << endl;
-								break;
-						}
+					AgregarTropaaPais(k, tam_tropa, pais, aleatorio);
+										
 				}
 				if (opcion_distribuir == 2)
 				{
 					//elegir tropa
+					if (vector[k]->Contar_Tropas_en_Pais(pais) == 0) {
+						getchar();
+						AgregarTropaaPais(k, tam_tropa, pais, aleatorio);
+						cout <<endl<< "No se encontraron tropas del mismo tipo disponibles. Su tropa fue agregada como unidad separada" << endl;
+						system("pause");
+						break;
+					}
 					vector[k]->ImprimirTropasenPais(pais, tipo);
 					cTropa * tropa_agregar = PedirTropaDistribucion(aleatorio, k);
 					tropa_agregar->Distribuir(aleatorio, tam_tropa);
@@ -641,16 +631,44 @@ void cJuego::Movilizar_tropas(int k){
 	} while (pos_destino == INT_MAX);
 }
 
-//IMPRIMIR
-void cJuego::Imprimir() {
+void cJuego::AgregarTropaaPais(int k, int tam_tropa, cPais * pais, int aleatorio)
+{
+	cTropa * tropa_m = new cTropaMagos(tam_tropa, pais);
+	cTropa * tropa_a = new cTropaArqueros(tam_tropa, pais);
+	cTropa * tropa_c = new cTropaCaballeros(tam_tropa, pais);
+
+	switch (aleatorio) {
+
+	case 0:
+
+		vector[k]->AgregarItem(tropa_m);
+		cout << endl << "Tropa agregada satisfactoriamente" << endl;
+		break;
+
+	case 1:
+
+		vector[k]->AgregarItem(tropa_a);
+		cout << endl << "Tropa agregada satisfactoriamente" << endl;
+		break;
+
+	case 2:
+
+		vector[k]->AgregarItem(tropa_c);
+		cout << endl << "Tropa agregada satisfactoriamente" << endl;
+		break;
+	}
 }
+
+	//IMPRIMIR
+	void cJuego::Imprimir() {}
+
+
+	
 
 void cJuego::ImprimirGanador() {
 
 	//determinar ganador e imprimir
-
 }
-
 //EXTERNA
 bool repetidos(int n, int num[])
 {

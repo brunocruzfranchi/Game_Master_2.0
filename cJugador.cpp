@@ -9,7 +9,7 @@
 #include "cTropa.h"
 #include "cPais.h"
 
-cJugador::cJugador(string n_jugador):N_jugador(n_jugador){
+cJugador::cJugador(int n_jugador):N_jugador(to_string(n_jugador+1)){
 	
 	this->PaisesDominados = new cListaT<cPais>(N_PAISES_TOTALES);
 }

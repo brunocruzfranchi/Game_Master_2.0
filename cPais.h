@@ -51,7 +51,7 @@ class cPais:public cListaT<cPais>{
 
 			//Lista Template
 			string getclave() const { return Nombre;}
-			void Imprimir() { cout << Nombre << setw(8) /*<< Jugador->getN_Jugador() */<< endl; }
+			void Imprimir() { cout << Nombre << setw(8) /*<< getNJugador()*/ << endl; }
 			
 };
 
