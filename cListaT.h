@@ -222,9 +222,12 @@ T* cListaT<T>::getItem(unsigned int pos)
 template<class T>
 unsigned int cListaT<T>::getItemPos(string clave)
 {
+
 	for (unsigned int i = 0; i < CA; i++)
 	{
-		if (vector[i]->getclave() == clave)
+		string comp = vector[i]->getclave();
+
+		if (comp == clave)
 			return i;
 	}
 

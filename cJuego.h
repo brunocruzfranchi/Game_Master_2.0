@@ -11,6 +11,7 @@
 #include "cJugador.h"
 #include "cListaT.h"
 
+
 #include <string>
 #include <iostream>
 #include <stdlib.h>
@@ -25,6 +26,7 @@
 using namespace std;
 
 class cPais;
+class cTropa;
 class cJuego : public cListaT<cJugador>
 {
 
@@ -47,13 +49,14 @@ public:
 		int Jugar();
 		void Iniciar_Partida();
 		void AsignarPaises(cJugador *Jug);							
-		void AsignarTropas();	
+		void AsignarTropas(int n=1);	
 		
 		//Durante Juego
 		cPais* Buscar_p_atacante(int k);
 		cPais* Buscar_p_atacado(cPais* atacante);
 		cTropa* Buscar_t_atacante(int k,  cPais* atacante);
 		cTropa* Buscar_t_atacada(int k, cPais* atacado);
+		cTropa* PedirTropaDistribucion(int tipo, int k);
 		void Movilizar_tropas(int k);
 
 		//getters

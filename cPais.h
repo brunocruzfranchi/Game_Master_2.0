@@ -50,8 +50,8 @@ class cPais:public cListaT<cPais>{
 			//cPais** getLimitrofes();
 
 			//Lista Template
-			string getclave() const{ return Nombre;}
-			void Imprimir() { cout << Nombre << setw(8) << Jugador->getN_Jugador() << endl; }
+			string getclave() const { return Nombre;}
+			void Imprimir() { cout << Nombre << setw(8) /*<< Jugador->getN_Jugador() */<< endl; }
 			
 };
 

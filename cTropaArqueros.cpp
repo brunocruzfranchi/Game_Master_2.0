@@ -108,7 +108,7 @@ bool cTropaArqueros::Atacar(cTropa* atacado) {
 
 void cTropaArqueros::Contraatacar(cTropa* atacante) {
 
-	cTropaArqueros* aux_atacadoa = dynamic_cast<cTropaArqueros*>(atacante); 
+	/*cTropaArqueros* aux_atacadoa = dynamic_cast<cTropaArqueros*>(atacante); 
 	if (aux_atacadoa != NULL) {
 
 		string tipo = aux_atacadoa->getTipo();
@@ -165,11 +165,11 @@ void cTropaArqueros::Contraatacar(cTropa* atacante) {
 		if (aux_atacadoc->getCA() == 0)
 			cout << "Su tropa no sobrevivio al contrataque" << endl;
 		if (aux_atacadoc->getCA() > 0)
-			cout << "Su tropa sobrevivio al contrataque" << endl;
+			cout << "Su tropa sobrevivio al contrataque" << endl;*/
 	}
-
+/*
 	if (opcion == "magos")
-		Incremento = 0.25;
+		Incremento = 0.25;*/
 
 float cTropaArqueros::Incremento(string tipo){
 
