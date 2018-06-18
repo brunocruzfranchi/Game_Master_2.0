@@ -21,16 +21,23 @@ cPais::~cPais(){
 
 void cPais::ListarPosiblesAtaques()
 {
+	cout << "Paises disponibles para atacar" << endl;
+
+	for (int i = 0; i < CA; i++) {
+		if (vector[i]->getJugador() != Jugador){
+			vector[i]->Imprimir();
+		}
+	}
+	/*
 	for (int i = 0; i < CA; i++)
 	{
 		if (vector[i]->getJugador() != Jugador)
 		{
 			Imprimir();
-			
 			Jugador->ImprimirTropasenPais(Nombre);
 		}
 	}
-
+	*/
 }
 
 bool cPais::ListarPosiblesMov()
@@ -41,7 +48,6 @@ bool cPais::ListarPosiblesMov()
 		if (vector[i]->getJugador() == Jugador)
 		{
 			Imprimir();
-
 			Jugador->ImprimirTropasenPais(Nombre);
 			flag = true;
 		}

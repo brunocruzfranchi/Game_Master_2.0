@@ -22,12 +22,12 @@ bool cTropaCaballeros::Atacar(cTropa * atacado){
 
 		string tipo = aux_atacadoa->getTipo();
 		float aumento = Incremento(tipo);
-		int NuevoATTotal;
 
-		NuevoATTotal = ATTotal + (int)(ATTotal*aumento);
+		float NuevoATTotal = 0;
+		NuevoATTotal = ATTotal + ATTotal * aumento;
 
 		//ATACO
-		aux_atacadoa->RecibirDanio(NuevoATTotal);
+		aux_atacadoa->RecibirDanio((int)NuevoATTotal);
 
 		//QUE PASO EN EL ATAQUE?
 
@@ -47,12 +47,12 @@ bool cTropaCaballeros::Atacar(cTropa * atacado){
 
 		string tipo = aux_atacadom->getTipo();
 		float aumento = Incremento(tipo);
-		int NuevoATTotal;
 
-		NuevoATTotal = ATTotal + (int)(ATTotal*aumento);
+		float NuevoATTotal = 0;
+		NuevoATTotal = ATTotal + ATTotal * aumento;
 
 		//ATACO
-		aux_atacadoa->RecibirDanio(NuevoATTotal);
+		aux_atacadom->RecibirDanio((int)NuevoATTotal);
 
 		//QUE PASO EN EL ATAQUE?
 
@@ -73,12 +73,12 @@ bool cTropaCaballeros::Atacar(cTropa * atacado){
 
 		string tipo = aux_atacadoc->getTipo();
 		float aumento = Incremento(tipo);
-		int NuevoATTotal;
 
-		NuevoATTotal = ATTotal + (int)(ATTotal*aumento);
+		float NuevoATTotal = 0;
+		NuevoATTotal = ATTotal + ATTotal * aumento;
 
 		//ATACO
-		aux_atacadoa->RecibirDanio(NuevoATTotal);
+		aux_atacadoc->RecibirDanio((int)NuevoATTotal);
 
 		//QUE PASO EN EL ATAQUE?
 
@@ -102,12 +102,11 @@ void cTropaCaballeros::Contratacar(cTropa* atacante){
 
 		string tipo = aux_atacadoa->getTipo();
 		float aumento = Incremento(tipo);
-		int NuevoATTotal;
-
-		NuevoATTotal = ATTotal + (int)(ATTotal*aumento);
+		float NuevoATTotal = 0;
+		NuevoATTotal = ATTotal + ATTotal * aumento;
 
 		//ATACO
-		aux_atacadoa->RecibirDanio(NuevoATTotal);
+		aux_atacadoa->RecibirDanio((int)NuevoATTotal);
 
 		//QUE PASO EN EL CONTRAATAQUE?
 		aux_atacadoa->RecibirDanio(ATTotal);
@@ -122,12 +121,11 @@ void cTropaCaballeros::Contratacar(cTropa* atacante){
 
 		string tipo = aux_atacadom->getTipo();
 		float aumento = Incremento(tipo);
-		int NuevoATTotal;
-
-		NuevoATTotal = ATTotal + (int)(ATTotal*aumento);
+		float NuevoATTotal = 0;
+		NuevoATTotal = ATTotal + ATTotal * aumento;
 
 		//ATACO
-		aux_atacadoa->RecibirDanio(NuevoATTotal);
+		aux_atacadom->RecibirDanio((int)NuevoATTotal);
 
 		//QUE PASO EN EL CONTRAATAQUE?
 		aux_atacadom->RecibirDanio(ATTotal);
@@ -142,12 +140,11 @@ void cTropaCaballeros::Contratacar(cTropa* atacante){
 
 		string tipo = aux_atacadoc->getTipo();
 		float aumento = Incremento(tipo);
-		int NuevoATTotal;
-
-		NuevoATTotal = ATTotal + (int)(ATTotal*aumento);
+		float NuevoATTotal = 0;
+		NuevoATTotal = ATTotal + ATTotal * aumento;
 
 		//ATACO
-		aux_atacadoa->RecibirDanio(NuevoATTotal);
+		aux_atacadoc->RecibirDanio((int)NuevoATTotal);
 
 		//QUE PASO EN EL CONTRAATAQUE?
 		aux_atacadoc->RecibirDanio(ATTotal);
@@ -159,14 +156,19 @@ void cTropaCaballeros::Contratacar(cTropa* atacante){
 
 }
 
-float cTropaCaballeros::Incremento(string tipo)
-{
-	if (tipo == "arqueros")
-		return 0.25;
+float cTropaCaballeros::Incremento(string tipo){
 
-	if (tipo == "magos")
-		return -0.25;
+	float incre = 0;
+	if (tipo == "Arqueros" || tipo == "arqueros") {
+		incre = 0.25;
+		return incre;
+	}
 
-	if (tipo == "caballeros")
-		return 0;
+	if (tipo == "Magos" || tipo == "magos") {
+		incre = -0.25;
+		return incre;
+	}
+
+	if (tipo == "Caballeros" || tipo == "caballeros")
+		return incre;
 }

@@ -64,7 +64,7 @@ void cJugador::MoverTropas(cPais*ganado , cPais*atacante){
 
 void cJugador::ImprimirTropasenPais(cPais * pais)
 {
-	cout << endl << "Tropas disponibles en "<<pais->getNombre() << endl;
+	cout << endl << "Tropas disponibles en "<< pais->getNombre() << endl;
 	for (int i = 0; i < CA; i++)
 	{
 		if (vector[i]->getPais()->getclave() == pais->getclave())
