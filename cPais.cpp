@@ -10,7 +10,7 @@
 
 cListaT<cPais> cPais::Lista_Paises = cListaT<cPais>(N_PAISES_TOTALES);
 
-cPais::cPais(string nombre):Nombre(nombre){
+cPais::cPais(string nombre):Nombre(nombre),Clave(to_string(Lista_Paises.getCA()+1)){
 
 	Lista_Paises.AgregarItem(this);
 

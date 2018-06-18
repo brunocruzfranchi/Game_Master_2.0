@@ -311,7 +311,7 @@ void cJuego::AsignarTropas(int n) {
 				cListaT<cPais>* PaisesDominados = vector[k]->getPaisesD(); //ERROR
 				PaisesDominados->Listar();
 				
-				cout << "En que pais quiere ubicar su tropa?" << endl<< "Ingrese el nombre del pais: ";
+				cout << "En que pais quiere ubicar su tropa?" << endl<< "Ingrese la clave del pais: ";
 				cin >> opcion_pais;
 				cout << endl;
 
@@ -492,7 +492,7 @@ cPais* cJuego::Buscar_p_atacante(int k){
 	
 	do {	//listo y pido pais atacante
 		vector[k]->PaisesDominados->Listar();
-		cout << "Con que pa�s quiere atacar?" << endl << "Ingrese el nombre del pais: ";
+		cout << "Con que pa�s quiere atacar?" << endl << "Ingrese la clave del pais: ";
 		cin >> opcion_pais_atacante;
 		cout << endl;
 		pos_atacante = vector[k]->getPaisesD()->getItemPos(opcion_pais_atacante);
@@ -513,7 +513,7 @@ cPais* cJuego::Buscar_p_atacado(cPais* atacante){
 	do//listo y pido pais atacado
 	{
 		atacante->ListarPosiblesAtaques();
-		cout << "Que pa�s quiere atacar?" << endl << "Ingrese el nombre del pais: ";
+		cout << "Que pa�s quiere atacar?" << endl << "Ingrese la clave del pais: ";
 		cin >> opcion_pais_atacado;
 		cout << endl;
 		pos_atacado = atacante->getItemPos(opcion_pais_atacado);
@@ -621,7 +621,7 @@ void cJuego::Movilizar_tropas(int k){
 	do //listo y pido pais origen
 	{
 		vector[k]->PaisesDominados->Listar();
-		cout << "Desde que pais quiere movilizar tropas?" << endl << "Ingrese el nombre del pais: ";
+		cout << "Desde que pais quiere movilizar tropas?" << endl << "Ingrese la clave del pais: ";
 		cin >> pais_origen;
 		cout << endl;
 		pos_origen = vector[k]->getPaisesD()->getItemPos(pais_origen);
@@ -639,7 +639,7 @@ void cJuego::Movilizar_tropas(int k){
 			cout << endl << "No hay paises a los que movilizar" << endl;
 			break;
 		}//no hay paises limitrofes del mismo jugador
-		cout << "A que pa�s quiere movilizar tropas?" << endl << "Ingrese el nombre del pais: ";
+		cout << "A que pa�s quiere movilizar tropas?" << endl << "Ingrese la clave del pais: ";
 		cin >> pais_destino;
 		cout << endl;
 		pos_destino = origen->getItemPos(pais_destino);

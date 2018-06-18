@@ -24,6 +24,7 @@ class cPais:public cListaT<cPais>{
 
 	public:
 		///Atributos
+		const string Clave;
 		static cListaT<cPais> Lista_Paises;
 		const string Nombre;
 		cJugador* Jugador; //string Jugador;
@@ -50,8 +51,8 @@ class cPais:public cListaT<cPais>{
 			//cPais** getLimitrofes();
 
 			//Lista Template
-			string getclave() const { return Nombre;}
-			void Imprimir() { cout << Nombre << setw(8) /*<< getNJugador()*/ << endl; }
+			string getclave() const { return Clave;}
+			void Imprimir() { cout <<Clave<<setw(8)<< Nombre << setw(8) /*<< getNJugador()*/ << endl; }
 			
 };
 
