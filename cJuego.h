@@ -48,7 +48,7 @@ public:
 		//Inicio Juego
 		int Jugar();
 		void Iniciar_Partida();
-		void AsignarPaises(cJugador *Jug);							
+		void AsignarPaises(/*cJugador *Jug, cJugador* Jug2*/);
 		void AsignarTropas(int n=1);	
 		
 		//Durante Juego

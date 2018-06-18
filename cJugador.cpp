@@ -141,6 +141,21 @@ int cJugador::Contar_Tropas_en_Pais(cPais * pais)
 	return N_tropas;
 }
 
+int cJugador::Contar_Tropas_en_Pais(cPais * pais, string tipo)
+{
+	int N_tropas = 0;
+	for (int i = 0; i < CA; i++)
+	{
+		if (vector[i]->getPais() == pais)
+		{
+			if(vector[i]->getTipo()==tipo)
+			N_tropas++;
+		}
+	}
+	return N_tropas;
+	return 0;
+}
+
 int cJugador::Contar_Tropas_en_Pais(string nombre)
 {
 	int cont = 0;

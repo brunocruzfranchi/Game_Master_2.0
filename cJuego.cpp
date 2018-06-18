@@ -13,7 +13,7 @@
 #include "cTropaCaballeros.h"
 #include "cTropaMagos.h"
 #include <stdlib.h>
-#define N_TROPAS_INICIAL 10
+#define N_TROPAS_INICIAL 2
 
 using namespace std;
 enum PAISES{ARGENTINA = 0, BOLIVIA, BRASIL, CHILE, COLOMBIA, ECUADOR, GUYANA, PARAGUAY, PERU, SURINAM, URUGUAY, VENEZUELA, GUAYANAFRANCESA};
@@ -210,9 +210,32 @@ void cJuego::CrearPaises() {
 } //listo
 
 //ASIGNACIONES
-void cJuego::AsignarPaises(cJugador *Jug) {
 
-	int n, num[N_PAISES_TOTALES];
+void cJuego::AsignarPaises(/*cJugador *Jug, cJugador* Jug2*/) {
+
+	//cListaT<cPais> aux = *(Paises);
+	int i,pos;
+	for ( i = 0; i < N_PAISES_TOTALES; i++)
+	{
+		 pos = rand() % 2;
+
+		vector[pos]->PaisesDominados->AgregarItem(Paises->getItem(i));
+		Paises->getItem(i)->setJugador(vector[pos]);
+		if (vector[pos]->PaisesDominados->getCA() == 7)
+			break;
+	}
+
+	pos = (pos+1) % 2;
+	if(i<N_PAISES_TOTALES)
+	for (int h = i+1; h < N_PAISES_TOTALES; h++)
+	{
+		vector[pos]->PaisesDominados->AgregarItem(Paises->getItem(i));
+	}
+
+
+
+
+	/*int n, num[N_PAISES_TOTALES];
 	
 	for (int i = 0; i<N_PAISES_TOTALES; i++)						//Genero un array de numero aleatorios y no repetidos
 	{
@@ -222,16 +245,16 @@ void cJuego::AsignarPaises(cJugador *Jug) {
 		num[i] = n;
 	}
 	
-	if (Jug->getN_Jugador() == "0")
+	if (Jug->getN_Jugador() == "1")
 		for(int i = 0; i < 7; i++){
 			cPais* aux = Paises->getItem(num[i]);
 			Jug->PaisesDominados->AgregarItem(aux);
 		}
-	else
+	if(Jug->getN_Jugador() == "2")
 		for (int i = 7; i < N_PAISES_TOTALES; i++) {
 			cPais* aux2 = Paises->getItem(num[i]);
-			Jug->PaisesDominados->AgregarItem(aux2);
-		}
+			Jug2->PaisesDominados->AgregarItem(aux2);
+		}*/
 }
 
 void cJuego::AsignarTropas(int n) {
@@ -313,7 +336,7 @@ void cJuego::AsignarTropas(int n) {
 				if (opcion_distribuir == 2)
 				{
 					//elegir tropa
-					if (vector[k]->Contar_Tropas_en_Pais(pais) == 0) {
+					if (vector[k]->Contar_Tropas_en_Pais(pais,tipo) == 0) {
 						getchar();
 						AgregarTropaaPais(k, tam_tropa, pais, aleatorio);
 						cout <<endl<< "No se encontraron tropas del mismo tipo disponibles. Su tropa fue agregada como unidad separada" << endl;
@@ -347,6 +370,7 @@ void cJuego::ReasignarPais(cPais* atacado, cPais* atacante) { //listo
 } //listo
 
 //PARTIDA
+
 int cJuego::Jugar() {
 
 	int opcion;
@@ -433,6 +457,7 @@ int cJuego::Jugar() {
 }
 
 //JUEGO
+
 void cJuego::CambiarTurno(cJugador** Jugador, int k){
 	Jugador_de_turno = Jugador[k];
 	cout << endl << "Jugador de turno: Jugador " << Jugador[k]->getclave()<<endl;
@@ -448,8 +473,7 @@ void cJuego::Iniciar_Partida() {
 	cJugador* Jug2 = getItem(1);
 
 	//Asignacion de Paises
-	AsignarPaises(Jug1);
-	AsignarPaises(Jug2);
+	AsignarPaises(/*Jug1, Jug2*/);
 
 	//Asignacion inicial de tropas
 	AsignarTropas(0);
@@ -659,16 +683,15 @@ void cJuego::AgregarTropaaPais(int k, int tam_tropa, cPais * pais, int aleatorio
 	}
 }
 
-	//IMPRIMIR
-	void cJuego::Imprimir() {}
-
-
-	
+//IMPRIMIR
+void cJuego::Imprimir() {
+}
 
 void cJuego::ImprimirGanador() {
 
 	//determinar ganador e imprimir
 }
+
 //EXTERNA
 bool repetidos(int n, int num[])
 {

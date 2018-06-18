@@ -38,6 +38,7 @@ public:
 		void ImprimirTropasenPais(cPais*pais,string tipo);
 		int Contar_e_ImpTropasenPais(cPais*pais);
 		int Contar_Tropas_en_Pais(cPais*pais);
+		int Contar_Tropas_en_Pais(cPais*pais,string tipo);
 		int Contar_Tropas_en_Pais(string nombre);
 
 		//getters
