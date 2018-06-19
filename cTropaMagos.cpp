@@ -76,7 +76,8 @@ bool cTropaMagos::Atacar(cTropa * atacado) {
 		string tipo = aux_atacadoc->getTipo();
 		float aumento = Incremento(tipo);
 		cPais* pais_atacado = atacado->getPais();
-		float NuevoATTotal;
+
+		float NuevoATTotal = 0;
 		NuevoATTotal = ATTotal + ATTotal * aumento;
 
 		AtaqueMagico(pais_atacado, (int)NuevoATTotal);
@@ -102,12 +103,12 @@ void cTropaMagos::Contratacar(cTropa* atacante) {
 
 		string tipo = aux_atacadoa->getTipo();
 		float aumento = Incremento(tipo);
-		int NuevoATTotal;
-
-		NuevoATTotal = ATTotal + (int)(ATTotal*aumento);
+	
+		float NuevoATTotal = 0;
+		NuevoATTotal = ATTotal + ATTotal * aumento;
 
 		//ATACO
-		aux_atacadoa->RecibirDanio(NuevoATTotal);
+		aux_atacadoa->RecibirDanio((int)NuevoATTotal);
 
 		//QUE PASO EN EL CONTRAATAQUE?
 		aux_atacadoa->RecibirDanio(ATTotal);
@@ -122,11 +123,12 @@ void cTropaMagos::Contratacar(cTropa* atacante) {
 
 		string tipo = aux_atacadom->getTipo();
 		float aumento = Incremento(tipo);
-		int NuevoATTotal;
-		NuevoATTotal = ATTotal + (int)(ATTotal*aumento);
+
+		float NuevoATTotal = 0;
+		NuevoATTotal = ATTotal + ATTotal * aumento;
 
 		//ATACO
-		aux_atacadoa->RecibirDanio(NuevoATTotal);
+		aux_atacadoa->RecibirDanio((int)NuevoATTotal);
 
 		//QUE PASO EN EL CONTRAATAQUE?
 		aux_atacadom->RecibirDanio(ATTotal);
@@ -142,12 +144,11 @@ void cTropaMagos::Contratacar(cTropa* atacante) {
 		string tipo = aux_atacadoc->getTipo();
 		float aumento = Incremento(tipo);
 
-		int NuevoATTotal;
-
-		NuevoATTotal = ATTotal + (int)(ATTotal*aumento);
+		float NuevoATTotal = 0;
+		NuevoATTotal = ATTotal + ATTotal * aumento;
 
 		//ATACO
-		aux_atacadoa->RecibirDanio(NuevoATTotal);
+		aux_atacadoa->RecibirDanio((int)NuevoATTotal);
 
 		//QUE PASO EN EL CONTRAATAQUE?
 		aux_atacadoc->RecibirDanio(ATTotal);
@@ -159,16 +160,20 @@ void cTropaMagos::Contratacar(cTropa* atacante) {
 
 }
 
-float cTropaMagos::Incremento(string tipo)
-{
-	if (tipo == "arqueros")
-		return -0.25;
+float cTropaMagos::Incremento(string tipo){
+	float incre = 0;
+	if (tipo == "Arqueros" || tipo == "arqueros") {
+		incre = -0.25;
+		return incre;
+	}
 
-	if (tipo == "magos")
-		return 0;
-
-	if (tipo == "caballeros")
-		return 0.25;
+	if (tipo == "Magos" || tipo == "magos")	
+		return incre;
+	
+	if (tipo == "Caballeros" || tipo == "caballeros") {
+		incre = 0.25;
+		return incre;
+	}
 }
 
 void cTropaMagos::AtaqueMagico(cPais * pais, int ataque)

@@ -34,11 +34,12 @@ class cPais:public cListaT<cPais>{
 		virtual ~cPais();
 
 		///Metodos
-			//Principales
-			//Setters
-			void setJugador(cJugador* j) { Jugador = j; }
+			//Principales	
 			void ListarPosiblesAtaques();
 			bool ListarPosiblesMov();
+
+			//Setters
+			void setJugador(cJugador* j) { Jugador = j; }
 
 			//Getters
 			string getNJugador() { return Jugador->getN_Jugador(); }

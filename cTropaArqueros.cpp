@@ -24,12 +24,12 @@ bool cTropaArqueros::Atacar(cTropa* atacado) {
 		
 		string tipo = aux_atacadoa->getTipo();
 		float aumento = Incremento(tipo);
-		int NuevoATTotal;
 
-		NuevoATTotal = ATTotal + (int)(ATTotal*aumento);
+		float NuevoATTotal = 0;
+		NuevoATTotal = ATTotal + ATTotal * aumento;
 
 		//ATACO
-		aux_atacadoa->RecibirDanio(NuevoATTotal);
+		aux_atacadoa->RecibirDanio((int)NuevoATTotal);
 
 		//SEGUNDA PROBABILIDAD DE ATAQUE	(SUPER OP)
 
@@ -52,12 +52,12 @@ bool cTropaArqueros::Atacar(cTropa* atacado) {
 
 		string tipo = aux_atacadom->getTipo();
 		float aumento = Incremento(tipo);
-		int NuevoATTotal;
 
-		NuevoATTotal = ATTotal + (int)(ATTotal*aumento);
+		float NuevoATTotal = 0;
+		NuevoATTotal = ATTotal + ATTotal * aumento;
 
 		//ATACO
-		aux_atacadoa->RecibirDanio(NuevoATTotal);
+		aux_atacadom->RecibirDanio((int)NuevoATTotal);
 
 		//SEGUNDA PROBABILIDAD DE ATAQUE	(SUPER OP)
 
@@ -81,12 +81,12 @@ bool cTropaArqueros::Atacar(cTropa* atacado) {
 
 		string tipo = aux_atacadoc->getTipo();
 		float aumento = Incremento(tipo);
-		int NuevoATTotal;
 
-		NuevoATTotal = ATTotal + (int)(ATTotal*aumento);
+		float NuevoATTotal = 0;
+		NuevoATTotal = ATTotal + ATTotal * aumento;
 
 		//ATACO
-		aux_atacadoa->RecibirDanio(NuevoATTotal);
+		aux_atacadoc->RecibirDanio((int)NuevoATTotal);
 
 		//SEGUNDA PROBABILIDAD DE ATAQUE	(SUPER OP)
 
@@ -108,17 +108,16 @@ bool cTropaArqueros::Atacar(cTropa* atacado) {
 
 void cTropaArqueros::Contraatacar(cTropa* atacante) {
 
-	/*cTropaArqueros* aux_atacadoa = dynamic_cast<cTropaArqueros*>(atacante); 
+	cTropaArqueros* aux_atacadoa = dynamic_cast<cTropaArqueros*>(atacante);
 	if (aux_atacadoa != NULL) {
 
 		string tipo = aux_atacadoa->getTipo();
 		float aumento = Incremento(tipo);
-		int NuevoATTotal;
-
-		NuevoATTotal = ATTotal + (int)(ATTotal*aumento);
+		float NuevoATTotal = 0;
+		NuevoATTotal = ATTotal + ATTotal * aumento;
 
 		//ATACO
-		aux_atacadoa->RecibirDanio(NuevoATTotal);
+		aux_atacadoa->RecibirDanio((int)NuevoATTotal);
 
 		//QUE PASO EN EL CONTRAATAQUE?
 		aux_atacadoa->RecibirDanio(ATTotal);
@@ -133,12 +132,12 @@ void cTropaArqueros::Contraatacar(cTropa* atacante) {
 
 		string tipo = aux_atacadom->getTipo();
 		float aumento = Incremento(tipo);
-		int NuevoATTotal;
 
-		NuevoATTotal = ATTotal + (int)(ATTotal*aumento);
+		float NuevoATTotal = 0;
+		NuevoATTotal = ATTotal + ATTotal * aumento;
 
 		//ATACO
-		aux_atacadoa->RecibirDanio(NuevoATTotal);
+		aux_atacadom->RecibirDanio((int)NuevoATTotal);
 
 		//QUE PASO EN EL CONTRAATAQUE?
 		aux_atacadom->RecibirDanio(ATTotal);
@@ -146,42 +145,44 @@ void cTropaArqueros::Contraatacar(cTropa* atacante) {
 			cout << "Su tropa no sobrevivio al contrataque" << endl;
 		if (aux_atacadom->getCA() > 0)
 			cout << "Su tropa sobrevivio al contrataque" << endl;
-		}
-	
+	}
+
 	cTropaCaballeros* aux_atacadoc = dynamic_cast<cTropaCaballeros*>(atacante);
-	if(aux_atacadoc != NULL) {
+	if (aux_atacadoc != NULL) {
 
 		string tipo = aux_atacadoc->getTipo();
 		float aumento = Incremento(tipo);
-		int NuevoATTotal;
 
-		NuevoATTotal = ATTotal + (int)(ATTotal*aumento);
+		float NuevoATTotal = 0;
+		NuevoATTotal = ATTotal + ATTotal * aumento;
 
 		//ATACO
-		aux_atacadoa->RecibirDanio(NuevoATTotal);
+		aux_atacadoc->RecibirDanio((int)NuevoATTotal);
 
 		//QUE PASO EN EL CONTRAATAQUE?
 		aux_atacadoc->RecibirDanio(ATTotal);
 		if (aux_atacadoc->getCA() == 0)
 			cout << "Su tropa no sobrevivio al contrataque" << endl;
 		if (aux_atacadoc->getCA() > 0)
-			cout << "Su tropa sobrevivio al contrataque" << endl;*/
+			cout << "Su tropa sobrevivio al contrataque" << endl;
 	}
-/*
-	if (opcion == "magos")
-		Incremento = 0.25;*/
+}
 
 float cTropaArqueros::Incremento(string tipo){
 
-	if (tipo == "arqueros")
-		return 0;
+	float incre = 0;
+	if (tipo == "Arqueros" || tipo == "arqueros")
+		return incre;
 
-	if (tipo == "magos")
-		return 0.25;
+	if (tipo == "Magos" || tipo == "magos" ) {
+		incre = 0.25;
+		return incre;
+	}
 
-	if (tipo == "caballeros")
-		return -0.25;
-
+	if (tipo == "Caballeros"|| tipo == "caballeros") {
+		incre = -0.25;
+		return incre;
+	}
 }
 
 void cTropaArqueros::Segundo_AT(cTropa* atacado){

@@ -213,12 +213,11 @@ void cJuego::CrearPaises() {
 
 void cJuego::AsignarPaises(/*cJugador *Jug, cJugador* Jug2*/) {
 
-	//cListaT<cPais> aux = *(Paises);
-	int i,pos;
+	int i, pos;
+
 	for ( i = 0; i < N_PAISES_TOTALES; i++)
 	{
 		 pos = rand() % 2;
-
 		vector[pos]->PaisesDominados->AgregarItem(Paises->getItem(i));
 		Paises->getItem(i)->setJugador(vector[pos]);
 		if (vector[pos]->PaisesDominados->getCA() == 7)
@@ -226,14 +225,12 @@ void cJuego::AsignarPaises(/*cJugador *Jug, cJugador* Jug2*/) {
 	}
 
 	pos = (pos+1) % 2;
-	if(i<N_PAISES_TOTALES)
+
+	if(i < N_PAISES_TOTALES)
 	for (int h = i+1; h < N_PAISES_TOTALES; h++)
 	{
 		vector[pos]->PaisesDominados->AgregarItem(Paises->getItem(i));
 	}
-
-
-
 
 	/*int n, num[N_PAISES_TOTALES];
 	
@@ -341,6 +338,7 @@ void cJuego::AsignarTropas(int n) {
 						AgregarTropaaPais(k, tam_tropa, pais, aleatorio);
 						cout <<endl<< "No se encontraron tropas del mismo tipo disponibles. Su tropa fue agregada como unidad separada" << endl;
 						system("pause");
+						system("cls");
 						break;
 					}
 					vector[k]->ImprimirTropasenPais(pais, tipo);
@@ -348,6 +346,9 @@ void cJuego::AsignarTropas(int n) {
 					tropa_agregar->Distribuir(aleatorio, tam_tropa);
 					
 				}
+
+				system("cls");
+
 			} while (opcion_distribuir != 1 && opcion_distribuir != 2);	
 		}
 
@@ -389,8 +390,6 @@ int cJuego::Jugar() {
 
 				CambiarTurno(vector, k);
 
-				vector[k]->PaisesDominados->Listar();
-
 				//Buscar pais atacado, pais atacante, tropa atacante, tropa atacado
 
 				cPais* pais_atacante = Buscar_p_atacante(k); //busco el pais elegido y lo guardo en un puntero
@@ -406,6 +405,7 @@ int cJuego::Jugar() {
 				bool aux_exito = tropa_atacante->Atacar(tropa_atacada);
 
 				int at_disp = N_MAX_ATAQUES - h - 1;
+
 				int opc_continuar = 0;
 
 				if (at_disp > 0)
@@ -512,6 +512,8 @@ cPais* cJuego::Buscar_p_atacado(cPais* atacante){
 
 	do//listo y pido pais atacado
 	{
+		system("cls");
+
 		atacante->ListarPosiblesAtaques();
 		cout << "Que pa�s quiere atacar?" << endl << "Ingrese la clave del pais: ";
 		cin >> opcion_pais_atacado;
@@ -533,8 +535,9 @@ cTropa* cJuego::Buscar_t_atacante(int k, cPais* atacante){
 
 	string opcion_tropa;
 	cTropa* tropa_atacante = NULL;
-
 	//pido tropa atacante
+
+
 	vector[k]->ImprimirTropasenPais(atacante);
 
 	cout << "Con que tropa desea atacar? " << endl << "Ingrese clave de la tropa: ";
@@ -554,14 +557,19 @@ cTropa* cJuego::Buscar_t_atacante(int k, cPais* atacante){
 
 }
 
-cTropa* cJuego::Buscar_t_atacada(int k, cPais * atacado){
+cTropa* cJuego::Buscar_t_atacada(int h, cPais * atacado){
 
 	string opcion_tropa;
 	cTropa* tropa_atacada = NULL;
+	int k;
+
+	if (h == 0)	k = 1;
+	else k = 0;
 
 	vector[k]->ImprimirTropasenPais(atacado);
 
 	cout << "A que tropa desea atacar? " << endl << "Ingrese clave de la tropa: ";
+
 	int aux_tropa_atacada;
 	do {
 		cin >> opcion_tropa; cout << endl; //pido clave de la tropa
@@ -573,7 +581,6 @@ cTropa* cJuego::Buscar_t_atacada(int k, cPais * atacado){
 	} while (aux_tropa_atacada == INT_MAX);
 
 	return tropa_atacada;
-
 }
 
 cTropa * cJuego::PedirTropaDistribucion(int tipo, int k)
