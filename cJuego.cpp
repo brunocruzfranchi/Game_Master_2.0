@@ -218,7 +218,7 @@ void cJuego::AsignarPaises(/*cJugador *Jug, cJugador* Jug2*/) {
 	for ( i = 0; i < N_PAISES_TOTALES; i++)
 	{
 		 pos = rand() % 2;
-		*(vector[pos]->PaisesDominados)+(*(Paises)==(i));
+		vector[pos]->PaisesDominados->AgregarItem(Paises->getItem(i));
 		(*(Paises)==i)->setJugador(vector[pos]);
 		if (vector[pos]->PaisesDominados->getCA() == 7)
 			break;
