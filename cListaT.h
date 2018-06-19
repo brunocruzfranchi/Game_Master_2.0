@@ -28,6 +28,7 @@ public:
 
 	bool AgregarItem(T *item);
 	bool AgregarItemOrdenado(const T *item);
+	void cListaT<T>::operator +(T * item);
 
 	T* Quitar(string clave);
 	T* Quitar(const T *item);
@@ -35,10 +36,13 @@ public:
 
 	void Eliminar(string clave);
 	void Eliminar(const T *item);
+	void operator-(const T *item);
 	void Eliminar(unsigned int pos);
 
 	void Listar();
 	T* BuscarItem(string clave);
+	T* cListaT<T>::operator==(unsigned int pos);
+	void cListaT<T>::operator []()
 	T* getItem(unsigned int pos);
 	T* getHPMinimo();
 
@@ -245,4 +249,22 @@ T* cListaT<T>::getHPMinimo()
 	}
 	return min;
 }
+template <class T>
+void cListaT<T>::operator +(T * item) {
+	AgregarItem(item);
+}
+
+template<class T>
+T* cListaT<T>::operator==(unsigned int pos)
+{
+	getItem(pos);
+}
+
+template<class T>
+void cListaT<T>::operator -(const T *item) {
+	Eliminar(item);
+}
+
+template<class T>
+void cListaT<T>::operator []() { Listar; }
 #endif // !defined(EA_B9741D49_13D8_46c1_8B11_F0F70B4304B8__INCLUDED_)

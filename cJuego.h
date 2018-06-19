@@ -76,4 +76,4 @@ public:
 };
 #endif // !defined(EA_25249AF9_B8BF_441f_95EC_C0B1C8876E76__INCLUDED_)
 
-bool repetidos(int n, int num[]);
+//bool repetidos(int n, int num[]);

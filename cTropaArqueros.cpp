@@ -29,7 +29,7 @@ bool cTropaArqueros::Atacar(cTropa* atacado) {
 		NuevoATTotal = ATTotal + ATTotal * aumento;
 
 		//ATACO
-		aux_atacadoa->RecibirDanio((int)NuevoATTotal);
+		*(aux_atacadoa)!=((int)NuevoATTotal);
 
 		//SEGUNDA PROBABILIDAD DE ATAQUE	(SUPER OP)
 
@@ -41,7 +41,7 @@ bool cTropaArqueros::Atacar(cTropa* atacado) {
 			//El jugador ha ganado, devolver TRUE para realizar la reubicacion de las tropas en el pais conquistado
 
 		if (aux_atacadoa->getCA() > 0) {
-			aux_atacadoa->Contraatacar(this);
+			*(aux_atacadoa)<(this);
 			return false;
 			//devolver FALSE para indicar que el ataque no fue exitoso y que la tropa recibio da�o
 		}
@@ -57,7 +57,7 @@ bool cTropaArqueros::Atacar(cTropa* atacado) {
 		NuevoATTotal = ATTotal + ATTotal * aumento;
 
 		//ATACO
-		aux_atacadom->RecibirDanio((int)NuevoATTotal);
+		*(aux_atacadom)!=((int)NuevoATTotal);
 
 		//SEGUNDA PROBABILIDAD DE ATAQUE	(SUPER OP)
 
@@ -70,7 +70,7 @@ bool cTropaArqueros::Atacar(cTropa* atacado) {
 		//El jugador ha ganado, devolver TRUE para realizar la reubicacion de las tropas en el pais conquistado
 		}
 		if (aux_atacadom->getCA() > 0) {
-			aux_atacadom->Contraatacar(this);
+			*(aux_atacadom)<(this);
 			return false;
 			//devolver FALSE para indicar que el ataque no fue exitoso y que la tropa recibio da�o
 		}
@@ -86,7 +86,7 @@ bool cTropaArqueros::Atacar(cTropa* atacado) {
 		NuevoATTotal = ATTotal + ATTotal * aumento;
 
 		//ATACO
-		aux_atacadoc->RecibirDanio((int)NuevoATTotal);
+		*(aux_atacadoc)!=((int)NuevoATTotal);
 
 		//SEGUNDA PROBABILIDAD DE ATAQUE	(SUPER OP)
 
@@ -98,7 +98,7 @@ bool cTropaArqueros::Atacar(cTropa* atacado) {
 		//El jugador ha ganado, devolver TRUE para realizar la reubicacion de las tropas en el pais conquistado
 
 		if (aux_atacadoc->getCA() > 0) {
-			aux_atacadoc->Contraatacar(this);
+			*(aux_atacadoc)<(this);
 			return false;
 			//devolver FALSE para indicar que el ataque no fue exitoso y que la tropa recibio da�o
 		}
@@ -117,10 +117,10 @@ void cTropaArqueros::Contraatacar(cTropa* atacante) {
 		NuevoATTotal = ATTotal + ATTotal * aumento;
 
 		//ATACO
-		aux_atacadoa->RecibirDanio((int)NuevoATTotal);
+		*(aux_atacadoa)!=((int)NuevoATTotal);
 
 		//QUE PASO EN EL CONTRAATAQUE?
-		aux_atacadoa->RecibirDanio(ATTotal);
+		*(aux_atacadoa)!=(ATTotal);
 		if (aux_atacadoa->getCA() == 0)
 			cout << "Su tropa no sobrevivio al contrataque" << endl;
 		if (aux_atacadoa->getCA() > 0)
@@ -137,10 +137,10 @@ void cTropaArqueros::Contraatacar(cTropa* atacante) {
 		NuevoATTotal = ATTotal + ATTotal * aumento;
 
 		//ATACO
-		aux_atacadom->RecibirDanio((int)NuevoATTotal);
+		*(aux_atacadom)!=((int)NuevoATTotal);
 
 		//QUE PASO EN EL CONTRAATAQUE?
-		aux_atacadom->RecibirDanio(ATTotal);
+		*(aux_atacadom)!=(ATTotal);
 		if (aux_atacadom->getCA() == 0)
 			cout << "Su tropa no sobrevivio al contrataque" << endl;
 		if (aux_atacadom->getCA() > 0)
@@ -157,10 +157,10 @@ void cTropaArqueros::Contraatacar(cTropa* atacante) {
 		NuevoATTotal = ATTotal + ATTotal * aumento;
 
 		//ATACO
-		aux_atacadoc->RecibirDanio((int)NuevoATTotal);
+		*(aux_atacadoc)!=((int)NuevoATTotal);
 
 		//QUE PASO EN EL CONTRAATAQUE?
-		aux_atacadoc->RecibirDanio(ATTotal);
+		*(aux_atacadoc)!=(ATTotal);
 		if (aux_atacadoc->getCA() == 0)
 			cout << "Su tropa no sobrevivio al contrataque" << endl;
 		if (aux_atacadoc->getCA() > 0)
@@ -195,10 +195,10 @@ void cTropaArqueros::Segundo_AT(cTropa* atacado){
 		aux_ataque2 = rand() % 101;
 
 		cArqueros* aux = dynamic_cast<cArqueros*>(vector[i]);
-
+		if(aux!=NULL)
 		if (aux_ataque2 < aux->get2AT()) {
 			AT_2ataque = AT_2ataque + vector[i]->getAT() + vector[i]->getAT()*aumento;
 		}
 	}
-	atacado->RecibirDanio((int)AT_2ataque);
+	*(atacado)!=((int)AT_2ataque);
 }

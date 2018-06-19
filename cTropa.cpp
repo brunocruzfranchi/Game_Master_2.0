@@ -15,7 +15,7 @@ unsigned int cTropa::Contador = 0;
 
 cTropa::cTropa(string tipo,int tam,cPais*pais):cListaT<cUnidades>(N_MAX_UNIDADES_EN_TROPA),Tipo(tipo),Clave(to_string(Contador)){ 
 	
-	int atq = 0;
+	int atq = 0, hp=0;
 	
 //cambiar constructor
 	if(tipo=="Magos")
@@ -37,11 +37,12 @@ cTropa::cTropa(string tipo,int tam,cPais*pais):cListaT<cUnidades>(N_MAX_UNIDADES
 	for (int i = 0; i < CA; i++) {
 
 		atq = atq + vector[i]->getAT();
+		hp = hp + vector[i]->getHP();
 		
 	}
 
 	this->ATTotal = atq;
-	
+	this->HPTotal = hp;
 	this->Pais = pais;
 	Contador++;
 	
@@ -71,6 +72,7 @@ void cTropa::RecibirDanio(int danio)
 		}
 		else
 		{
+			HPTotal = HPTotal - danio;
 			int aux = min->getHP();
 			min->setHP(aux - danio);
 			danio = danio - aux;
@@ -95,6 +97,7 @@ void cTropa::Distribuir(int tipo, int tam)
 		{
 			cMagos*u_m = new cMagos();
 			AgregarItem(u_m);
+			operator++(u_m->getHP());
 		}
 	}
 
@@ -104,6 +107,7 @@ void cTropa::Distribuir(int tipo, int tam)
 		{
 			cArqueros*u_a = new cArqueros();
 			AgregarItem(u_a);
+			operator++(u_a->getHP());
 		}
 	}
 
@@ -113,16 +117,39 @@ void cTropa::Distribuir(int tipo, int tam)
 		{
 			cCaballeros*u_c = new cCaballeros();
 			AgregarItem(u_c);
+			operator++(u_c->getHP());
 		}
 	}
-
+	
 	cout << endl << "Tropa distribuida satisfactoriamente" << endl;
 
 }
 
 void cTropa::Morir(cUnidades * u)
 {
-	ATTotal = ATTotal - u->getHP();
+	ATTotal = ATTotal - u->getAT();
+	HPTotal = HPTotal - u->getHP();
 	u->Contador--;
-	Eliminar(u);
+	operator-(u);
+}
+void cTropa::operator++ (int hpu) {
+	//AGREGA A VIDA TOTAL
+
+	HPTotal = HPTotal + hpu;
+}
+
+bool cTropa::operator>(cTropa * t)
+{
+	bool aux=Atacar(t);
+	return aux;
+}
+
+void cTropa::operator<(cTropa * t)
+{
+	Contraatacar(t);
+}
+
+void cTropa::operator!=(int i)
+{
+	RecibirDanio(i);
 }

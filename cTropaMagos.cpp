@@ -40,7 +40,7 @@ bool cTropaMagos::Atacar(cTropa * atacado) {
 		//El jugador ha ganado, devolver TRUE para realizar la reubicacion de las tropas en el pais conquistado
 
 		if (aux_atacadoa->getCA() > 0) {
-			aux_atacadoa->Contraatacar(this);
+			*(aux_atacadoa)<(this);
 			return false;
 			//devolver FALSE para indicar que el ataque no fue exitoso y que la tropa recibio da�o
 		}
@@ -64,7 +64,7 @@ bool cTropaMagos::Atacar(cTropa * atacado) {
 			//El jugador ha ganado, devolver TRUE para realizar la reubicacion de las tropas en el pais conquistado
 		}
 		if (aux_atacadom->getCA() > 0) {
-			aux_atacadom->Contraatacar(this);
+			*(aux_atacadom)<(this);
 			return false;
 			//devolver FALSE para indicar que el ataque no fue exitoso y que la tropa recibio da�o
 		}
@@ -89,7 +89,7 @@ bool cTropaMagos::Atacar(cTropa * atacado) {
 		//El jugador ha ganado, devolver TRUE para realizar la reubicacion de las tropas en el pais conquistado
 
 		if (aux_atacadoc->getCA() > 0) {
-			aux_atacadoc->Contraatacar(this);
+			*(aux_atacadoc)<(this);
 			return false;
 			//devolver FALSE para indicar que el ataque no fue exitoso y que la tropa recibio da�o
 		}
@@ -108,10 +108,10 @@ void cTropaMagos::Contratacar(cTropa* atacante) {
 		NuevoATTotal = ATTotal + ATTotal * aumento;
 
 		//ATACO
-		aux_atacadoa->RecibirDanio((int)NuevoATTotal);
+		*(aux_atacadoa)!=((int)NuevoATTotal);
 
 		//QUE PASO EN EL CONTRAATAQUE?
-		aux_atacadoa->RecibirDanio(ATTotal);
+		*(aux_atacadoa) != (ATTotal);
 		if (aux_atacadoa->getCA() == 0)
 			cout << "Su tropa no sobrevivio al contrataque" << endl;
 		if (aux_atacadoa->getCA() > 0)
@@ -128,10 +128,10 @@ void cTropaMagos::Contratacar(cTropa* atacante) {
 		NuevoATTotal = ATTotal + ATTotal * aumento;
 
 		//ATACO
-		aux_atacadoa->RecibirDanio((int)NuevoATTotal);
+		*(aux_atacadoa) != ((int)NuevoATTotal);
 
 		//QUE PASO EN EL CONTRAATAQUE?
-		aux_atacadom->RecibirDanio(ATTotal);
+		*(aux_atacadom) != (ATTotal);
 		if (aux_atacadom->getCA() == 0)
 			cout << "Su tropa no sobrevivio al contrataque" << endl;
 		if (aux_atacadom->getCA() > 0)
@@ -148,10 +148,10 @@ void cTropaMagos::Contratacar(cTropa* atacante) {
 		NuevoATTotal = ATTotal + ATTotal * aumento;
 
 		//ATACO
-		aux_atacadoa->RecibirDanio((int)NuevoATTotal);
+		*(aux_atacadoa) != ((int)NuevoATTotal);
 
 		//QUE PASO EN EL CONTRAATAQUE?
-		aux_atacadoc->RecibirDanio(ATTotal);
+		*(aux_atacadoc) != (ATTotal);
 		if (aux_atacadoc->getCA() == 0)
 			cout << "Su tropa no sobrevivio al contrataque" << endl;
 		if (aux_atacadoc->getCA() > 0)
@@ -183,9 +183,9 @@ void cTropaMagos::AtaqueMagico(cPais * pais, int ataque)
 	int cont = 0;
 	for (int i = 0; i < N_tropas; i++)
 	{
-		if (jugador->getItem(i)->getPais() == pais)
+		if ((*(jugador)==i)->getPais() == pais)
 		{
-			jugador->getItem(i)->RecibirDanio(ataque);
+			*(*(jugador)==(i))!=(ataque);
 			cont++;
 		}
 		if (cont == N_tropas)

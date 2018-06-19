@@ -30,6 +30,7 @@ class cTropa:public cListaT<class cUnidades>{
 		const string Clave;
 		static unsigned int Contador;
 		int ATTotal;
+		int HPTotal;
 		cPais* Pais;
 
 		///Const. y Dest.
@@ -42,7 +43,10 @@ class cTropa:public cListaT<class cUnidades>{
 		virtual void RecibirDanio(int danio);
 		virtual float Incremento(string tipo) = 0;
 		void Distribuir(int tipo, int tam);
-
+		void operator ++ (int hpu);
+		bool operator >(cTropa*t);
+		void operator <(cTropa*t);
+		void operator !=(int i);
 		void Morir(cUnidades * u);
 		void setPais(cPais*p) { Pais = p; };
 		
@@ -50,6 +54,8 @@ class cTropa:public cListaT<class cUnidades>{
 		cPais* getPais() { return Pais; }
 		string getNombrePais() { return Pais->getNombre(); }
 		int getATtotal() { return ATTotal; }
+		int getHPTotal() { return HPTotal; }
+		void getHPTotal(int h) {  HPTotal=h; }
 
 		///Template
 		string getclave() { return Clave; }
@@ -57,7 +63,7 @@ class cTropa:public cListaT<class cUnidades>{
 		void Imprimir() { cout <<endl<<"Clave: "<<Clave<<setw(8)<<
 			" Tipo: "<< Tipo << setw(8)<<
 			"Ataque Total: "<< ATTotal <<setw(8) << 
-			
+			"Vida Total: "<<HPTotal<<setw(8)<<
 			"N de Unidades en la tropa: "<< CA << endl; }
 		
 	protected:
