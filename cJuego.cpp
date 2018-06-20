@@ -38,7 +38,7 @@ void cJuego::CrearJugadores(int n) {
 
 	for (int i = 0; i < n; i++) {
 
-		+(new cJugador(i));
+		AgregarItem(new cJugador(i));
 	}
 }
 
@@ -219,7 +219,6 @@ void cJuego::AsignarPaises(/*cJugador *Jug, cJugador* Jug2*/) {
 	int i, pos = 0;
 	int jugadores = N_MAX_JUGADORES;
 	
-
 
 	for (i = 0; i < N_PAISES_TOTALES; i++)
 	{
@@ -768,19 +767,4 @@ bool repetidos(int n, int num[])
 	return false;
 }
 */
-	for (int i = 0; i < N_PAISES_TOTALES; i++){
-	//	Paises->AgregarItem(paises[i]);
-		*(Paises) +( paises[i]);
-		pos = rand() % jugadores;
-		cPais* aux = (*(Paises) == i)->getItem(i);
-		//vector[pos]->PaisesDominados->operator==(1);
-		//vector[pos]->PaisesDominados->AgregarItem(aux);
-		//vector[pos]->PaisesDominados->AgregarItem(Paises->getItem(i));
-		//(*vector[pos]).operator+(aux); ACCESO A LAS TROPAS
-	//	cJugador* aux_j = operator==(pos);
-		//aux_j->PaisesDominados->AgregarItem(aux);
-		//*(vector[pos]->PaisesDominados) + (aux);
 
-		(*(Paises) == i)->setJugador(vector[pos]);
-	//	if (vector[pos]->PaisesDominados->getCA() == 7)
-		//	break;
