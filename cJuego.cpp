@@ -39,7 +39,7 @@ void cJuego::CrearJugadores(int n) {
 	for (int i = 0; i < n; i++) {
 
 		+(new cJugador(i));
-	}
+	}
 }
 
 void cJuego::CrearPaises() {
@@ -206,8 +206,8 @@ void cJuego::CrearPaises() {
 	}
 
 	//For agregando los pais a lista paises;
-	for (int i = 0; i < N_PAISES_TOTALES; i++) {
-		*(Paises)+(paises[i]);
+	for (int i = 0; i < N_PAISES_TOTALES; i++){
+		*(Paises) +( paises[i]);
 	}
 
 } //listo
@@ -223,19 +223,11 @@ void cJuego::AsignarPaises(/*cJugador *Jug, cJugador* Jug2*/) {
 
 	for (i = 0; i < N_PAISES_TOTALES; i++)
 	{
-		pos = rand() % jugadores;
-		cPais* aux = (*(Paises) == i)->getItem(i);
-		//vector[pos]->PaisesDominados->operator==(1);
-		//vector[pos]->PaisesDominados->AgregarItem(aux);
-		//vector[pos]->PaisesDominados->AgregarItem(Paises->getItem(i));
-		//(*vector[pos]).operator+(aux); ACCESO A LAS TROPAS
-	//	cJugador* aux_j = operator==(pos);
-		//aux_j->PaisesDominados->AgregarItem(aux);
-		//*(vector[pos]->PaisesDominados) + (aux);
-
-		(*(Paises) == i)->setJugador(vector[pos]);
-	//	if (vector[pos]->PaisesDominados->getCA() == 7)
-		//	break;
+		 pos = rand() % 2;
+		vector[pos]->PaisesDominados->AgregarItem(Paises->getItem(i));
+		(*(Paises)==i)->setJugador(vector[pos]);
+		if (vector[pos]->PaisesDominados->getCA() == 7)
+			break;
 	}
 
 	pos = (pos + 1) % 2;
@@ -776,3 +768,19 @@ bool repetidos(int n, int num[])
 	return false;
 }
 */
+	for (int i = 0; i < N_PAISES_TOTALES; i++){
+	//	Paises->AgregarItem(paises[i]);
+		*(Paises) +( paises[i]);
+		pos = rand() % jugadores;
+		cPais* aux = (*(Paises) == i)->getItem(i);
+		//vector[pos]->PaisesDominados->operator==(1);
+		//vector[pos]->PaisesDominados->AgregarItem(aux);
+		//vector[pos]->PaisesDominados->AgregarItem(Paises->getItem(i));
+		//(*vector[pos]).operator+(aux); ACCESO A LAS TROPAS
+	//	cJugador* aux_j = operator==(pos);
+		//aux_j->PaisesDominados->AgregarItem(aux);
+		//*(vector[pos]->PaisesDominados) + (aux);
+
+		(*(Paises) == i)->setJugador(vector[pos]);
+	//	if (vector[pos]->PaisesDominados->getCA() == 7)
+		//	break;
