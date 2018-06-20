@@ -19,29 +19,30 @@ cPais::cPais(string nombre):Nombre(nombre),Clave(to_string(Lista_Paises.getCA()+
 cPais::~cPais(){
 }
 
-void cPais::ListarPosiblesAtaques()
-{
+void cPais::ListarPosiblesAtaques(){
+	/*int cont = 0;
+	for (int i = 0; i < CA; i++) 
+		if (vector[i]->getJugador() != Jugador)
+			cont++;
+
+	if (cont == 0){
+			throw new exception("No hay paises para atacar");
+		return false;
+	}
+	
 	cout << "Paises disponibles para atacar" << endl;
+	*/
 
 	for (int i = 0; i < CA; i++) {
 		if (vector[i]->getJugador() != Jugador){
 			vector[i]->Imprimir();
 		}
 	}
-	/*
-	for (int i = 0; i < CA; i++)
-	{
-		if (vector[i]->getJugador() != Jugador)
-		{
-			Imprimir();
-			Jugador->ImprimirTropasenPais(Nombre);
-		}
-	}
-	*/
+//	return true;
 }
 
-bool cPais::ListarPosiblesMov()
-{
+bool cPais::ListarPosiblesMov(){
+
 	bool flag = false;
 	for (int i = 0; i < CA; i++)
 	{
@@ -50,6 +51,21 @@ bool cPais::ListarPosiblesMov()
 			Imprimir();
 			Jugador->ImprimirTropasenPais(Nombre);
 			flag = true;
+		}
+	}
+	return flag;
+}
+
+bool cPais::Exiten_Tropas_en_el_Pais()
+{
+	bool flag = false;
+	for (int i = 0; i < CA; i++)
+	{
+		if (vector[i]->getJugador() == Jugador)
+		{
+			int cont = Jugador->Contar_Tropas_en_Pais(Nombre);
+			if(cont > 0)
+				flag = true;
 		}
 	}
 	return flag;

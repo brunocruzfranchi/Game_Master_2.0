@@ -9,11 +9,11 @@
 #include "cTropaArqueros.h"
 #include "cTropaMagos.h"
 
-cTropaMagos::cTropaMagos(int tam,cPais*pais):cTropa("Magos",tam,pais){
+cTropaMagos::cTropaMagos(int tam, cPais*pais) :cTropa("Magos", tam, pais) {
 
 }
 
-cTropaMagos::~cTropaMagos(){
+cTropaMagos::~cTropaMagos() {
 
 }
 
@@ -27,12 +27,12 @@ bool cTropaMagos::Atacar(cTropa * atacado) {
 
 		string tipo = aux_atacadoa->getTipo();
 		float aumento = Incremento(tipo);
-		cPais* pais_atacado = atacado->getPais();		
+		cPais* pais_atacado = atacado->getPais();
 		float NuevoATTotal;
 		NuevoATTotal = ATTotal + ATTotal * aumento;
 
-		AtaqueMagico(pais_atacado,(int)NuevoATTotal);
-				
+		AtaqueMagico(pais_atacado, (int)NuevoATTotal);
+
 		//QUE PASO EN EL ATAQUE?
 
 		if (aux_atacadoa->getCA() == 0)
@@ -103,12 +103,12 @@ void cTropaMagos::Contratacar(cTropa* atacante) {
 
 		string tipo = aux_atacadoa->getTipo();
 		float aumento = Incremento(tipo);
-	
+
 		float NuevoATTotal = 0;
 		NuevoATTotal = ATTotal + ATTotal * aumento;
 
 		//ATACO
-		*(aux_atacadoa)!=((int)NuevoATTotal);
+		*(aux_atacadoa) != ((int)NuevoATTotal);
 
 		//QUE PASO EN EL CONTRAATAQUE?
 		*(aux_atacadoa) != (ATTotal);
@@ -160,16 +160,16 @@ void cTropaMagos::Contratacar(cTropa* atacante) {
 
 }
 
-float cTropaMagos::Incremento(string tipo){
+float cTropaMagos::Incremento(string tipo) {
 	float incre = 0;
 	if (tipo == "Arqueros" || tipo == "arqueros") {
 		incre = -0.25;
 		return incre;
 	}
 
-	if (tipo == "Magos" || tipo == "magos")	
+	if (tipo == "Magos" || tipo == "magos")
 		return incre;
-	
+
 	if (tipo == "Caballeros" || tipo == "caballeros") {
 		incre = 0.25;
 		return incre;
@@ -183,9 +183,9 @@ void cTropaMagos::AtaqueMagico(cPais * pais, int ataque)
 	int cont = 0;
 	for (int i = 0; i < N_tropas; i++)
 	{
-		if ((*(jugador)==i)->getPais() == pais)
+		if ((*(jugador) == i)->getPais() == pais)
 		{
-			*(*(jugador)==(i))!=(ataque);
+			*(*(jugador) == (i)) != (ataque);
 			cont++;
 		}
 		if (cont == N_tropas)

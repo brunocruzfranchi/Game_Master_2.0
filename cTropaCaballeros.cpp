@@ -9,14 +9,14 @@
 #include "cTropaArqueros.h"
 #include "cTropaMagos.h"
 
-cTropaCaballeros::cTropaCaballeros(int tam,cPais*pais):cTropa("Caballeros",tam,pais){
+cTropaCaballeros::cTropaCaballeros(int tam, cPais*pais) :cTropa("Caballeros", tam, pais) {
 }
 
-cTropaCaballeros::~cTropaCaballeros(){
+cTropaCaballeros::~cTropaCaballeros() {
 }
 
-bool cTropaCaballeros::Atacar(cTropa * atacado){
-	
+bool cTropaCaballeros::Atacar(cTropa * atacado) {
+
 	cTropaArqueros* aux_atacadoa = dynamic_cast<cTropaArqueros*>(atacado);
 	if (aux_atacadoa != NULL) {
 
@@ -27,7 +27,7 @@ bool cTropaCaballeros::Atacar(cTropa * atacado){
 		NuevoATTotal = ATTotal + ATTotal * aumento;
 
 		//ATACO
-		*(aux_atacadoa)!=((int)NuevoATTotal);
+		*(aux_atacadoa) != ((int)NuevoATTotal);
 
 		//QUE PASO EN EL ATAQUE?
 
@@ -52,7 +52,7 @@ bool cTropaCaballeros::Atacar(cTropa * atacado){
 		NuevoATTotal = ATTotal + ATTotal * aumento;
 
 		//ATACO
-		*(aux_atacadom)!=((int)NuevoATTotal);
+		*(aux_atacadom) != ((int)NuevoATTotal);
 
 		//QUE PASO EN EL ATAQUE?
 
@@ -78,7 +78,7 @@ bool cTropaCaballeros::Atacar(cTropa * atacado){
 		NuevoATTotal = ATTotal + ATTotal * aumento;
 
 		//ATACO
-		*(aux_atacadoc)!=((int)NuevoATTotal);
+		*(aux_atacadoc) != ((int)NuevoATTotal);
 
 		//QUE PASO EN EL ATAQUE?
 
@@ -95,7 +95,7 @@ bool cTropaCaballeros::Atacar(cTropa * atacado){
 
 }
 
-void cTropaCaballeros::Contratacar(cTropa* atacante){
+void cTropaCaballeros::Contratacar(cTropa* atacante) {
 
 	cTropaArqueros* aux_atacadoa = dynamic_cast<cTropaArqueros*>(atacante);
 	if (aux_atacadoa != NULL) {
@@ -106,10 +106,10 @@ void cTropaCaballeros::Contratacar(cTropa* atacante){
 		NuevoATTotal = ATTotal + ATTotal * aumento;
 
 		//ATACO
-		*(aux_atacadoa)!=((int)NuevoATTotal);
+		*(aux_atacadoa) != ((int)NuevoATTotal);
 
 		//QUE PASO EN EL CONTRAATAQUE?
-		*(aux_atacadoa)!=(ATTotal);
+		*(aux_atacadoa) != (ATTotal);
 		if (aux_atacadoa->getCA() == 0)
 			cout << "Su tropa no sobrevivio al contrataque" << endl;
 		if (aux_atacadoa->getCA() > 0)
@@ -125,7 +125,7 @@ void cTropaCaballeros::Contratacar(cTropa* atacante){
 		NuevoATTotal = ATTotal + ATTotal * aumento;
 
 		//ATACO
-		*(aux_atacadom)!=((int)NuevoATTotal);
+		*(aux_atacadom) != ((int)NuevoATTotal);
 
 		//QUE PASO EN EL CONTRAATAQUE?
 		*(aux_atacadom) != (ATTotal);
@@ -156,7 +156,7 @@ void cTropaCaballeros::Contratacar(cTropa* atacante){
 
 }
 
-float cTropaCaballeros::Incremento(string tipo){
+float cTropaCaballeros::Incremento(string tipo) {
 
 	float incre = 0;
 	if (tipo == "Arqueros" || tipo == "arqueros") {

@@ -13,6 +13,7 @@
 #include <iostream>
 #include <iomanip>
 #define N_PAISES_TOTALES 13
+
 using namespace std;
 
 
@@ -37,6 +38,7 @@ class cPais:public cListaT<cPais>{
 			//Principales	
 			void ListarPosiblesAtaques();
 			bool ListarPosiblesMov();
+			bool Exiten_Tropas_en_el_Pais();
 
 			//Setters
 			void setJugador(cJugador* j) { Jugador = j; }
@@ -53,7 +55,8 @@ class cPais:public cListaT<cPais>{
 
 			//Lista Template
 			string getclave() const { return Clave;}
-			void Imprimir() { cout <<Clave<<setw(8)<< Nombre << setw(8) /*<< getNJugador()*/ << endl; }
+			void Imprimir() { cout << setw(8) << Clave << setw(25) << Nombre << setw(8) << endl; }
+			void Encabezado() { cout << setw(8) << "Clave" << setw(25) << "Nombre" << setw(8) << endl; }
 			
 };
 

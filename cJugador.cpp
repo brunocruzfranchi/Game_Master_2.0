@@ -18,8 +18,6 @@ cJugador::~cJugador(){
 
 }
 
-
-
 void cJugador::MoverTropas(cPais*ganado , cPais*atacante){
 
 	string opcion_tropa;
@@ -174,3 +172,13 @@ void cJugador::Imprimir()//terminar
 {
 	cout << "";
 }
+
+//void cJugador::operator+(cPais * item)
+//{
+//	PaisesDominados->AgregarItem(item);
+//}
+//
+//void cJugador::operator+(cTropa * item)
+//{
+//	vector[]
+//}

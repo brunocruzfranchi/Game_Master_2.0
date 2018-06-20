@@ -13,42 +13,42 @@
 
 unsigned int cTropa::Contador = 0;
 
-cTropa::cTropa(string tipo,int tam,cPais*pais):cListaT<cUnidades>(N_MAX_UNIDADES_EN_TROPA),Tipo(tipo),Clave(to_string(Contador)){ 
-	
-	int atq = 0, hp=0;
-	
-//cambiar constructor
-	if(tipo=="Magos")
-	for (int  i = 0; i < tam; i++)
-	{
-		AgregarItem( new cMagos());
-	}
+cTropa::cTropa(string tipo, int tam, cPais*pais) :cListaT<cUnidades>(N_MAX_UNIDADES_EN_TROPA), Tipo(tipo), Clave(to_string(Contador)) {
+
+	int atq = 0, hp = 0;
+
+	//cambiar constructor
+	if (tipo == "Magos")
+		for (int i = 0; i < tam; i++)
+		{
+			AgregarItem(new cMagos());
+		}
 	if (tipo == "Arqueros")
 		for (int i = 0; i < tam; i++)
 		{
-			AgregarItem( new cArqueros());
+			AgregarItem(new cArqueros());
 		}
 	if (tipo == "Caballeros")
 		for (int i = 0; i < tam; i++)
 		{
-			AgregarItem( new cCaballeros());
+			AgregarItem(new cCaballeros());
 		}
 
 	for (int i = 0; i < CA; i++) {
 
 		atq = atq + vector[i]->getAT();
 		hp = hp + vector[i]->getHP();
-		
+
 	}
 
 	this->ATTotal = atq;
 	this->HPTotal = hp;
 	this->Pais = pais;
 	Contador++;
-	
+
 }
 
-cTropa::~cTropa(){
+cTropa::~cTropa() {
 
 }
 
@@ -120,7 +120,7 @@ void cTropa::Distribuir(int tipo, int tam)
 			operator++(u_c->getHP());
 		}
 	}
-	
+
 	cout << endl << "Tropa distribuida satisfactoriamente" << endl;
 
 }
@@ -140,7 +140,7 @@ void cTropa::operator++ (int hpu) {
 
 bool cTropa::operator>(cTropa * t)
 {
-	bool aux=Atacar(t);
+	bool aux = Atacar(t);
 	return aux;
 }
 

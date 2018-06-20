@@ -17,6 +17,7 @@
 
 using namespace std;
 class cPais;
+class cJuego;
 class cJugador:public cListaT<class cTropa>{
 
 public:
@@ -30,12 +31,13 @@ public:
 
 	///Metodos
 		//principales
-		
 		void MoverTropas(cPais *pais, cPais*atacante);
+
 		void ImprimirTropasenPais(cPais*pais);
 		void ImprimirTropasenPais(string nombre);
 		void ImprimirTropasenPais(string nombre,string tipo);
 		void ImprimirTropasenPais(cPais*pais,string tipo);
+
 		int Contar_e_ImpTropasenPais(cPais*pais);
 		int Contar_Tropas_en_Pais(cPais*pais);
 		int Contar_Tropas_en_Pais(cPais*pais,string tipo);
@@ -52,6 +54,7 @@ public:
 		string getclave() { return N_jugador; }
 		void ImprimirJugador() { cout << "Jugador " << N_jugador << endl;}
 		void Imprimir();
-
+	//	void operator+(cPais * item);
+		//void operator+(cTropa * item);
 };
 #endif // !defined(EA_ECAD8CBF_DBA6_4277_A538_57274982E741__INCLUDED_)

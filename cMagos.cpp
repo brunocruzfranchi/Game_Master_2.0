@@ -13,7 +13,6 @@ cMagos::cMagos():cUnidades("Magos"){
 }
 
 cMagos::~cMagos(){
-
 }
 /*
 void cMagos::Atacar(cTropa * atacado){

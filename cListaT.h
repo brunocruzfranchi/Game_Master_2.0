@@ -8,8 +8,8 @@
 #if !defined(EA_B9741D49_13D8_46c1_8B11_F0F70B4304B8__INCLUDED_)
 #define EA_B9741D49_13D8_46c1_8B11_F0F70B4304B8__INCLUDED_
 /**
- * Hacer un metodo Random
- */
+* Hacer un metodo Random
+*/
 #define NMAX 10000
 #include <string>
 //Programar redimensionalizar??
@@ -18,7 +18,7 @@ template<class T>
 class cListaT
 {
 protected:
-	T **vector;
+	T * *vector;
 	unsigned int CA, TAM;
 	void Redimensionalizar();
 
@@ -28,7 +28,7 @@ public:
 
 	bool AgregarItem(T *item);
 	bool AgregarItemOrdenado(const T *item);
-	void operator +(T * item);
+	void operator+(T * item);
 
 	T* Quitar(string clave);
 	T* Quitar(const T *item);
@@ -50,7 +50,7 @@ public:
 	unsigned int getMinimo;
 	unsigned int getCA();
 	unsigned int getTAM();
-}; 
+};
 
 template<class T>
 unsigned int cListaT<T>::getTAM()
@@ -121,7 +121,7 @@ bool cListaT<T>::AgregarItem(T * item)
 
 	if (CA < TAM)
 		vector[CA++] = item;
-	else 
+	else
 		throw new exception("No hay tamano suficiente para agregar el item");
 	return true;
 }
@@ -250,14 +250,14 @@ T* cListaT<T>::getHPMinimo()
 	return min;
 }
 template <class T>
-void cListaT<T>::operator +(T * item) {
+void cListaT<T>::operator+(T * item) {
 	AgregarItem(item);
 }
 
 template<class T>
 T* cListaT<T>::operator==(unsigned int pos)
 {
-	T*aux=	getItem(pos);
+	T*aux = getItem(pos);
 	return aux;
 }
 
@@ -268,4 +268,5 @@ void cListaT<T>::operator -(const T *item) {
 /*
 template<class T>
 void cListaT<T>::operator []() { Listar; }*/
+
 #endif // !defined(EA_B9741D49_13D8_46c1_8B11_F0F70B4304B8__INCLUDED_)

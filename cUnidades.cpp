@@ -53,9 +53,9 @@ cUnidades::cUnidades(string tipo):Tipo(tipo),Clave(to_string(Contador)){
 		maxhp = HP_Caballeros;
 
 	}
-	srand(time(NULL));
+	//srand(time(NULL));
 	at = minat + rand() % (maxat - minat + 1);
-	srand(time(NULL));
+	//srand(time(NULL));
 	hp = minhp + rand() % (maxhp - minhp + 1);
 	this->AT = at;
 	this->HP = hp;
