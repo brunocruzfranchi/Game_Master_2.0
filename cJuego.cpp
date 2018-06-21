@@ -223,7 +223,7 @@ void cJuego::AsignarPaises(/*cJugador *Jug, cJugador* Jug2*/) {
 	for (i = 0; i < N_PAISES_TOTALES; i++)
 	{
 		 pos = rand() % 2;
-		vector[pos]->PaisesDominados->AgregarItem(Paises->getItem(i));
+		*(vector[pos]->PaisesDominados)+(*(Paises)==(i));
 		(*(Paises)==i)->setJugador(vector[pos]);
 		if (vector[pos]->PaisesDominados->getCA() == 7)
 			break;
@@ -238,8 +238,7 @@ void cJuego::AsignarPaises(/*cJugador *Jug, cJugador* Jug2*/) {
 		}
 
 
-	/*int n, num[N_PAISES_TOTALES];
-	
+	/*int n, num[N_PAISES_TOTALES];	
 	for (int i = 0; i<N_PAISES_TOTALES; i++)						//Genero un array de numero aleatorios y no repetidos
 	{
 		do
@@ -452,7 +451,7 @@ int cJuego::Jugar() {
 			cout << endl;
 			if (opcion == 1){
 				ImprimirGanador();
-				return 0;																			// conviene usar una excepcion?
+				return 0;		// conviene usar una excepcion?
 			}
 		}
 	}
@@ -463,8 +462,10 @@ int cJuego::Jugar() {
 //JUEGO
 
 void cJuego::CambiarTurno(cJugador** Jugador, int k){
+
 	Jugador_de_turno = Jugador[k];
 	cout << endl << "Jugador de turno: Jugador " << Jugador[k]->getclave()<<endl;
+
 }
 
 int cJuego::getRonda() {
@@ -588,7 +589,7 @@ cTropa* cJuego::Buscar_t_atacante(int k, cPais* atacante){
 		else
 			tropa_atacante = *(vector[k]) == (aux_tropa_atacante);
 	} while (aux_tropa_atacante == INT_MAX);
-
+		
 	return tropa_atacante;
 
 }
@@ -753,7 +754,72 @@ void cJuego::Bienvenida() {
 
 void cJuego::ImprimirGanador() {
 
-	//determinar ganador e imprimir
+	cJugador*Ganador;
+	Ganador = getGanador();
+	if(Ganador!=NULL)
+	cout << endl << " El jugador " << Ganador->getN_Jugador() << " ha ganado";
+	system("pause");
+}
+
+void cJuego::Cerrar()
+{
+}
+
+cJugador * cJuego::getGanador()
+{
+	cJugador*Ganador=NULL;
+
+	for (int k = 0; k < CA; k++)
+	{
+		if (vector[k]->PaisesDominados->getCA() == N_PAISES_TOTALES)
+		{
+			Ganador = vector[k];
+		}
+	}
+		if(Ganador==NULL)
+		{
+			Ganador = BuscarMax();
+			if (Ganador == NULL)
+				Ganador = Desempate();
+		}
+		
+
+	return Ganador;
+}
+
+cJugador * cJuego::Desempate(cJugador*j1,cJugador*j2)
+{
+	//se desempata por ataque
+
+	if (j1->getATTOTAL() < j2->getATTOTAL())
+		return j2;
+	if (j1->getATTOTAL() > j2->getATTOTAL())
+		return j1;
+	if (j1->getATTOTAL() == j2->getATTOTAL())
+	{
+		cout << endl << "Ha habido un empate entre los jugadores " << j1->getN_Jugador() << " y " << j2->getN_Jugador() << endl;
+		return NULL;
+	}
+
+}
+cJugador * cJuego::BuscarMax()
+{
+	cJugador*Ganador=vector[0];
+	cJugador*aux1, *aux2;
+	bool aux = false;
+	
+	for (int i = 0; i < CA; i++)
+	{
+		if (vector[i]->PaisesDominados->getCA() > Ganador->PaisesDominados->getCA())
+		{
+			Ganador = vector[i];
+			aux = true;
+		}
+	}
+
+	if (aux == false)  Ganador = Desempate(aux1, aux2) ;
+
+	return Ganador;
 }
 
 //EXTERNA

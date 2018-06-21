@@ -74,6 +74,10 @@ public:
 		void Imprimir();
 		void Bienvenida();
 		void ImprimirGanador();
+		void Cerrar();
+		cJugador* getGanador();
+		cJugador* Desempate(cJugador*j1, cJugador*j2);
+		cJugador* BuscarMax();
 
 };
 #endif // !defined(EA_25249AF9_B8BF_441f_95EC_C0B1C8876E76__INCLUDED_)

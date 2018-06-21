@@ -111,6 +111,16 @@ void cJugador::ImprimirTropasenPais(cPais * pais, string tipo)
 	}
 }
 
+int cJugador::getATTOTAL()
+{
+	int acum = 0;
+	for (int i = 0; i < CA; i++)
+	{
+		acum = vector[i]->getATtotal()+acum;
+	}
+	return acum;
+}
+
 int cJugador::Contar_e_ImpTropasenPais(cPais * pais)
 {
 	cout << endl << "Tropas disponibles" << endl;
