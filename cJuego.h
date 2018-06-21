@@ -74,7 +74,7 @@ public:
 		void Imprimir();
 		void Bienvenida();
 		void ImprimirGanador();
-		void Cerrar();
+		void CerrarJuego();
 		cJugador* getGanador();
 		cJugador* Desempate(cJugador*j1, cJugador*j2);
 		cJugador* BuscarMax();

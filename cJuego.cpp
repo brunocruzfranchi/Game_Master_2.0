@@ -451,7 +451,7 @@ int cJuego::Jugar() {
 			cout << endl;
 			if (opcion == 1){
 				ImprimirGanador();
-				return 0;		// conviene usar una excepcion?
+				CerrarJuego();		// conviene usar una excepcion?
 			}
 		}
 	}
@@ -761,7 +761,7 @@ void cJuego::ImprimirGanador() {
 	system("pause");
 }
 
-void cJuego::Cerrar()
+void cJuego::CerrarJuego()
 {
 }
 
@@ -779,8 +779,7 @@ cJugador * cJuego::getGanador()
 		if(Ganador==NULL)
 		{
 			Ganador = BuscarMax();
-			if (Ganador == NULL)
-				Ganador = Desempate();
+			
 		}
 		
 
@@ -805,20 +804,25 @@ cJugador * cJuego::Desempate(cJugador*j1,cJugador*j2)
 cJugador * cJuego::BuscarMax()
 {
 	cJugador*Ganador=vector[0];
-	cJugador*aux1, *aux2;
-	bool aux = false;
-	
+	int k;
 	for (int i = 0; i < CA; i++)
 	{
 		if (vector[i]->PaisesDominados->getCA() > Ganador->PaisesDominados->getCA())
 		{
 			Ganador = vector[i];
-			aux = true;
+			
 		}
 	}
-
-	if (aux == false)  Ganador = Desempate(aux1, aux2) ;
-
+	for ( k = 0; k < CA; k++)
+	{
+		if (Ganador->PaisesDominados->getCA() == vector[k]->PaisesDominados->getCA())
+			if (Ganador->getN_Jugador() != vector[k]->getN_Jugador())
+			{
+				Ganador = Desempate(Ganador, vector[k]);
+				if (Ganador == NULL); break;
+			}
+	}
+	
 	return Ganador;
 }
 
