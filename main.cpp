@@ -18,7 +18,8 @@ int main() {
 		Juego->Bienvenida();
 		Juego->Iniciar_Partida();			//si es static la accedo desde todo el juego o se la paso a Juego
 		estado_juego = Juego->Jugar();
-
+		Juego->CerrarJuego();
+		delete Juego;
 
 	return 0;
 }

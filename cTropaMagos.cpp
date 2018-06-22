@@ -40,7 +40,7 @@ bool cTropaMagos::Atacar(cTropa * atacado) {
 		//El jugador ha ganado, devolver TRUE para realizar la reubicacion de las tropas en el pais conquistado
 
 		if (aux_atacadoa->getCA() > 0) {
-			*(aux_atacadoa)<(this);
+			*(aux_atacadoa)<<(this);
 			return false;
 			//devolver FALSE para indicar que el ataque no fue exitoso y que la tropa recibio da�o
 		}
@@ -64,7 +64,7 @@ bool cTropaMagos::Atacar(cTropa * atacado) {
 			//El jugador ha ganado, devolver TRUE para realizar la reubicacion de las tropas en el pais conquistado
 		}
 		if (aux_atacadom->getCA() > 0) {
-			*(aux_atacadom)<(this);
+			*(aux_atacadom)<<(this);
 			return false;
 			//devolver FALSE para indicar que el ataque no fue exitoso y que la tropa recibio da�o
 		}
@@ -89,7 +89,7 @@ bool cTropaMagos::Atacar(cTropa * atacado) {
 		//El jugador ha ganado, devolver TRUE para realizar la reubicacion de las tropas en el pais conquistado
 
 		if (aux_atacadoc->getCA() > 0) {
-			*(aux_atacadoc)<(this);
+			*(aux_atacadoc)<<(this);
 			return false;
 			//devolver FALSE para indicar que el ataque no fue exitoso y que la tropa recibio da�o
 		}

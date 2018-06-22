@@ -138,13 +138,13 @@ void cTropa::operator++ (int hpu) {
 	HPTotal = HPTotal + hpu;
 }
 
-bool cTropa::operator>(cTropa * t)
+bool cTropa::operator>>(cTropa * t)
 {
 	bool aux = Atacar(t);
 	return aux;
 }
 
-void cTropa::operator<(cTropa * t)
+void cTropa::operator<<(cTropa * t)
 {
 	Contraatacar(t);
 }

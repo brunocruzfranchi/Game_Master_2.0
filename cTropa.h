@@ -44,8 +44,8 @@ public:
 	virtual float Incremento(string tipo) = 0;
 	void Distribuir(int tipo, int tam);
 	void operator ++ (int hpu);
-	bool operator >(cTropa*t);
-	void operator <(cTropa*t);
+	bool operator >>(cTropa*t);
+	void operator <<(cTropa*t);
 	void operator !=(int i);
 	void Morir(cUnidades * u);
 	void setPais(cPais*p) { Pais = p; };

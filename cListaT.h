@@ -42,7 +42,7 @@ public:
 	void Listar();
 	T* BuscarItem(string clave);
 	T* operator==(unsigned int pos);
-	//void operator []();
+	T* operator [](unsigned int pos);
 	T* getItem(unsigned int pos);
 	T* getHPMinimo();
 
@@ -257,8 +257,19 @@ void cListaT<T>::operator+(T * item) {
 template<class T>
 T* cListaT<T>::operator==(unsigned int pos)
 {
-	T*aux = getItem(pos);
-	return aux;
+	
+}
+
+template<class T>
+inline T * cListaT<T>::operator[](unsigned int pos)
+{
+	if (pos < CA)
+	{
+		T*aux = getItem(pos);
+		return aux;
+	}
+	else
+		throw new exception "Posicion invalida";
 }
 
 template<class T>

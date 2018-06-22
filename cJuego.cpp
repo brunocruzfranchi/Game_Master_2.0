@@ -406,7 +406,7 @@ int cJuego::Jugar() {
 
 				//Ataque y Contraataque
 
-				bool aux_exito = *(tropa_atacante)>(tropa_atacada);
+				bool aux_exito = *(tropa_atacante)>>(tropa_atacada);
 
 				int at_disp = N_MAX_ATAQUES - h - 1;
 
