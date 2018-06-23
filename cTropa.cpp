@@ -82,7 +82,8 @@ void cTropa::RecibirDanio(int danio)
 		}
 
 	} while (danio > 0);
-
+	if (CA == 0)
+		delete this;
 	//return cont;
 }
 
@@ -128,6 +129,7 @@ void cTropa::Morir(cUnidades * u)
 	HPTotal = HPTotal - u->getHP();
 	u->Contador--;
 	operator-(u);
+	
 }
 
 void cTropa::operator++ (int hpu) {

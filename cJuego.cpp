@@ -482,7 +482,8 @@ int cJuego::Jugar() {
 		
 		//Turnos
 
-		AsignarTropas();// asigno tropas al principio de la ronda
+		if (Ronda!=1) 
+			AsignarTropas();// asigno tropas al principio de la ronda
 
 		for (unsigned int k = 0; k < CA; k++)
 		{
