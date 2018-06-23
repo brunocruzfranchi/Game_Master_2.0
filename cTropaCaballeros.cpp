@@ -27,8 +27,7 @@ bool cTropaCaballeros::Atacar(cTropa* atacado) {
 		NuevoATTotal = ATTotal + ATTotal * aumento;
 
 		//ATACO
-		*(aux_atacadoa) != ((int)NuevoATTotal);
-
+		aux_atacadoa->RecibirDanio((int)NuevoATTotal);
 
 		//QUE PASO EN EL ATAQUE?
 		if (aux_atacadoa->getCA() == 0) {
@@ -53,7 +52,7 @@ bool cTropaCaballeros::Atacar(cTropa* atacado) {
 		NuevoATTotal = ATTotal + ATTotal * aumento;
 
 		//ATACO
-		*(aux_atacadom) != ((int)NuevoATTotal);
+		aux_atacadom->RecibirDanio((int)NuevoATTotal);
 
 		//QUE PASO EN EL ATAQUE?
 
@@ -80,9 +79,7 @@ bool cTropaCaballeros::Atacar(cTropa* atacado) {
 		NuevoATTotal = ATTotal + ATTotal * aumento;
 
 		//ATACO
-		*(aux_atacadoc) != ((int)NuevoATTotal);
-
-		//QUE PASO EN EL ATAQUE?
+		aux_atacadoc->RecibirDanio((int)NuevoATTotal);
 
 		//QUE PASO EN EL ATAQUE?
 		if (aux_atacadoc->getCA() == 0) {
@@ -111,10 +108,9 @@ void cTropaCaballeros::Contraatacar(cTropa* atacante) {
 		NuevoATTotal = ATTotal + ATTotal * aumento;
 
 		//ATACO
-		*(aux_atacadoa) != ((int)NuevoATTotal);
+		aux_atacadoa->RecibirDanio((int)NuevoATTotal);
 
 		//QUE PASO EN EL CONTRAATAQUE?
-		*(aux_atacadoa) != (ATTotal);
 		if (aux_atacadoa->getCA() == 0)
 			cout << "Su tropa no sobrevivio al contrataque" << endl;
 		if (aux_atacadoa->getCA() > 0)
@@ -130,10 +126,9 @@ void cTropaCaballeros::Contraatacar(cTropa* atacante) {
 		NuevoATTotal = ATTotal + ATTotal * aumento;
 
 		//ATACO
-		*(aux_atacadom) != ((int)NuevoATTotal);
+		aux_atacadom->RecibirDanio((int)NuevoATTotal);
 
 		//QUE PASO EN EL CONTRAATAQUE?
-		*(aux_atacadom) != (ATTotal);
 		if (aux_atacadom->getCA() == 0)
 			cout << "Su tropa no sobrevivio al contrataque" << endl;
 		if (aux_atacadom->getCA() > 0)
@@ -149,16 +144,14 @@ void cTropaCaballeros::Contraatacar(cTropa* atacante) {
 		NuevoATTotal = ATTotal + ATTotal * aumento;
 
 		//ATACO
-		*(aux_atacadoc) != ((int)NuevoATTotal);
+		aux_atacadoc->RecibirDanio((int)NuevoATTotal);
 
 		//QUE PASO EN EL CONTRAATAQUE?
-		*(aux_atacadoc) != (ATTotal);
 		if (aux_atacadoc->getCA() == 0)
 			cout << "Su tropa no sobrevivio al contrataque" << endl;
 		if (aux_atacadoc->getCA() > 0)
 			cout << "Su tropa sobrevivio al contrataque" << endl;
 	}
-
 }
 
 float cTropaCaballeros::Incremento(string tipo) {

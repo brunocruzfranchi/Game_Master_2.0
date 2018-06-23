@@ -113,7 +113,7 @@ void cTropaMagos::Contraatacar(cTropa* atacante) {
 		NuevoATTotal = ATTotal + ATTotal * aumento;
 
 		//ATACO
-		*(aux_atacadoa) != ((int)NuevoATTotal);
+		aux_atacadoa->RecibirDanio((int)NuevoATTotal);
 
 		if (aux_atacadoa->getCA() == 0)
 			cout << "Su tropa no sobrevivio al contrataque" << endl;
@@ -131,7 +131,7 @@ void cTropaMagos::Contraatacar(cTropa* atacante) {
 		NuevoATTotal = ATTotal + ATTotal * aumento;
 
 		//ATACO
-		*(aux_atacadoa) != ((int)NuevoATTotal);
+		aux_atacadom->RecibirDanio((int)NuevoATTotal);
 
 		if (aux_atacadom->getCA() == 0)
 			cout << "Su tropa no sobrevivio al contrataque" << endl;
@@ -149,7 +149,7 @@ void cTropaMagos::Contraatacar(cTropa* atacante) {
 		NuevoATTotal = ATTotal + ATTotal * aumento;
 
 		//ATACO
-		*(aux_atacadoa) != ((int)NuevoATTotal);
+		aux_atacadoc->RecibirDanio((int)NuevoATTotal);
 
 		//QUE PASO EN EL CONTRAATAQUE?
 
@@ -183,9 +183,10 @@ void cTropaMagos::AtaqueMagico(cPais * pais, int ataque)
 	int cont = 0;
 	for (int i = 0; i < N_tropas; i++)
 	{
-		if ((*(jugador) == i)->getPais() == pais)
-		{
-			*(*(jugador) == (i)) != (ataque);
+		if ((*(jugador) == i)->getPais() == pais){
+
+			(*(jugador) == (i))->RecibirDanio(ataque);
+			//*(*(jugador) == (i)) != (ataque);
 			cont++;
 		}
 		if (cont == N_tropas)

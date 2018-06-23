@@ -57,6 +57,18 @@ bool cPais::ListarPosiblesMov(){
 	return flag;
 }
 
+bool cPais::ListarLimitrofesPropios() {
+
+	bool flag = false;
+	for (unsigned int i = 0; i < CA; i++) {
+		if (vector[i]->getJugador() == Jugador) {
+			vector[i]->Imprimir();
+			flag = true;
+		}
+	}
+	return flag;
+}
+
 bool cPais::Exiten_Tropas_en_el_Pais()
 {
 	bool flag = false;
@@ -67,6 +79,17 @@ bool cPais::Exiten_Tropas_en_el_Pais()
 			int cont = Jugador->Contar_Tropas_en_Pais(Nombre);
 			if(cont > 0)
 				flag = true;
+		}
+	}
+	return flag;
+}
+
+bool cPais::TengoLimitrofesPropios() {
+
+	bool flag = false;
+	for (unsigned int i = 0; i < CA; i++) {
+		if (vector[i]->getJugador() == Jugador) {
+			flag = true;
 		}
 	}
 	return flag;

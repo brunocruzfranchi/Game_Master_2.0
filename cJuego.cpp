@@ -507,8 +507,7 @@ int cJuego::Jugar() {
 				bool aux_exito = *(tropa_atacante)>>(tropa_atacada);
 
 				if (pais_atacado->getCA() == 0) {
-					pais_atacado->setJugador(vector[k]);
-					Movilizar_tropas(k);
+					ReasignarPais(pais_atacado, pais_atacante);
 				}
 
 				int at_disp = N_MAX_ATAQUES - h - 1;
@@ -753,6 +752,8 @@ void cJuego::Movilizar_tropas(int k){
 
 	string pais_origen, pais_destino;
 	int pos_origen, pos_destino;
+	
+	bool aux;
 
 	do //listo y pido pais origen
 	{
@@ -761,31 +762,31 @@ void cJuego::Movilizar_tropas(int k){
 		cin >> pais_origen;
 		cout << endl;
 		pos_origen = vector[k]->getPaisesD()->getItemPos(pais_origen);
-	} while (pos_origen == INT_MAX);
-
-	bool aux;
-
-	cPais* origen = *(vector[k]->getPaisesD()) == pos_origen;
-	cPais* destino;
-
-	do //listo y pido pais atacado
-	{
-		aux = origen->ListarPosiblesMov();
+		cPais* origen = *(vector[k]->getPaisesD()) == pos_origen;
+		aux = origen->TengoLimitrofesPropios();
 		if (aux == false) {
 			cout << endl << "No hay paises a los que movilizar" << endl;
 			break;
 		}//no hay paises limitrofes del mismo jugador
-		cout << "A que pa�s quiere movilizar tropas?" << endl << "Ingrese la clave del pais: ";
+	} while (pos_origen == INT_MAX);
+
+	cPais* origen = *(vector[k]->getPaisesD()) == pos_origen;
+	cPais* destino;
+
+	do{ //listo y pido pais atacado
+		aux = origen->ListarLimitrofesPropios();
+		cout << "A que pais quiere movilizar tropas?" << endl << "Ingrese la clave del pais: ";
 		cin >> pais_destino;
 		cout << endl;
-		pos_destino = origen->getItemPos(pais_destino);
+		pos_destino = vector[k]->getPaisesD()->getItemPos(pais_destino);
 		if (pos_destino != INT_MAX)
 		{
-			destino = *(origen) == (pos_origen);
-			if (origen->getJugador() != destino->getJugador()) {
-				pos_destino = INT_MAX;
+			destino = *(vector[k]->getPaisesD()) == pos_destino;
+			if (origen->getJugador() == destino->getJugador()) {
 				vector[k]->MoverTropas(destino, origen);//movilizo tropas
 			}
+			else
+				pos_destino = INT_MAX;
 		}
 
 	} while (pos_destino == INT_MAX);

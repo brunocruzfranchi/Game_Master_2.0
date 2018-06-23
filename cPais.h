@@ -38,7 +38,10 @@ class cPais:public cListaT<cPais>{
 			//Principales	
 			void ListarPosiblesAtaques();
 			bool ListarPosiblesMov();
+			bool ListarLimitrofesPropios();
 			bool Exiten_Tropas_en_el_Pais();
+
+			bool TengoLimitrofesPropios();
 
 			//Setters
 			void setJugador(cJugador* j) { Jugador = j; }

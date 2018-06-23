@@ -23,8 +23,6 @@ public:
 	bool Atacar(cTropa* atacado);
 	void Contraatacar(cTropa* atacante);
 	float Incremento(string tipo);
-	void Segundo_AT(cTropa* atacado);
-	void operator <<(cTropa*t);
-	
+	void Segundo_AT(cTropa* atacado);	
 };
 #endif // !defined(EA_F8D5B892_CDDD_49eb_8FA4_F17C4DA02B86__INCLUDED_)

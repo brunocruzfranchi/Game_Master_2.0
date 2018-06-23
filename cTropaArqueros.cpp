@@ -29,7 +29,7 @@ bool cTropaArqueros::Atacar(cTropa* atacado) {
 		NuevoATTotal = ATTotal + ATTotal * aumento;
 
 		//ATACO
-		*(aux_atacadoa) != ((int)NuevoATTotal);
+		aux_atacadoa->RecibirDanio((int)NuevoATTotal);
 
 		//SEGUNDA PROBABILIDAD DE ATAQUE	(SUPER OP)
 
@@ -59,7 +59,7 @@ bool cTropaArqueros::Atacar(cTropa* atacado) {
 		NuevoATTotal = ATTotal + ATTotal * aumento;
 
 		//ATACO
-		*(aux_atacadom) != ((int)NuevoATTotal);
+		aux_atacadom->RecibirDanio((int)NuevoATTotal);
 
 		//SEGUNDA PROBABILIDAD DE ATAQUE	(SUPER OP)
 
@@ -88,7 +88,7 @@ bool cTropaArqueros::Atacar(cTropa* atacado) {
 		NuevoATTotal = ATTotal + ATTotal * aumento;
 
 		//ATACO
-		*(aux_atacadoc) != ((int)NuevoATTotal);
+		aux_atacadoc->RecibirDanio((int)NuevoATTotal);
 
 		//SEGUNDA PROBABILIDAD DE ATAQUE	(SUPER OP)
 
@@ -120,7 +120,7 @@ void cTropaArqueros::Contraatacar(cTropa* atacante) {
 		NuevoATTotal = ATTotal + ATTotal * aumento;
 
 		//ATACO
-		*(aux_atacadoa) != ((int)NuevoATTotal);
+		aux_atacadoa->RecibirDanio((int)NuevoATTotal);
 
 		if (aux_atacadoa->getCA() == 0)
 			cout << "Su tropa no sobrevivio al contrataque" << endl;
@@ -138,7 +138,7 @@ void cTropaArqueros::Contraatacar(cTropa* atacante) {
 		NuevoATTotal = ATTotal + ATTotal * aumento;
 
 		//ATACO
-		*(aux_atacadom) != ((int)NuevoATTotal);
+		aux_atacadom->RecibirDanio((int)NuevoATTotal);
 
 		if (aux_atacadom->getCA() == 0)
 			cout << "Su tropa no sobrevivio al contrataque" << endl;
@@ -156,7 +156,7 @@ void cTropaArqueros::Contraatacar(cTropa* atacante) {
 		NuevoATTotal = ATTotal + ATTotal * aumento;
 
 		//ATACO
-		*(aux_atacadoc) != ((int)NuevoATTotal);
+		aux_atacadoc->RecibirDanio((int)NuevoATTotal);
 
 		if (aux_atacadoc->getCA() == 0)
 			cout << "Su tropa no sobrevivio al contrataque" << endl;
@@ -197,9 +197,6 @@ void cTropaArqueros::Segundo_AT(cTropa* atacado) {
 				AT_2ataque = AT_2ataque + vector[i]->getAT() + vector[i]->getAT()*aumento;
 			}
 	}
-	*(atacado) != ((int)AT_2ataque);
+	atacado->RecibirDanio((int)AT_2ataque);
 }
 
-void cTropaArqueros::operator<<(cTropa * t){
-
-}

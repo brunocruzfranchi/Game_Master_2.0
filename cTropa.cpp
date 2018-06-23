@@ -146,7 +146,6 @@ void cTropa::operator<<(cTropa * t){
 	Contraatacar(t);
 }
 
-void cTropa::operator!=(int i)
-{
-	RecibirDanio(i);
-}
+//void cTropa::operator!=(int i){
+//	RecibirDanio(i);
+//}
