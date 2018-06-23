@@ -49,8 +49,10 @@ public:
 		//Inicio Juego
 		int Jugar();
 		void Iniciar_Partida();
-		void AsignarPaises(/*cJugador *Jug, cJugador* Jug2*/);
-		void AsignarTropas(int n=1);	
+		void AsignarPaises();
+		void AsignarTropas(int n=1);
+		void AsignacionTropasInicial();
+
 		
 		//Durante Juego
 		cPais* Buscar_p_atacante(int k);
@@ -60,6 +62,8 @@ public:
 		cTropa* PedirTropaDistribucion(int tipo, int k);
 		void Movilizar_tropas(int k);
 		void AgregarTropaaPais(int k, int tam_tropa,cPais* pais, int aleatorio);
+
+		void AgregarTropaInicial(int k, int tam_tropa, cPais * pais, int aleatorio);
 
 		//getters
 		int getRonda();	
@@ -82,4 +86,4 @@ public:
 };
 #endif // !defined(EA_25249AF9_B8BF_441f_95EC_C0B1C8876E76__INCLUDED_)
 
-// bool repetidos(int n, int num[]);
+ bool repetidos(int n, int num[]);

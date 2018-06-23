@@ -33,7 +33,7 @@ void cPais::ListarPosiblesAtaques(){
 	cout << "Paises disponibles para atacar" << endl;
 	*/
 
-	for (int i = 0; i < CA; i++) {
+	for (unsigned int i = 0; i < CA; i++) {
 		if (vector[i]->getJugador() != Jugador){
 			vector[i]->Imprimir();
 		}
@@ -44,11 +44,12 @@ void cPais::ListarPosiblesAtaques(){
 bool cPais::ListarPosiblesMov(){
 
 	bool flag = false;
-	for (int i = 0; i < CA; i++)
+	for (unsigned int i = 0; i < CA; i++)
 	{
 		if (vector[i]->getJugador() == Jugador)
 		{
 			Imprimir();
+			//TODO: IMPRIMIR LIMITROFES SEGUN EL JUGADOR
 			Jugador->ImprimirTropasenPais(Nombre);
 			flag = true;
 		}
@@ -59,7 +60,7 @@ bool cPais::ListarPosiblesMov(){
 bool cPais::Exiten_Tropas_en_el_Pais()
 {
 	bool flag = false;
-	for (int i = 0; i < CA; i++)
+	for (unsigned int i = 0; i < CA; i++)
 	{
 		if (vector[i]->getJugador() == Jugador)
 		{

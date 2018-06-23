@@ -34,13 +34,14 @@ bool cTropaMagos::Atacar(cTropa * atacado) {
 		AtaqueMagico(pais_atacado, (int)NuevoATTotal);
 
 		//QUE PASO EN EL ATAQUE?
-
-		if (aux_atacadoa->getCA() == 0)
+		if (aux_atacadoa->getCA() == 0) {
+			cout << "Usted ha ganado el ataque." << endl;
 			return true;
-		//El jugador ha ganado, devolver TRUE para realizar la reubicacion de las tropas en el pais conquistado
+			//El jugador ha ganado, devolver TRUE para realizar la reubicacion de las tropas en el pais conquistado
+		}
 
 		if (aux_atacadoa->getCA() > 0) {
-			*(aux_atacadoa)<<(this);
+			*(aux_atacadoa) << this;
 			return false;
 			//devolver FALSE para indicar que el ataque no fue exitoso y que la tropa recibio da�o
 		}
@@ -58,13 +59,14 @@ bool cTropaMagos::Atacar(cTropa * atacado) {
 		AtaqueMagico(pais_atacado, (int)NuevoATTotal);
 
 		//QUE PASO EN EL ATAQUE?
-
 		if (aux_atacadom->getCA() == 0) {
+			cout << "Usted ha ganado el ataque." << endl;
 			return true;
 			//El jugador ha ganado, devolver TRUE para realizar la reubicacion de las tropas en el pais conquistado
 		}
+
 		if (aux_atacadom->getCA() > 0) {
-			*(aux_atacadom)<<(this);
+			*(aux_atacadom) << this;
 			return false;
 			//devolver FALSE para indicar que el ataque no fue exitoso y que la tropa recibio da�o
 		}
@@ -83,20 +85,23 @@ bool cTropaMagos::Atacar(cTropa * atacado) {
 		AtaqueMagico(pais_atacado, (int)NuevoATTotal);
 
 		//QUE PASO EN EL ATAQUE?
-
-		if (aux_atacadoc->getCA() == 0)
+		if (aux_atacadoc->getCA() == 0) {
+			cout << "Usted ha ganado el ataque." << endl;
 			return true;
-		//El jugador ha ganado, devolver TRUE para realizar la reubicacion de las tropas en el pais conquistado
+			//El jugador ha ganado, devolver TRUE para realizar la reubicacion de las tropas en el pais conquistado
+		}
 
 		if (aux_atacadoc->getCA() > 0) {
-			*(aux_atacadoc)<<(this);
+			*(aux_atacadoc) << this;
 			return false;
 			//devolver FALSE para indicar que el ataque no fue exitoso y que la tropa recibio da�o
 		}
 	}
+
+	return true;
 }
 
-void cTropaMagos::Contratacar(cTropa* atacante) {
+void cTropaMagos::Contraatacar(cTropa* atacante) {
 
 	cTropaArqueros* aux_atacadoa = dynamic_cast<cTropaArqueros*>(atacante);
 	if (aux_atacadoa != NULL) {
@@ -110,8 +115,6 @@ void cTropaMagos::Contratacar(cTropa* atacante) {
 		//ATACO
 		*(aux_atacadoa) != ((int)NuevoATTotal);
 
-		//QUE PASO EN EL CONTRAATAQUE?
-		*(aux_atacadoa) != (ATTotal);
 		if (aux_atacadoa->getCA() == 0)
 			cout << "Su tropa no sobrevivio al contrataque" << endl;
 		if (aux_atacadoa->getCA() > 0)
@@ -130,8 +133,6 @@ void cTropaMagos::Contratacar(cTropa* atacante) {
 		//ATACO
 		*(aux_atacadoa) != ((int)NuevoATTotal);
 
-		//QUE PASO EN EL CONTRAATAQUE?
-		*(aux_atacadom) != (ATTotal);
 		if (aux_atacadom->getCA() == 0)
 			cout << "Su tropa no sobrevivio al contrataque" << endl;
 		if (aux_atacadom->getCA() > 0)
@@ -151,7 +152,7 @@ void cTropaMagos::Contratacar(cTropa* atacante) {
 		*(aux_atacadoa) != ((int)NuevoATTotal);
 
 		//QUE PASO EN EL CONTRAATAQUE?
-		*(aux_atacadoc) != (ATTotal);
+
 		if (aux_atacadoc->getCA() == 0)
 			cout << "Su tropa no sobrevivio al contrataque" << endl;
 		if (aux_atacadoc->getCA() > 0)
@@ -162,18 +163,17 @@ void cTropaMagos::Contratacar(cTropa* atacante) {
 
 float cTropaMagos::Incremento(string tipo) {
 	float incre = 0;
-	if (tipo == "Arqueros" || tipo == "arqueros") {
+
+	if (tipo == "Arqueros" || tipo == "arqueros")
 		incre = -0.25;
-		return incre;
-	}
 
 	if (tipo == "Magos" || tipo == "magos")
 		return incre;
 
-	if (tipo == "Caballeros" || tipo == "caballeros") {
+	if (tipo == "Caballeros" || tipo == "caballeros")
 		incre = 0.25;
-		return incre;
-	}
+
+	return incre;
 }
 
 void cTropaMagos::AtaqueMagico(cPais * pais, int ataque)
@@ -193,3 +193,4 @@ void cTropaMagos::AtaqueMagico(cPais * pais, int ataque)
 	}
 
 }
+

@@ -10,7 +10,7 @@
 
 #include "cTropa.h"
 
-class cTropaMagos : public cTropa
+class cTropaMagos:public cTropa
 {
 
 public:
@@ -21,9 +21,8 @@ public:
 
 	///Metodos
 	bool Atacar(cTropa* atacado);
-	void Contratacar(cTropa* atacante);
+	void Contraatacar(cTropa* atacante);
 	float Incremento(string tipo);
 	void AtaqueMagico(cPais* pais, int ataque);
-
 };
 #endif // !defined(EA_24685A5A_0EAB_429f_8E3B_0704AF7A41A3__INCLUDED_)

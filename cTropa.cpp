@@ -34,7 +34,7 @@ cTropa::cTropa(string tipo, int tam, cPais*pais) :cListaT<cUnidades>(N_MAX_UNIDA
 			AgregarItem(new cCaballeros());
 		}
 
-	for (int i = 0; i < CA; i++) {
+	for (unsigned int i = 0; i < CA; i++) {
 
 		atq = atq + vector[i]->getAT();
 		hp = hp + vector[i]->getHP();
@@ -52,18 +52,15 @@ cTropa::~cTropa() {
 
 }
 
-void cTropa::Contraatacar(cTropa * atacante)
-{
-}
-
 void cTropa::RecibirDanio(int danio)
 {
 	cUnidades*min;
 	int cont = 0;
 
 	do {
+		if (CA == 0)
+			break;
 		min = getHPMinimo();				//Busco la unidad de menor HP
-
 		if (danio >= min->getHP())
 		{
 			danio = danio - min->getHP();
@@ -132,6 +129,7 @@ void cTropa::Morir(cUnidades * u)
 	u->Contador--;
 	operator-(u);
 }
+
 void cTropa::operator++ (int hpu) {
 	//AGREGA A VIDA TOTAL
 
@@ -144,8 +142,7 @@ bool cTropa::operator>>(cTropa * t)
 	return aux;
 }
 
-void cTropa::operator<<(cTropa * t)
-{
+void cTropa::operator<<(cTropa * t){
 	Contraatacar(t);
 }
 

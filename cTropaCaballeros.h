@@ -20,8 +20,7 @@ public:
 
 	///Metodos
 	bool Atacar(cTropa* atacado);
-	void Contratacar(cTropa* atacante);
+	void Contraatacar(cTropa* atacante);
 	float Incremento(string tipo);
-
 };
 #endif // !defined(EA_70643682_4B55_4b6c_9B22_45B5CE3C7B8C__INCLUDED_)

@@ -63,7 +63,7 @@ void cJugador::MoverTropas(cPais*ganado , cPais*atacante){
 void cJugador::ImprimirTropasenPais(cPais * pais)
 {
 	cout << endl << "Tropas disponibles en "<< pais->getNombre() << endl;
-	for (int i = 0; i < CA; i++)
+	for (unsigned int i = 0; i < CA; i++)
 	{
 		if (vector[i]->getPais()->getclave() == pais->getclave())
 		{
@@ -75,7 +75,7 @@ void cJugador::ImprimirTropasenPais(cPais * pais)
 void cJugador::ImprimirTropasenPais(string nombre)
 {
 	cout << endl << "Tropas disponibles en " << nombre << endl;
-	for (int i = 0; i < CA; i++)
+	for (unsigned int i = 0; i < CA; i++)
 	{
 		if (vector[i]->getPais()->getNombre() == nombre)
 		{
@@ -87,7 +87,7 @@ void cJugador::ImprimirTropasenPais(string nombre)
 void cJugador::ImprimirTropasenPais(string nombre, string tipo)
 {
 	cout << endl << "Tropas disponibles en " << nombre <<" del tipo "<<tipo<< endl;
-	for (int i = 0; i < CA; i++)
+	for (unsigned int i = 0; i < CA; i++)
 	{
 		if (vector[i]->getPais()->getNombre() == nombre)
 		{
@@ -97,16 +97,15 @@ void cJugador::ImprimirTropasenPais(string nombre, string tipo)
 	}
 }
 
-void cJugador::ImprimirTropasenPais(cPais * pais, string tipo)
-{
+void cJugador::ImprimirTropasenPais(cPais* pais, string tipo){
 
 	cout << endl << "Tropas disponibles en " << pais->getNombre() << " del tipo " << tipo << endl;
-	for (int i = 0; i < CA; i++)
+	for (unsigned int i = 0; i < CA; i++)
 	{
 		if (vector[i]->getPais()->getclave() == pais->getclave())
 		{
-			if(vector[i]->getTipo()==tipo)
-			vector[i]->Imprimir();
+			if (vector[i]->getTipo() == tipo)
+				vector[i]->Imprimir();
 		}
 	}
 }
@@ -114,7 +113,7 @@ void cJugador::ImprimirTropasenPais(cPais * pais, string tipo)
 int cJugador::getATTOTAL()
 {
 	int acum = 0;
-	for (int i = 0; i < CA; i++)
+	for (unsigned int i = 0; i < CA; i++)
 	{
 		acum = vector[i]->getATtotal()+acum;
 	}
@@ -125,7 +124,7 @@ int cJugador::Contar_e_ImpTropasenPais(cPais * pais)
 {
 	cout << endl << "Tropas disponibles" << endl;
 	int N_tropas = 0;
-	for (int i = 0; i < CA; i++)
+	for (unsigned int i = 0; i < CA; i++)
 	{
 		if (vector[i]->getPais() == pais)
 		{
@@ -139,7 +138,7 @@ int cJugador::Contar_e_ImpTropasenPais(cPais * pais)
 int cJugador::Contar_Tropas_en_Pais(cPais * pais)
 {
 	int N_tropas = 0;
-	for (int i = 0; i < CA; i++)
+	for (unsigned int i = 0; i < CA; i++)
 	{
 		if (vector[i]->getPais() == pais)
 		{
@@ -152,7 +151,7 @@ int cJugador::Contar_Tropas_en_Pais(cPais * pais)
 int cJugador::Contar_Tropas_en_Pais(cPais * pais, string tipo)
 {
 	int N_tropas = 0;
-	for (int i = 0; i < CA; i++)
+	for (unsigned int i = 0; i < CA; i++)
 	{
 		if (vector[i]->getPais() == pais)
 		{
@@ -167,7 +166,7 @@ int cJugador::Contar_Tropas_en_Pais(cPais * pais, string tipo)
 int cJugador::Contar_Tropas_en_Pais(string nombre)
 {
 	int cont = 0;
-	for (int i = 0; i < CA; i++)
+	for (unsigned int i = 0; i < CA; i++)
 	{
 		if (vector[i]->getPais()->getNombre() == nombre)
 		{

@@ -11,7 +11,7 @@
 #include "cTropa.h"
 
 
-class cTropaArqueros : public cTropa
+class cTropaArqueros:public cTropa
 {
 
 public:
@@ -24,6 +24,7 @@ public:
 	void Contraatacar(cTropa* atacante);
 	float Incremento(string tipo);
 	void Segundo_AT(cTropa* atacado);
+	void operator <<(cTropa*t);
 	
 };
 #endif // !defined(EA_F8D5B892_CDDD_49eb_8FA4_F17C4DA02B86__INCLUDED_)

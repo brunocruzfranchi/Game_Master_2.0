@@ -39,7 +39,7 @@ public:
 
 	///Metodos
 	virtual bool Atacar(cTropa* atacado) = 0;
-	virtual void Contraatacar(cTropa* atacante);
+	virtual void Contraatacar(cTropa* atacante) = 0;
 	virtual void RecibirDanio(int danio);
 	virtual float Incremento(string tipo) = 0;
 	void Distribuir(int tipo, int tam);

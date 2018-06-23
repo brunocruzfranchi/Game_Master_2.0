@@ -36,12 +36,14 @@ bool cTropaArqueros::Atacar(cTropa* atacado) {
 		Segundo_AT(aux_atacadoa);
 
 		//QUE PASO EN EL ATAQUE?
-		if (aux_atacadoa->getCA() == 0)
+		if (aux_atacadoa->getCA() == 0) {
+			cout << "Usted ha ganado el ataque." << endl;
 			return true;
-		//El jugador ha ganado, devolver TRUE para realizar la reubicacion de las tropas en el pais conquistado
+			//El jugador ha ganado, devolver TRUE para realizar la reubicacion de las tropas en el pais conquistado
+		}
 
 		if (aux_atacadoa->getCA() > 0) {
-			*(aux_atacadoa)<<(this);
+			*(aux_atacadoa) << this;
 			return false;
 			//devolver FALSE para indicar que el ataque no fue exitoso y que la tropa recibio da�o
 		}
@@ -70,7 +72,7 @@ bool cTropaArqueros::Atacar(cTropa* atacado) {
 			//El jugador ha ganado, devolver TRUE para realizar la reubicacion de las tropas en el pais conquistado
 		}
 		if (aux_atacadom->getCA() > 0) {
-			*(aux_atacadom)<<(this);
+			*(aux_atacadom)<<this;
 			return false;
 			//devolver FALSE para indicar que el ataque no fue exitoso y que la tropa recibio da�o
 		}
@@ -93,17 +95,18 @@ bool cTropaArqueros::Atacar(cTropa* atacado) {
 		Segundo_AT(aux_atacadoc);
 
 		//QUE PASO EN EL ATAQUE?
-		if (aux_atacadoc->getCA() == 0)
+		if (aux_atacadoc->getCA() == 0) {
+			cout << "Usted ha ganado el ataque." << endl;
 			return true;
-		//El jugador ha ganado, devolver TRUE para realizar la reubicacion de las tropas en el pais conquistado
-
+			//El jugador ha ganado, devolver TRUE para realizar la reubicacion de las tropas en el pais conquistado
+		}
 		if (aux_atacadoc->getCA() > 0) {
-			*(aux_atacadoc)<<(this);
+			*(aux_atacadoc) << this;
 			return false;
 			//devolver FALSE para indicar que el ataque no fue exitoso y que la tropa recibio da�o
 		}
 	}
-
+	return false;
 }
 
 void cTropaArqueros::Contraatacar(cTropa* atacante) {
@@ -119,8 +122,6 @@ void cTropaArqueros::Contraatacar(cTropa* atacante) {
 		//ATACO
 		*(aux_atacadoa) != ((int)NuevoATTotal);
 
-		//QUE PASO EN EL CONTRAATAQUE?
-		*(aux_atacadoa) != (ATTotal);
 		if (aux_atacadoa->getCA() == 0)
 			cout << "Su tropa no sobrevivio al contrataque" << endl;
 		if (aux_atacadoa->getCA() > 0)
@@ -139,8 +140,6 @@ void cTropaArqueros::Contraatacar(cTropa* atacante) {
 		//ATACO
 		*(aux_atacadom) != ((int)NuevoATTotal);
 
-		//QUE PASO EN EL CONTRAATAQUE?
-		*(aux_atacadom) != (ATTotal);
 		if (aux_atacadom->getCA() == 0)
 			cout << "Su tropa no sobrevivio al contrataque" << endl;
 		if (aux_atacadom->getCA() > 0)
@@ -159,8 +158,6 @@ void cTropaArqueros::Contraatacar(cTropa* atacante) {
 		//ATACO
 		*(aux_atacadoc) != ((int)NuevoATTotal);
 
-		//QUE PASO EN EL CONTRAATAQUE?
-		*(aux_atacadoc) != (ATTotal);
 		if (aux_atacadoc->getCA() == 0)
 			cout << "Su tropa no sobrevivio al contrataque" << endl;
 		if (aux_atacadoc->getCA() > 0)
@@ -171,25 +168,25 @@ void cTropaArqueros::Contraatacar(cTropa* atacante) {
 float cTropaArqueros::Incremento(string tipo) {
 
 	float incre = 0;
+
 	if (tipo == "Arqueros" || tipo == "arqueros")
 		return incre;
 
-	if (tipo == "Magos" || tipo == "magos") {
+	if (tipo == "Magos" || tipo == "magos")
 		incre = 0.25;
-		return incre;
-	}
 
-	if (tipo == "Caballeros" || tipo == "caballeros") {
+	if (tipo == "Caballeros" || tipo == "caballeros")
 		incre = -0.25;
-		return incre;
-	}
+
+	return incre;
+
 }
 
 void cTropaArqueros::Segundo_AT(cTropa* atacado) {
 	int aux_ataque2;
 	float AT_2ataque = 0;
 	float aumento;
-	for (int i = 0; i <CA; i++)
+	for (unsigned int i = 0; i <CA; i++)
 	{
 		aumento = 0.5;
 		aux_ataque2 = rand() % 101;
@@ -201,4 +198,8 @@ void cTropaArqueros::Segundo_AT(cTropa* atacado) {
 			}
 	}
 	*(atacado) != ((int)AT_2ataque);
+}
+
+void cTropaArqueros::operator<<(cTropa * t){
+
 }

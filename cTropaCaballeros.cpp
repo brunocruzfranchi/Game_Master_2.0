@@ -15,7 +15,7 @@ cTropaCaballeros::cTropaCaballeros(int tam, cPais*pais) :cTropa("Caballeros", ta
 cTropaCaballeros::~cTropaCaballeros() {
 }
 
-bool cTropaCaballeros::Atacar(cTropa * atacado) {
+bool cTropaCaballeros::Atacar(cTropa* atacado) {
 
 	cTropaArqueros* aux_atacadoa = dynamic_cast<cTropaArqueros*>(atacado);
 	if (aux_atacadoa != NULL) {
@@ -29,12 +29,13 @@ bool cTropaCaballeros::Atacar(cTropa * atacado) {
 		//ATACO
 		*(aux_atacadoa) != ((int)NuevoATTotal);
 
+
 		//QUE PASO EN EL ATAQUE?
-
-		if (aux_atacadoa->getCA() == 0)
+		if (aux_atacadoa->getCA() == 0) {
+			cout << "Usted ha ganado el ataque." << endl;
 			return true;
-		//El jugador ha ganado, devolver TRUE para realizar la reubicacion de las tropas en el pais conquistado
-
+			//El jugador ha ganado, devolver TRUE para realizar la reubicacion de las tropas en el pais conquistado
+		}
 		if (aux_atacadoa->getCA() > 0) {
 			*(aux_atacadoa)<<this;
 			return false;
@@ -61,8 +62,9 @@ bool cTropaCaballeros::Atacar(cTropa * atacado) {
 			return true;
 			//El jugador ha ganado, devolver TRUE para realizar la reubicacion de las tropas en el pais conquistado
 		}
+
 		if (aux_atacadom->getCA() > 0) {
-			*(aux_atacadom)<<(this);
+			*(aux_atacadom)<<this;
 			return false;
 			//devolver FALSE para indicar que el ataque no fue exitoso y que la tropa recibio daño
 		}
@@ -82,20 +84,23 @@ bool cTropaCaballeros::Atacar(cTropa * atacado) {
 
 		//QUE PASO EN EL ATAQUE?
 
-		if (aux_atacadoc->getCA() == 0)
+		//QUE PASO EN EL ATAQUE?
+		if (aux_atacadoc->getCA() == 0) {
+			cout << "Usted ha ganado el ataque." << endl;
 			return true;
-		//El jugador ha ganado, devolver TRUE para realizar la reubicacion de las tropas en el pais conquistado
-
+			//El jugador ha ganado, devolver TRUE para realizar la reubicacion de las tropas en el pais conquistado
+		}
 		if (aux_atacadoc->getCA() > 0) {
-			*(aux_atacadoc)<<(this);
+			*(aux_atacadoc) << this;
 			return false;
 			//devolver FALSE para indicar que el ataque no fue exitoso y que la tropa recibio daño
 		}
 	}
 
+	return false;
 }
 
-void cTropaCaballeros::Contratacar(cTropa* atacante) {
+void cTropaCaballeros::Contraatacar(cTropa* atacante) {
 
 	cTropaArqueros* aux_atacadoa = dynamic_cast<cTropaArqueros*>(atacante);
 	if (aux_atacadoa != NULL) {
@@ -159,16 +164,16 @@ void cTropaCaballeros::Contratacar(cTropa* atacante) {
 float cTropaCaballeros::Incremento(string tipo) {
 
 	float incre = 0;
-	if (tipo == "Arqueros" || tipo == "arqueros") {
+	if (tipo == "Arqueros" || tipo == "arqueros") 
 		incre = 0.25;
-		return incre;
-	}
 
-	if (tipo == "Magos" || tipo == "magos") {
+
+	if (tipo == "Magos" || tipo == "magos")
 		incre = -0.25;
-		return incre;
-	}
+
 
 	if (tipo == "Caballeros" || tipo == "caballeros")
 		return incre;
+
+	return incre;
 }

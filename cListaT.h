@@ -114,7 +114,6 @@ void cListaT<T>::Listar()
 template<class T>
 bool cListaT<T>::AgregarItem(T * item)
 {
-
 	T *i_f = BuscarItem(item->getclave());
 	if (i_f != NULL)
 		throw new exception("Ya se encuentra en la lista");
@@ -205,11 +204,12 @@ void cListaT<T>::Eliminar(unsigned int pos) {
 }
 
 template<class T>
+
 T* cListaT<T>::BuscarItem(string clave)
 {
 	for (unsigned int i = 0; i < CA; i++)
 	{
-		if (vector[i]->getclave() == clave)//SOBRECARGA!!!!!!
+		if (vector[i]->getclave() == clave)	//SOBRECARGA!!!!!!
 			return vector[i];
 	}
 	return NULL;
@@ -242,7 +242,7 @@ template<class T>
 T* cListaT<T>::getHPMinimo()
 {
 	T* min = vector[0];
-	for (int i = 0; i < CA; i++)
+	for (unsigned int i = 0; i < CA; i++)
 	{
 		if (vector[i]->getHP() < min->getHP())
 			min = vector[i];
@@ -257,19 +257,19 @@ void cListaT<T>::operator+(T * item) {
 template<class T>
 T* cListaT<T>::operator==(unsigned int pos)
 {
-	
+	T*aux = getItem(pos);
+	return aux;
 }
 
 template<class T>
 inline T * cListaT<T>::operator[](unsigned int pos)
 {
-	if (pos < CA)
-	{
+	if (pos < CA){
 		T*aux = getItem(pos);
 		return aux;
 	}
 	else
-		throw new exception "Posicion invalida";
+		throw new exception ("Posicion invalida");
 }
 
 template<class T>

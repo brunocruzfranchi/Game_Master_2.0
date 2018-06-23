@@ -21,13 +21,19 @@
 using namespace std;
 enum PAISES{ARGENTINA = 0, BOLIVIA, BRASIL, CHILE, COLOMBIA, ECUADOR, GUYANA, PARAGUAY, PERU, SURINAM, URUGUAY, VENEZUELA, GUAYANAFRANCESA};
 
-//enum tipos{Magos=0,Arqueros=1,Caballeros=2};
-
 cJuego::cJuego(int cant_jug):cListaT<cJugador>(cant_jug) {
-
-	CrearJugadores(cant_jug);
-	CrearPaises();
-
+	try {
+		CrearJugadores(cant_jug);
+	}
+	catch (exception* x) {
+		cout << x->what() << endl;
+	}
+	try {
+		CrearPaises();
+	}
+	catch (exception* x) {
+		cout << x->what() << endl;
+	}
 }
 
 cJuego::~cJuego() {
@@ -37,7 +43,6 @@ cJuego::~cJuego() {
 void cJuego::CrearJugadores(int n) {
 
 	for (int i = 0; i < n; i++) {
-
 		AgregarItem(new cJugador(i));
 	}
 }
@@ -213,16 +218,36 @@ void cJuego::CrearPaises() {
 } //listo
 
 //ASIGNACIONES
+void cJuego::AsignarPaises() {
+	
+	int jugadores = N_MAX_JUGADORES;
 
-void cJuego::AsignarPaises(/*cJugador *Jug, cJugador* Jug2*/) {
+	int n, num[N_PAISES_TOTALES];	
+	
+	for (int i = 0; i<N_PAISES_TOTALES; i++)						//Genero un array de numero aleatorios y no repetidos
+	{
+		do
+			n = rand() % N_PAISES_TOTALES;
+		while (repetidos(n, num));
+		num[i] = n;
+	}
 
+	int i = 0, pos = 0;
+
+	do{
+		*(vector[pos]->PaisesDominados) + (*(Paises) == (num[i]));
+		(*(Paises) == (num[i]))->setJugador(vector[pos]);
+		if (vector[pos]->PaisesDominados->getCA() == 7)
+			pos++;
+		i++;
+	} while (i < N_PAISES_TOTALES);
+	
+	/*
 	int i, pos = 0;
 	int jugadores = N_MAX_JUGADORES;
-	
 
-	for (i = 0; i < N_PAISES_TOTALES; i++)
-	{
-		 pos = rand() % 2;
+	for (i = 0; i < N_PAISES_TOTALES; i++){
+		pos = rand() % 2;
 		*(vector[pos]->PaisesDominados)+(*(Paises)==(i));
 		(*(Paises)==i)->setJugador(vector[pos]);
 		if (vector[pos]->PaisesDominados->getCA() == 7)
@@ -232,21 +257,14 @@ void cJuego::AsignarPaises(/*cJugador *Jug, cJugador* Jug2*/) {
 	pos = (pos + 1) % 2;
 
 	if (i < N_PAISES_TOTALES)
+
 		for (int h = i + 1; h < N_PAISES_TOTALES; h++)
 		{
 			*(vector[pos]->PaisesDominados) + (*(Paises) == i);
 		}
+	*/
 
-
-	/*int n, num[N_PAISES_TOTALES];	
-	for (int i = 0; i<N_PAISES_TOTALES; i++)						//Genero un array de numero aleatorios y no repetidos
-	{
-		do
-			n = rand() % N_PAISES_TOTALES;
-		while (repetidos(n, num));
-		num[i] = n;
-	}
-	
+	/*
 	if (Jug->getN_Jugador() == "1")
 		for(int i = 0; i < 7; i++){
 			cPais* aux = Paises->getItem(num[i]);
@@ -261,21 +279,26 @@ void cJuego::AsignarPaises(/*cJugador *Jug, cJugador* Jug2*/) {
 
 void cJuego::AsignarTropas(int n) {
 
-	for (int k = 0; k < CA; k++)
+	for (unsigned int k = 0; k < CA; k++)
 	{
 		cout << "Turno Jugador " << vector[k]->getN_Jugador() << endl;
+		
 		int aux_ca = vector[k]->PaisesDominados->getCA();
-		(aux_ca % 2 != 0) ? aux_ca = aux_ca / 2 : aux_ca = (aux_ca - 1) / 2;
-		(n == 0) ? aux_ca = N_TROPAS_INICIAL : 0;
+		
+		(aux_ca % 2 != 0) ? 
+			aux_ca = aux_ca / 2 : aux_ca = (aux_ca - 1) / 2;
+		
+		(n == 0) ?
+			aux_ca = N_TROPAS_INICIAL : 0;
+
 		int aleatorio = -1, tam_tropa, min, max;
 		string tipo, nombre_pais;
-
 		cPais* asignado = NULL;
 
 		for (int i = 0; i < aux_ca; i++)
 		{
-			//srand(time(NULL));
 			aleatorio = rand() % 3;
+
 			switch (aleatorio)
 			{
 			case 0:
@@ -308,8 +331,6 @@ void cJuego::AsignarTropas(int n) {
 
 			do //listo y pido pais
 			{
-				//vector[k]->PaisesDominados->Listar(); //ERROR
-
 				cListaT<cPais>* PaisesDominados = vector[k]->getPaisesD();
 				PaisesDominados->Listar();
 
@@ -318,9 +339,10 @@ void cJuego::AsignarTropas(int n) {
 				cout << endl;
 
 				aux = vector[k]->PaisesDominados->getItemPos(opcion_pais);
+
 			} while (aux == INT_MAX);// busco la posicion en la lista INT_MAX si no se encontro => vuelvo a pedir
 
-			cPais*pais = vector[k]->PaisesDominados->BuscarItem(opcion_pais);//busco el pais elegido y lo guardo en un puntero
+			cPais* pais = vector[k]->PaisesDominados->BuscarItem(opcion_pais);//busco el pais elegido y lo guardo en un puntero
 
 			do {
 				cout << endl << "Distribucion de tropa" << endl
@@ -358,6 +380,61 @@ void cJuego::AsignarTropas(int n) {
 
 		system("cls");
 	}
+
+}
+
+void cJuego::AsignacionTropasInicial() {
+
+	for (unsigned int k = 0; k < CA; k++)
+	{
+		cListaT<cPais>* PaisesD = vector[k]->getPaisesD();
+		int aux_ca_paises = PaisesD->getCA();
+		int aleatorio = -1;
+		int tam_tropa, min, max;
+		int i = 0, pos = 0;
+		string tipo;
+
+		for (i = 0; i < N_TROPAS_INICIAL; i++, pos++) {
+
+			if (pos == aux_ca_paises)
+				pos = 0;
+
+			aleatorio = rand() % 3;
+			switch (aleatorio)
+			{
+			case 0:
+				min = 20;
+				max = 40;
+				tipo = "Magos";
+				break;
+			case 1:
+				min = 15;
+				max = 30;
+				tipo = "Arqueros";
+				break;
+			case 2:
+				min = 10;
+				max = 20;
+				tipo = "Caballeros";
+				break;
+			default:
+				break;
+			}
+
+			tam_tropa = min + rand() % (max - min + 1);//genero tropa
+
+			cPais* pais = PaisesD->getItem(pos);
+
+			AgregarTropaInicial(k, tam_tropa, pais, aleatorio);
+		}
+
+		//PaisesD->Listar();
+		//for (i = 0; i < aux_ca_paises; i++){
+		//	cPais* aux = PaisesD->getItem(i);
+		//	cout << aux->getNJugador() << endl;
+		//	vector[k]->ImprimirTropasenPais(aux);
+		//}
+	}
 }
 
 void cJuego::ReasignarPais(cPais* atacado, cPais* atacante) { //listo
@@ -375,6 +452,27 @@ void cJuego::ReasignarPais(cPais* atacado, cPais* atacante) { //listo
 } //listo
 
 //PARTIDA
+void cJuego::Iniciar_Partida() {
+	//Jugadores
+	cJugador* Jug1 = operator==(0);
+	cJugador* Jug2 = operator==(1);
+
+	//Asignacion de Paises
+	try{AsignarPaises();
+	}
+	catch (exception* e) {
+		cout << e->what() << endl;
+		system("pause");
+	}
+
+	//Asignacion inicial de tropas
+	//AsignarTropas(0);
+	AsignacionTropasInicial();
+
+	//TODO INICIAR TROPAS AL INICIO DE LA PARTIDA
+
+	//bienvenido, juego iniciado*/
+}
 
 int cJuego::Jugar() {
 
@@ -384,7 +482,7 @@ int cJuego::Jugar() {
 		
 		//Turnos
 
-		AsignarTropas();// asigno tropas al principio de la ronda//ERROR
+		AsignarTropas();// asigno tropas al principio de la ronda
 
 		for (unsigned int k = 0; k < CA; k++)
 		{
@@ -407,6 +505,11 @@ int cJuego::Jugar() {
 				//Ataque y Contraataque
 
 				bool aux_exito = *(tropa_atacante)>>(tropa_atacada);
+
+				if (pais_atacado->getCA() == 0) {
+					pais_atacado->setJugador(vector[k]);
+					Movilizar_tropas(k);
+				}
 
 				int at_disp = N_MAX_ATAQUES - h - 1;
 
@@ -460,7 +563,6 @@ int cJuego::Jugar() {
 }
 
 //JUEGO
-
 void cJuego::CambiarTurno(cJugador** Jugador, int k){
 
 	Jugador_de_turno = Jugador[k];
@@ -472,22 +574,7 @@ int cJuego::getRonda() {
 	return Ronda;
 }
 
-void cJuego::Iniciar_Partida() {
-	//Jugadores
-	cJugador* Jug1 = operator==(0);
-	cJugador* Jug2 = operator==(1);
-
-	//Asignacion de Paises
-	AsignarPaises(/*Jug1, Jug2*/);
-
-	//Asignacion inicial de tropas
-	AsignarTropas(0);
-
-	//TODO INICIAR TROPAS AL INICIO DE LA PARTIDA
-
-	//bienvenido, juego iniciado*/
-}
-
+//BUSQUEDA DE TROPAS Y PAISES 
 cPais* cJuego::Buscar_p_atacante(int k){
 
 	cPais* aux_atacante;
@@ -500,9 +587,14 @@ cPais* cJuego::Buscar_p_atacante(int k){
 		cout << "Con que pais quiere atacar?" << endl << "Ingrese el nombre del pais: ";
 		cin >> opcion_pais_atacante;
 		cout << endl;
+		try{
 		pos_atacante = vector[k]->getPaisesD()->getItemPos(opcion_pais_atacante);
+		}
+		catch (exception* e) {
+			cout << e->what() << endl;
+		}
 		aux_atacante = vector[k]->PaisesDominados->BuscarItem(opcion_pais_atacante);
-		
+		/*
 		//EXISTEN TROPAS?
 		try {
 			bool exiten_tropas = aux_atacante->Exiten_Tropas_en_el_Pais();
@@ -516,7 +608,7 @@ cPais* cJuego::Buscar_p_atacante(int k){
 			system("pause");
 			pos_atacante = INT_MAX;
 			system("cls");
-		}
+		}*/
 
 	} while (pos_atacante == INT_MAX);															// busco la posicion en la lista INT_MAX si no se encontro => vuelvo a pedir
 	
@@ -547,7 +639,7 @@ cPais* cJuego::Buscar_p_atacado(cPais* atacante){
 			if (atacante->getJugador() == aux_atacado->getJugador())
 				pos_atacado = INT_MAX;
 		}
-
+		/*
 		//EXISTEN TROPAS?
 		try{
 			bool estado = aux_atacado->Exiten_Tropas_en_el_Pais();
@@ -561,7 +653,7 @@ cPais* cJuego::Buscar_p_atacado(cPais* atacante){
 			system("pause");
 			pos_atacado = INT_MAX;
 			system("cls");
-		}
+		}*/
 		
 	} while (pos_atacado == INT_MAX);// busco la posicion en la lista INT_MAX si no se encontro => vuelvo a pedir
 
@@ -620,6 +712,7 @@ cTropa* cJuego::Buscar_t_atacada(int h, cPais * atacado){
 	return tropa_atacada;
 }
 
+//MOVILIZACION 
 cTropa * cJuego::PedirTropaDistribucion(int tipo, int k)
 {
 	string opcion_tropa;
@@ -700,31 +793,114 @@ void cJuego::Movilizar_tropas(int k){
 
 void cJuego::AgregarTropaaPais(int k, int tam_tropa, cPais * pais, int aleatorio)
 {
-	cTropa * tropa_m = new cTropaMagos(tam_tropa, pais);
-	cTropa * tropa_a = new cTropaArqueros(tam_tropa, pais);
-	cTropa * tropa_c = new cTropaCaballeros(tam_tropa, pais);
+	cTropa* tropa_m = new cTropaMagos(tam_tropa, pais);
+	cTropa* tropa_a = new cTropaArqueros(tam_tropa, pais);
+	cTropa* tropa_c = new cTropaCaballeros(tam_tropa, pais);
 
 	switch (aleatorio) {
 
 	case 0:
-
 		*(vector[k]) + (tropa_m);
-
 		cout << endl << "Tropa agregada satisfactoriamente" << endl;
 		break;
 
 	case 1:
-
 		*(vector[k]) + (tropa_a);
 		cout << endl << "Tropa agregada satisfactoriamente" << endl;
 		break;
 
 	case 2:
-
 		*(vector[k]) + (tropa_c);
 		cout << endl << "Tropa agregada satisfactoriamente" << endl;
 		break;
 	}
+}
+
+void cJuego::AgregarTropaInicial(int k, int tam_tropa, cPais * pais, int aleatorio){
+	cTropa* tropa_m = new cTropaMagos(tam_tropa, pais);
+	cTropa* tropa_a = new cTropaArqueros(tam_tropa, pais);
+	cTropa* tropa_c = new cTropaCaballeros(tam_tropa, pais);
+
+	switch (aleatorio) {
+
+	case 0:
+		*(vector[k]) + (tropa_m);
+		break;
+
+	case 1:
+		*(vector[k]) + (tropa_a);
+		break;
+
+	case 2:
+		*(vector[k]) + (tropa_c);
+		break;
+	}
+}
+
+
+//FUNCIONES APARTE
+cJugador * cJuego::getGanador()
+{
+	cJugador*Ganador = NULL;
+
+	for (unsigned int k = 0; k < CA; k++)
+	{
+		if (vector[k]->PaisesDominados->getCA() == N_PAISES_TOTALES)
+		{
+			Ganador = vector[k];
+		}
+	}
+	if (Ganador == NULL)
+	{
+		Ganador = BuscarMax();
+
+	}
+
+
+	return Ganador;
+}
+
+cJugador * cJuego::Desempate(cJugador*j1, cJugador*j2)
+{
+	//se desempata por ataque
+
+	if (j1->getATTOTAL() < j2->getATTOTAL())
+		return j2;
+	if (j1->getATTOTAL() > j2->getATTOTAL())
+		return j1;
+	if (j1->getATTOTAL() == j2->getATTOTAL())
+	{
+		cout << endl << "Ha habido un empate entre los jugadores " << j1->getN_Jugador() << " y " << j2->getN_Jugador() << endl;
+		return NULL;
+	}
+
+	return NULL;
+}
+
+cJugador * cJuego::BuscarMax()
+{
+	cJugador*Ganador = vector[0];
+
+	for (unsigned int i = 0; i < CA; i++)
+	{
+		if (vector[i]->PaisesDominados->getCA() > Ganador->PaisesDominados->getCA())
+		{
+			Ganador = vector[i];
+
+		}
+	}
+	for (unsigned int k = 0; k < CA; k++)
+	{
+		if (Ganador->PaisesDominados->getCA() == vector[k]->PaisesDominados->getCA())
+			if (Ganador->getN_Jugador() != vector[k]->getN_Jugador())
+			{
+				Ganador = Desempate(Ganador, vector[k]);
+				if (Ganador == NULL)
+					break;
+			}
+	}
+
+	return Ganador;
 }
 
 //IMPRIMIR
@@ -761,73 +937,10 @@ void cJuego::ImprimirGanador() {
 	system("pause");
 }
 
-void cJuego::CerrarJuego()
-{
-}
-
-cJugador * cJuego::getGanador()
-{
-	cJugador*Ganador=NULL;
-
-	for (int k = 0; k < CA; k++)
-	{
-		if (vector[k]->PaisesDominados->getCA() == N_PAISES_TOTALES)
-		{
-			Ganador = vector[k];
-		}
-	}
-		if(Ganador==NULL)
-		{
-			Ganador = BuscarMax();
-			
-		}
-		
-
-	return Ganador;
-}
-
-cJugador * cJuego::Desempate(cJugador*j1,cJugador*j2)
-{
-	//se desempata por ataque
-
-	if (j1->getATTOTAL() < j2->getATTOTAL())
-		return j2;
-	if (j1->getATTOTAL() > j2->getATTOTAL())
-		return j1;
-	if (j1->getATTOTAL() == j2->getATTOTAL())
-	{
-		cout << endl << "Ha habido un empate entre los jugadores " << j1->getN_Jugador() << " y " << j2->getN_Jugador() << endl;
-		return NULL;
-	}
-
-}
-cJugador * cJuego::BuscarMax()
-{
-	cJugador*Ganador=vector[0];
-	int k;
-	for (int i = 0; i < CA; i++)
-	{
-		if (vector[i]->PaisesDominados->getCA() > Ganador->PaisesDominados->getCA())
-		{
-			Ganador = vector[i];
-			
-		}
-	}
-	for ( k = 0; k < CA; k++)
-	{
-		if (Ganador->PaisesDominados->getCA() == vector[k]->PaisesDominados->getCA())
-			if (Ganador->getN_Jugador() != vector[k]->getN_Jugador())
-			{
-				Ganador = Desempate(Ganador, vector[k]);
-				if (Ganador == NULL); break;
-			}
-	}
-	
-	return Ganador;
+void cJuego::CerrarJuego(){
 }
 
 //EXTERNA
-/*
 bool repetidos(int n, int num[])
 {
 	for (int i = 0; i<N_PAISES_TOTALES; i++)
@@ -836,5 +949,5 @@ bool repetidos(int n, int num[])
 
 	return false;
 }
-*/
+
 

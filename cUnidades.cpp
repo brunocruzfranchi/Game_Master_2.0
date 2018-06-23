@@ -19,6 +19,7 @@
 #define AT_Caballeros 40
 #define hp_Caballeros 80
 #define HP_Caballeros 100
+
 const char cadena[] = { "ABCDEFGHIJKLMNOPQRSTUVWXYZ" "0123456789" };
 
 unsigned int cUnidades::Contador = 0;
@@ -53,9 +54,7 @@ cUnidades::cUnidades(string tipo):Tipo(tipo),Clave(to_string(Contador)){
 		maxhp = HP_Caballeros;
 
 	}
-	//srand(time(NULL));
 	at = minat + rand() % (maxat - minat + 1);
-	//srand(time(NULL));
 	hp = minhp + rand() % (maxhp - minhp + 1);
 	this->AT = at;
 	this->HP = hp;
