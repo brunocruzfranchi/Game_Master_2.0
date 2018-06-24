@@ -57,8 +57,8 @@ public:
 		//Durante Juego
 		cPais* Buscar_p_atacante(int k);
 		cPais* Buscar_p_atacado(cPais* atacante);
-		cTropa* Buscar_t_atacante(int k, cPais* atacante);
-		cTropa* Buscar_t_atacada(int h, cPais* atacado);
+		cTropa* Buscar_t_atacante(int k, cPais* atacante,cPais * atacado);
+		cTropa* Buscar_t_atacada(int h, cPais*atacante,cPais* atacado);
 		cTropa* PedirTropaDistribucion(int tipo, int k);
 		void Movilizar_tropas(int k);
 		void AgregarTropaaPais(int k, int tam_tropa,cPais* pais, int aleatorio);

@@ -37,6 +37,9 @@ cJuego::cJuego(int cant_jug):cListaT<cJugador>(cant_jug) {
 }
 
 cJuego::~cJuego() {
+
+	delete Jugador_de_turno;
+	delete Paises; 
 }
 
 //CREAR
@@ -285,11 +288,9 @@ void cJuego::AsignarTropas(int n) {
 		
 		int aux_ca = vector[k]->PaisesDominados->getCA();
 		
-		(aux_ca % 2 != 0) ? 
-			aux_ca = aux_ca / 2 : aux_ca = (aux_ca - 1) / 2;
+		(aux_ca % 2 != 0) ? aux_ca = aux_ca / 2 : aux_ca = (aux_ca - 1) / 2;
 		
-		(n == 0) ?
-			aux_ca = N_TROPAS_INICIAL : 0;
+		(n == 0) ? aux_ca = N_TROPAS_INICIAL : 0;
 
 		int aleatorio = -1, tam_tropa, min, max;
 		string tipo, nombre_pais;
@@ -342,7 +343,7 @@ void cJuego::AsignarTropas(int n) {
 
 			} while (aux == INT_MAX);// busco la posicion en la lista INT_MAX si no se encontro => vuelvo a pedir
 
-			cPais* pais = vector[k]->PaisesDominados->BuscarItem(opcion_pais);//busco el pais elegido y lo guardo en un puntero
+			cPais* pais = vector[k]->PaisesDominados->BuscarItem(opcion_pais); //busco el pais elegido y lo guardo en un puntero
 
 			do {
 				cout << endl << "Distribucion de tropa" << endl
@@ -449,6 +450,7 @@ void cJuego::ReasignarPais(cPais* atacado, cPais* atacante) { //listo
 
 	ganador->MoverTropas(atacado, atacante);
 
+
 } //listo
 
 //PARTIDA
@@ -499,18 +501,19 @@ int cJuego::Jugar() {
 
 				cPais* pais_atacado = Buscar_p_atacado(pais_atacante);			//buscar pais atacada
 
-				cTropa* tropa_atacante = Buscar_t_atacante(k, pais_atacante);	//pedir tropa atacante
+				cTropa* tropa_atacante = Buscar_t_atacante(k, pais_atacante,pais_atacado);	//pedir tropa atacante
 
-				cTropa* tropa_atacada = Buscar_t_atacada(k, pais_atacado);		//pedir tropa atacada
+				cTropa* tropa_atacada = Buscar_t_atacada(k,pais_atacante, pais_atacado);		//pedir tropa atacada
 
 				//Ataque y Contraataque
+				if (tropa_atacada != NULL)
+				{
+					bool aux_exito = *(tropa_atacante) >> (tropa_atacada);
 
-				bool aux_exito = *(tropa_atacante)>>(tropa_atacada);
-
-				if (pais_atacado->getCA() == 0) {
-					ReasignarPais(pais_atacado, pais_atacante);
+					if (pais_atacado->getCA() == 0) {
+						ReasignarPais(pais_atacado, pais_atacante);
+					}
 				}
-
 				int at_disp = N_MAX_ATAQUES - h - 1;
 
 				int opc_continuar = 0;
@@ -660,7 +663,7 @@ cPais* cJuego::Buscar_p_atacado(cPais* atacante){
 	return aux_atacado;
 }
 
-cTropa* cJuego::Buscar_t_atacante(int k, cPais* atacante){
+cTropa* cJuego::Buscar_t_atacante(int k, cPais* atacante,cPais* atacado){
 
 	string opcion_tropa;
 	cTropa* tropa_atacante = NULL;
@@ -668,6 +671,8 @@ cTropa* cJuego::Buscar_t_atacante(int k, cPais* atacante){
 
 
 	vector[k]->ImprimirTropasenPais(atacante);
+	cout << endl << "Posibles tropas de ataque " << endl;
+	atacado->getJugador()->ImprimirTropasenPais(atacado);
 
 	cout << "Con que tropa desea atacar? " << endl << "Ingrese clave de la tropa: ";
 
@@ -686,19 +691,21 @@ cTropa* cJuego::Buscar_t_atacante(int k, cPais* atacante){
 
 }
 
-cTropa* cJuego::Buscar_t_atacada(int h, cPais * atacado){
+cTropa* cJuego::Buscar_t_atacada(int h,cPais*atacante, cPais * atacado){
 
 	string opcion_tropa;
 	cTropa* tropa_atacada = NULL;
-	int k;
-
-	if (h == 0)	k = 1;
-	else k = 0;
-
+	int k = getItemPos(atacado->getNJugador());
+	
 	vector[k]->ImprimirTropasenPais(atacado);
-
-	cout << "A que tropa desea atacar? " << endl << "Ingrese clave de la tropa: ";
-
+	bool tropas_atacado = atacado->Exiten_Tropas_en_el_Pais();
+	if (tropas_atacado == false)
+	{
+		ReasignarPais(atacado, atacante);
+		cout << endl << "Ha dominado el pais" << endl;
+		return NULL;
+	}
+	cout << endl << "Ingrese la clave de la tropa que desea atacar" << endl;
 	int aux_tropa_atacada;
 	do {
 		cin >> opcion_tropa; cout << endl; //pido clave de la tropa
