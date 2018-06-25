@@ -69,9 +69,6 @@ public:
 	}
 
 protected:
-	///Atributos
-	//const int Max_Uni;
-	//const int Min_Uni;
-
+	
 };
 #endif // !defined(EA_8A40037E_4D59_4c58_A939_91FA7C445ABE__INCLUDED_)

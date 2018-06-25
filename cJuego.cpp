@@ -450,6 +450,8 @@ void cJuego::ReasignarPais(cPais* atacado, cPais* atacante) { //listo
 
 	ganador->MoverTropas(atacado, atacante);
 
+	cout << endl<<"Ha dominado " << atacado->getclave();
+
 
 } //listo
 
@@ -513,6 +515,14 @@ int cJuego::Jugar() {
 					if (pais_atacado->getCA() == 0) {
 						ReasignarPais(pais_atacado, pais_atacante);
 					}
+					
+				}
+
+				cJugador*jugador_atacado = pais_atacado->getJugador();
+				if (jugador_atacado->getCA() == 0)
+				{
+					ImprimirGanador();
+					CerrarJuego();
 				}
 				int at_disp = N_MAX_ATAQUES - h - 1;
 
@@ -697,12 +707,12 @@ cTropa* cJuego::Buscar_t_atacada(int h,cPais*atacante, cPais * atacado){
 	cTropa* tropa_atacada = NULL;
 	int k = getItemPos(atacado->getNJugador());
 	
-	vector[k]->ImprimirTropasenPais(atacado);
+	//vector[k]->ImprimirTropasenPais(atacado);
 	bool tropas_atacado = atacado->Exiten_Tropas_en_el_Pais();
 	if (tropas_atacado == false)
 	{
 		ReasignarPais(atacado, atacante);
-		cout << endl << "Ha dominado el pais" << endl;
+		
 		return NULL;
 	}
 	cout << endl << "Ingrese la clave de la tropa que desea atacar" << endl;
