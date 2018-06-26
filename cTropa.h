@@ -55,7 +55,7 @@ public:
 	string getNombrePais() { return Pais->getNombre(); }
 	int getATtotal() { return ATTotal; }
 	int getHPTotal() { return HPTotal; }
-	void getHPTotal(int h) { HPTotal = h; }
+	void setHPTotal(int h) { HPTotal = h; }
 
 	///Template
 	string getclave() { return Clave; }

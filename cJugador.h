@@ -54,7 +54,7 @@ public:
 		//void setPaisesD(cListaT<class cPais> *listad) { PaisesDominados = listad; }
 
 		//Lista Template
-		string getclave() { return N_jugador; }
+		string getclave() const { return N_jugador; }
 		void ImprimirJugador() { cout << "Jugador " << N_jugador << endl;}
 		void Imprimir();
 	//	void operator+(cPais * item);
