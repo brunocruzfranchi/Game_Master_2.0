@@ -40,7 +40,6 @@ class cPais:public cListaT<cPais>{
 			bool ListarPosiblesMov();
 			bool ListarLimitrofesPropios();
 			bool Exiten_Tropas_en_el_Pais();
-
 			bool TengoLimitrofesPropios();
 
 			//Setters
@@ -59,7 +58,6 @@ class cPais:public cListaT<cPais>{
 			//Lista Template
 			string getclave() const { return Clave;}
 			void Imprimir() { cout << setw(8) << Clave << setw(25) << Nombre << setw(8) << endl; }
-			void Encabezado() { cout << setw(8) << "Clave" << setw(25) << "Nombre" << setw(8) << endl; }
 			
 };
 

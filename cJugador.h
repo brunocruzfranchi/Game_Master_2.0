@@ -33,6 +33,8 @@ public:
 		//principales
 		void MoverTropas(cPais *pais, cPais*atacante);
 
+		void ImprimirTropas(cPais * atacante, cPais * atacado);
+
 		void ImprimirTropasenPais(cPais*pais);
 		void ImprimirTropasenPais(string nombre);
 		void ImprimirTropasenPais(string nombre,string tipo);

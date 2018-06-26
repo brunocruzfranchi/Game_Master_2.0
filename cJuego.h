@@ -28,8 +28,7 @@ using namespace std;
 class cPais;
 class cTropa;
 class cJugador;
-class cJuego : public cListaT<cJugador>
-{
+class cJuego : public cListaT<cJugador>{
 
 public:
 	///Atributos
@@ -78,6 +77,11 @@ public:
 		void Imprimir();
 		void Bienvenida();
 		void ImprimirGanador();
+		void ImprimirTurnoAtarque();
+		void ImprimirJugador(int k);
+		void PrintJug1();
+		void PrintJug2();
+		void EncabezadoPais();
 		void CerrarJuego();
 		cJugador* getGanador();
 		cJugador* Desempate(cJugador*j1, cJugador*j2);

@@ -499,11 +499,11 @@ int cJuego::Jugar() {
 
 				//Buscar pais atacado, pais atacante, tropa atacante, tropa atacado
 
-				cPais* pais_atacante = Buscar_p_atacante(k);					//busco el pais elegido y lo guardo en un puntero
+				cPais* pais_atacante = Buscar_p_atacante(k);									//busco el pais elegido y lo guardo en un puntero
 
-				cPais* pais_atacado = Buscar_p_atacado(pais_atacante);			//buscar pais atacada
+				cPais* pais_atacado = Buscar_p_atacado(pais_atacante);							//buscar pais atacada
 
-				cTropa* tropa_atacante = Buscar_t_atacante(k, pais_atacante,pais_atacado);	//pedir tropa atacante
+				cTropa* tropa_atacante = Buscar_t_atacante(k, pais_atacante,pais_atacado);		//pedir tropa atacante
 
 				cTropa* tropa_atacada = Buscar_t_atacada(k,pais_atacante, pais_atacado);		//pedir tropa atacada
 
@@ -578,9 +578,17 @@ int cJuego::Jugar() {
 //JUEGO
 void cJuego::CambiarTurno(cJugador** Jugador, int k){
 
-	Jugador_de_turno = Jugador[k];
-	cout << endl << "Jugador de turno: Jugador " << Jugador[k]->getclave()<<endl;
+	ImprimirTurnoAtarque();
 
+	Jugador_de_turno = Jugador[k];
+
+	if (Jugador[k]->getclave() == "1")
+		PrintJug1();
+	else
+		PrintJug2();
+
+	/*cout << endl << "Jugador de turno: Jugador " << Jugador[k]->getclave() <<endl;
+	*/
 }
 
 int cJuego::getRonda() {
@@ -594,10 +602,14 @@ cPais* cJuego::Buscar_p_atacante(int k){
 	string opcion_pais_atacante;
 	int pos_atacante;
 	
+	EncabezadoPais();
+
 	do {		
 		//listo y pido pais atacante
 		vector[k]->PaisesDominados->Listar();
-		cout << "Con que pais quiere atacar?" << endl << "Ingrese el nombre del pais: ";
+		cout << endl;
+		cout << fixed;
+		cout << setw(30) << right << "Con que pais quiere atacar?" << endl << setw(30) << "Ingrese la clave del pais: ";
 		cin >> opcion_pais_atacante;
 		cout << endl;
 		try{
@@ -607,11 +619,13 @@ cPais* cJuego::Buscar_p_atacante(int k){
 			cout << e->what() << endl;
 		}
 		aux_atacante = vector[k]->PaisesDominados->BuscarItem(opcion_pais_atacante);
+
+		//TODO: VER SI POSEE UN PAIS LIMITROFE AL QUE PUEDA ATACAR
+
 		/*
 		//EXISTEN TROPAS?
 		try {
-			bool exiten_tropas = aux_atacante->Exiten_Tropas_en_el_Pais();
-			if (exiten_tropas == false) {
+			 {
 				string nombre = aux_atacante->getNombre();
 				throw nombre;
 			}
@@ -622,6 +636,12 @@ cPais* cJuego::Buscar_p_atacante(int k){
 			pos_atacante = INT_MAX;
 			system("cls");
 		}*/
+
+		if (pos_atacante == INT_MAX) {
+			system("cls");
+			ImprimirTurnoAtarque();
+			ImprimirJugador(k);
+		}
 
 	} while (pos_atacante == INT_MAX);															// busco la posicion en la lista INT_MAX si no se encontro => vuelvo a pedir
 	
@@ -637,11 +657,10 @@ cPais* cJuego::Buscar_p_atacado(cPais* atacante){
 
 	do//listo y pido pais atacado
 	{
-		system("cls");
-
+		cout << "\t\t" << endl;
+		
 		atacante->ListarPosiblesAtaques();
-
-		cout << "Que pais quiere atacar?" << endl << "Ingrese el nombre del pais: ";
+		cout << setw(26) << right << "Que pais quiere atacar?" << endl << setw(30) << "Ingrese la clave del pais: ";
 		cin >> opcion_pais_atacado;
 		cout << endl;
 
@@ -679,10 +698,17 @@ cTropa* cJuego::Buscar_t_atacante(int k, cPais* atacante,cPais* atacado){
 	cTropa* tropa_atacante = NULL;
 	//pido tropa atacante
 
-
+	/*
 	vector[k]->ImprimirTropasenPais(atacante);
 	cout << endl << "Posibles tropas de ataque " << endl;
 	atacado->getJugador()->ImprimirTropasenPais(atacado);
+	*/
+
+	system("cls");
+	ImprimirTurnoAtarque();
+	ImprimirJugador(k);
+
+	vector[k]->ImprimirTropas(atacante, atacado);
 
 	cout << "Con que tropa desea atacar? " << endl << "Ingrese clave de la tropa: ";
 
@@ -701,7 +727,7 @@ cTropa* cJuego::Buscar_t_atacante(int k, cPais* atacante,cPais* atacado){
 
 }
 
-cTropa* cJuego::Buscar_t_atacada(int h,cPais*atacante, cPais * atacado){
+cTropa* cJuego::Buscar_t_atacada(int h, cPais*atacante, cPais * atacado){
 
 	string opcion_tropa;
 	cTropa* tropa_atacada = NULL;
@@ -715,7 +741,7 @@ cTropa* cJuego::Buscar_t_atacada(int h,cPais*atacante, cPais * atacado){
 		
 		return NULL;
 	}
-	cout << endl << "Ingrese la clave de la tropa que desea atacar" << endl;
+	cout << endl << "Ingrese la clave de la tropa que desea atacar: ";
 	int aux_tropa_atacada;
 	do {
 		cin >> opcion_tropa; cout << endl; //pido clave de la tropa
@@ -928,23 +954,24 @@ void cJuego::Imprimir() {
 
 void cJuego::Bienvenida() {
 	
-	cout << "      BIENVENIDOS A : " << endl << endl;
+	cout << "  BIENVENIDOS A : " << endl ;
 	
-	cout << R"(
-	    ..--------::          ::----::      ..------::    ::------..  ::------------..      ..------::    ::------..      ..------::        ..------..  ::--------------..::------------..::------------..      
-        ==%%@@@@@@@@@@::      ::@@@@@@%%..    --@@@@@@##    ##@@@@@@--..%%@@@@@@@@@@@@==      --@@@@@@##    ##@@@@@@--      ==@@@@@@**      ..##@@@@@@##..%%@@@@@@@@@@@@@@::%%@@@@@@@@@@@@--##@@@@@@@@@@@@**..    
-      ==@@@@@@@@%%@@@@==    ..**@@@@@@@@==    --@@@@@@%%..::@@@@@@@@::::@@@@@@%%%%%%%%--      --@@@@@@%%..::@@@@@@@@::    ..##@@@@@@@@..    **@@@@@@%%@@==##%%@@@@@@@@%%**::@@@@@@%%%%%%%%::##@@@@##++@@@@@@--    
-    ::@@@@@@++::  ..--::    --@@@@##@@@@**    ==@@@@@@@@--++@@@@@@@@::--@@@@%%                ==@@@@@@@@--++@@@@@@@@::    ==@@@@%%@@@@==    ##@@@@==  --..    ++@@@@--    --@@@@%%          ##@@@@--  ++@@@@==    
-    **@@@@**  --++++++--    ##@@@@::##@@%%..  ++@@@@@@@@++##@@@@@@%%..--@@@@@@%%%%%%==        ++@@@@@@@@++##@@@@@@%%..  ..@@@@@@--@@@@%%..  ==@@@@@@--        ++@@@@--    --@@@@@@%%%%%%==  ##@@@@==--%%@@@@::    
-    ##@@@@--  ++@@@@@@++  --@@@@@@##@@@@@@==  ++@@%%##@@%%@@@@##@@%%  ==@@@@@@@@@@@@==        ++@@%%##@@%%@@@@##@@%%    ++@@@@@@##@@@@@@--    ++@@@@@@==      ++@@@@--    ==@@@@@@@@@@@@==  ##@@@@##@@@@%%--      
-    **@@@@++  --##@@@@++..##@@@@@@@@@@@@@@##..++@@##++@@@@@@%%**@@%%  ==@@@@##------..        ++@@##++@@@@@@%%**@@%%  ..%%@@@@@@@@@@@@@@++      --@@@@@@::    ++@@@@--    ==@@@@##------..  ##@@@@==@@@@##..      
-    ::@@@@@@##++##@@@@++++@@@@##------@@@@@@--**@@**--@@@@@@++++@@%%  ==@@@@%%++++++==        **@@++--@@@@@@++++@@%%..**@@@@**----==@@@@%%--%%**++@@@@@@--    ++@@@@--    ==@@@@%%++++++==  ##@@@@--++@@@@==      
-      ==@@@@@@@@@@@@@@++%%@@@@::      **@@@@++%%@@++..%%@@@@::++@@%%  ==@@@@@@@@@@@@%%        %%@@++..%%@@@@::++@@%%--@@@@@@::      ##@@@@++@@@@@@@@@@++      **@@@@--    ==@@@@@@@@@@@@%%..##@@@@----@@@@**      
-        ::==++++++++==--++++==        ::++++--==++--  ==++==  --++==  --++++++++++++==        ==++--  ==++==  --++==--++++==        --++++--==++++++==..      ==++++::    --++++++++++++==..++++++....++++==      
+	cout << R"(                                                                                                                                         
+  -------------------------------------------------------------------------------------------------------------------------------------------------- 
+  |      .#&@@@&&.      ,%%%%      ,%%%%,   ,%%%%*  %%%%%%%%%%       %%%%%    %%%%%      ,%%%%,      .&@@@   ,%%%%%%%%%%% %%%%%%%%%%  %%%%%%%%*    |  
+  |    @@@@@@@@@@*     ,@@@@@@     (@@@@@   @@@@@,  @@@@@@@@@@      .@@@@@   @@@@@@     ,@@@@@@     @@@@@@@@ /@@@@@@@@@@& @@@@@@@@@@  @@@@@@@@@@&  | 
+  |  .@@@@            *@@@ @@@#    %@@@@@, @@@&@@.  @@@@            *@@%@@% #@@#@@@    *@@@ &@@@    @@@@         @@@@     @@@&        @@@,   @@@&  | 
+  |  &@@@.  /@@@@@   (@@@,,/@@@.   @@@,@@@/@@*&@@.  @@@@@@@@@       #@@,@@@.@@&/@@&   .@@@*,,@@@#    #@@@@,      @@@&     @@@@@@@@&   @@@.@@@@@,   | 
+  |  /@@@#    @@@%  &@@@@@@@@@@@   @@& @@@@@& @@@   @@@%            @@@..@@@@@ (@@%  /@@@@@@@@@@@*      @@@@     @@@#     @@@*        @@@  @@@%    | 
+  |   /@@@@@@@@@@( @@@@,     @@@@  @@% ,@@@@  @@@  .@@@@@@@@@&      @@@  @@@@. %@@% (@@@,     @@@@ /@@@@@@@#    .@@@(    .@@@@@@@@@/ .@@@  ,@@@(   | 
+  |      ./%%%/*. ,,,,.      .,,,. ,,.  ,,,.  ,,,  .,,,,,,,,,.      ,,,  .,,,  ,,,..,,,.       ,,,, /#%%/.      .,,,.    .,,,,,,,,,  .,,,   ,,,,   |
+  -------------------------------------------------------------------------------------------------------------------------------------------------- 
 )" << '\n';
 
-	cout << "LAS REGLAS, COMO FUNCIONA EL SISTEMA DE ATAQUE, TIPOS DE TROPAS, CONTRA QUIENES SON FUERTES, BLA BLA BLA" << endl;
+	cout << "    LAS REGLAS, COMO FUNCIONA EL SISTEMA DE ATAQUE, TIPOS DE TROPAS, CONTRA QUIENES SON FUERTES, BLA BLA BLA" << endl;
 
+	system("pause");
+	system("cls");
 }
 
 void cJuego::ImprimirGanador() {
@@ -955,6 +982,68 @@ void cJuego::ImprimirGanador() {
 	cout << endl << " El jugador " << Ganador->getN_Jugador() << " ha ganado";
 	system("pause");
 }
+
+void cJuego::ImprimirTurnoAtarque() {
+	cout << endl << R"(  
+   -------------------------------------------------------------------------------------------------------------------------------------------------
+   |                                                                                                                              %&&%      %&&%   |
+   | %%%%%%%(%%%   %%  %%&&%   %%%   %%    *@@%       %%&&&*   %%%%%%%       %%%   %%%%%%%,   %%%      ,@@&    %%%   %%  %%%%%%   #&&&%    %&&&#   |
+   |   .@@   @@@   @@ .@@  @@@ @@@@  @@  @@@  &@@     @@   @@@ @@@          @@@@#    @@@     @@#@@   @@@  (@@, @@@   @@ .@@@        #&&&( (&&&     |
+   |   *@@   @@@  ,@@ *@@&@@@  @@ @@ @@ @@@    @@@    @@   @@@ @@@'''      @@%%@@    @@@    @@%%@@/ @@@    @@@ @@@  ,@@ *@@@'''        #&&%&&      | 
+   |   &@@   @@@  @@@ &@@ @@&  @@  @@@@ .@@@  @@@     @@..@@@. @@@@@@@   ,@@   &@@   @@@   @@*  .@@  @@@  @@@, @@@  @@@ &@@@@@@        %&%&%       |
+   |    --     ----                        ----                                                        ----      ----             #%#%&%   %&%#%#  |
+   ------------------------------------------------------------------------------------------------------------------------------ *(%#     #%/*) ---    
+)" << '\n';
+
+	/*
+
+	cout << endl << R"(               
+                                                                                                                            ..,               .,,    
+                                                                                                                             ,...,         ....,     
+                                                                                                                              ,,....      ....,      
+  @@@@@@@/@@.  @@% @@@@@&  @@@.  @@. .&@@@@*     @@@@@&,  @@@@@@.      @@@   @@@@@@@/  ,@@@     %@@@@*  /@@   @@ *@@@@@@        .,....  ,..,,        
+    /@@   @@   @@/ @@. ,@& @@@@, @@ %@&   %@@    @@,  @@& @@/         @@,@@    /@@     @@#@%  %@@   %@@ #@@  .@@ /@@               ,..,..,.          
+    #@@   @@   @@, @@ @@,  @@ @@/@@ @@.   ,@@    @@.  &@@ @@@@@*     @@@@@@%   #@@   .@@@@@@* @@/   ,@@ &@&  *@@ (@@@@@             ...,,            
+    &@&   @@@@@@@  @@  @@  @@  %@@@  @@@@@@@     @@@@@@&  @@@@@@    @@/   @@/  &@&  /@@   ,@@. @@@@@@@@,/@@@@@@% &@@@@@%      .*, ..., .,., .**      
+                                                                                                                                ***,      ***,       
+                                                                                                                              .##/**,    **,##/      
+                                                                                                                            ,***             .***    
+                                                                                                                             *.                ,     
+         )" << '\n';
+		 */
+}
+
+void cJuego::ImprimirJugador(int k) {
+	if (vector[k]->getclave() == "1")
+		PrintJug1();
+	else
+		PrintJug2();
+}
+
+void cJuego::PrintJug1() {
+	cout << endl << R"(                                                                                                    
+     @@                        @@               @@@             
+     @@ @@  @@  @@@@@ @@@@  @@@@@ @@@@& @@@,   #/@%             
+     @@ @@  @@ @@  @@ @..@  @@  @ @* @@ @@ '     @@              
+   @@@   @@.@   &@.@@ @@ @  @@,@@ .@@@- @@       @@              
+                 @@@@                                            
+  )" << '\n';
+}
+
+void cJuego::PrintJug2() {
+	cout << endl << R"(                                                                                                    
+                                                                     
+    @@                        @@              @@@@             
+    @@ @@  @@  @@@@@ @@@@  @@@@@ @@@@& @@@,     @@             
+    @@ @@  @/ @@  @@ @..@  @@  @ @* @@ @@ '   @@              
+  @@@   @@.@   &@.@@ @@ @  @@,@@ .@@@- @@    @@@@@             
+                @@@@                                            
+                                                                     
+    )" << '\n';
+}
+
+
+void cJuego::EncabezadoPais() { cout << setw(8) << "Clave" << setw(25) << "Nombre del Pais" << setw(8) << endl; }
 
 void cJuego::CerrarJuego(){
 }

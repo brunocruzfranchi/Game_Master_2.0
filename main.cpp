@@ -6,7 +6,7 @@
 
 
 int main() {
-	system("mode con: cols=1920 lines=1080");
+	system("mode con: cols=1280 lines=720");
 
 	//Inicio Programa
 		srand(time(NULL));

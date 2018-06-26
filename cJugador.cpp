@@ -60,9 +60,61 @@ void cJugador::MoverTropas(cPais*ganado , cPais*atacante){
 	cout <<endl<< "No es posible mover mas tropas" << endl;
 }
 
+void cJugador::ImprimirTropas(cPais* atacante, cPais* atacado){
+
+	cout << setw(20) << "   Tropas disponibles en: " << atacante->getNombre() << right << setw(80) << "|    Tropas disponibles en:" << atacado->getNombre() << endl;
+ 	vector[0]->EncabazadoTropas();
+	cout << "               |";
+	vector[0]->EncabazadoTropas();
+
+	cJugador* jug_atacado = atacado->getJugador();
+
+	int CA_MAX = CA;
+	int CA_atacado = jug_atacado->getCA();
+	if (CA_MAX < CA_atacado)
+		CA_MAX = CA_atacado;
+
+	for (unsigned int i = 0; i < CA_MAX; i++) {
+
+		int cont = 0;
+		int cont1 = 0;
+		cout << endl;
+		
+		if (i < CA) {
+			if (vector[i]->getPais()->getclave() == atacante->getclave())
+			{
+				vector[i]->Imprimir();
+				cout << setw(16) << "|";
+				cont++;
+			}
+		}
+
+		if (cont == 0) {
+			cout << setw(90) << "|";
+		}
+
+	 	if (i < CA_atacado) {
+			if (jug_atacado->vector[i]->getPais()->getclave() == atacado->getclave())
+			{
+				jug_atacado->vector[i]->Imprimir();
+				cont1++;
+				cout << setw(16) << "|";
+			}
+		}
+		if (cont == 0 && cont1 == 0) {
+			cout << setw(90) << "|";
+		}
+		if(cont1 == 0)
+			cout << setw(90) << "|";
+	}
+
+	cout << endl;
+}
+
 void cJugador::ImprimirTropasenPais(cPais * pais)
 {
 	cout << endl << "Tropas disponibles en "<< pais->getNombre() << endl;
+
 	for (unsigned int i = 0; i < CA; i++)
 	{
 		if (vector[i]->getPais()->getclave() == pais->getclave())

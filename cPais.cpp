@@ -49,7 +49,6 @@ bool cPais::ListarPosiblesMov(){
 		if (vector[i]->getJugador() == Jugador)
 		{
 			Imprimir();
-			//TODO: IMPRIMIR LIMITROFES SEGUN EL JUGADOR
 			Jugador->ImprimirTropasenPais(Nombre);
 			flag = true;
 		}
