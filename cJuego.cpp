@@ -39,7 +39,7 @@ cJuego::cJuego(int cant_jug):cListaT<cJugador>(cant_jug) {
 cJuego::~cJuego() {
 
 	delete Jugador_de_turno;
-	delete Paises; 
+	
 }
 
 //CREAR
@@ -52,7 +52,7 @@ void cJuego::CrearJugadores(int n) {
 
 void cJuego::CrearPaises() {
 
-	Paises = new cListaT<cPais>(N_PAISES_TOTALES);
+//	Paises = new cListaT<cPais>(N_PAISES_TOTALES);
 	cPais *paises[N_PAISES_TOTALES];
 	//Genero los paises
 	for (int i = 0; i < N_PAISES_TOTALES; i++) {
@@ -113,6 +113,7 @@ void cJuego::CrearPaises() {
 		default:
 			break;
 		}
+		Paises = paises[12]->getLista_Paises();
 	}
 
 	//Genero mapa con paises limitrofes
@@ -214,10 +215,10 @@ void cJuego::CrearPaises() {
 	}
 
 	//For agregando los pais a lista paises;
-	for (int i = 0; i < N_PAISES_TOTALES; i++){
+/*	for (int i = 0; i < N_PAISES_TOTALES; i++){
 		*(Paises) +( paises[i]);
 	}
-
+	*/
 } //listo
 
 //ASIGNACIONES
@@ -717,7 +718,7 @@ cTropa* cJuego::Buscar_t_atacante(int k, cPais* atacante,cPais* atacado){
 	do {
 		cin >> opcion_tropa; cout << endl; //pido clave de la tropa
 		aux_tropa_atacante = vector[k]->getItemPos(opcion_tropa);
-		if ((*(vector[k]) == (aux_tropa_atacante))->getPais() != atacante)//chequeo que la tropa este en mi pais atacante
+		if ((*(vector[k]) == (aux_tropa_atacante))->getPais() != atacante)//chequeo que la tropa este en mi pais atacante !!!!
 			aux_tropa_atacante = INT_MAX;
 		else
 			tropa_atacante = *(vector[k]) == (aux_tropa_atacante);
@@ -1042,8 +1043,8 @@ void cJuego::PrintJug2() {
     )" << '\n';
 }
 
-
-void cJuego::EncabezadoPais() { cout << setw(8) << "Clave" << setw(25) << "Nombre del Pais" << setw(8) << endl; }
+void cJuego::EncabezadoPais()
+{ cout << setw(8) << "Clave" << setw(25) << "Nombre del Pais" << setw(8) << endl; }
 
 void cJuego::CerrarJuego(){
 }

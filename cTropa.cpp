@@ -151,3 +151,22 @@ void cTropa::operator<<(cTropa * t){
 //void cTropa::operator!=(int i){
 //	RecibirDanio(i);
 //}
+
+ostream& operator<<(ostream&out, cTropa&t) {
+	//for (int i = 0; i < t.getCA(); i++)
+	//{
+	out << fixed
+		<< setw(8) << t.getclave()
+		<< setw(13) << t.getTipo()
+		<< setw(18) << t.getATTotal()
+		<< setw(20) << t.getHPTotal()
+		<< setw(15) << t.getCA() << endl;
+	//}
+	return out;
+	/*cout <<
+	"Clave: " << Clave << setw(8) <<
+	"Tipo: " << Tipo << setw(8) <<
+	"Ataque Total: " << ATTotal << setw(8) <<
+	"Vida Total: " << HPTotal << setw(8) <<
+	"Unidades: " << CA;*/
+}

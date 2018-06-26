@@ -53,28 +53,14 @@ public:
 	///getters
 	cPais* getPais() { return Pais; }
 	string getNombrePais() { return Pais->getNombre(); }
-	int getATtotal() { return ATTotal; }
+	int getATTotal() { return ATTotal; }
 	int getHPTotal() { return HPTotal; }
 	void setHPTotal(int h) { HPTotal = h; }
 
 	///Template
 	string getclave() { return Clave; }
 	string getTipo() { return Tipo; }
-	void Imprimir() {
-		cout << fixed;
-		cout << setw(8) << Clave;
-		cout << setw(13) << Tipo;
-		cout << setw(18) << ATTotal;
-		cout << setw(20) << HPTotal;
-		cout << setw(15) << CA;
-
-		/*cout << 
-			"Clave: " << Clave << setw(8) <<
-			"Tipo: " << Tipo << setw(8) <<
-			"Ataque Total: " << ATTotal << setw(8) <<
-			"Vida Total: " << HPTotal << setw(8) <<
-			"Unidades: " << CA;*/
-	}
+	
 
 	void EncabazadoTropas() {
 		cout << fixed;
@@ -87,3 +73,5 @@ public:
 
 };
 #endif // !defined(EA_8A40037E_4D59_4c58_A939_91FA7C445ABE__INCLUDED_)
+
+ostream& operator<<(ostream&out, cTropa&t);

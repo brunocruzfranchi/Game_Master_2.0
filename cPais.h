@@ -24,6 +24,7 @@ class cPais:public cListaT<cPais>{
 		*/
 
 	public:
+		friend class cJuego;
 		///Atributos
 		const string Clave;
 		static cListaT<cPais> Lista_Paises;

@@ -39,7 +39,7 @@ bool cTropaArqueros::Atacar(cTropa* atacado) {
 		if (aux_atacadoa->getCA() == 0) {
 			cout << "Usted ha ganado el ataque." << endl;
 			return true;
-			//El jugador ha ganado, devolver TRUE para realizar la reubicacion de las tropas en el pais conquistado
+		//El jugador ha ganado, devolver TRUE para realizar la reubicacion de las tropas en el pais conquistado
 		}
 
 		if (aux_atacadoa->getCA() > 0) {

@@ -83,7 +83,7 @@ void cJugador::ImprimirTropas(cPais* atacante, cPais* atacado){
 		if (i < CA) {
 			if (vector[i]->getPais()->getclave() == atacante->getclave())
 			{
-				vector[i]->Imprimir();
+				cout<<*vector[i];
 				cout << setw(16) << "|";
 				cont++;
 			}
@@ -96,7 +96,7 @@ void cJugador::ImprimirTropas(cPais* atacante, cPais* atacado){
 	 	if (i < CA_atacado) {
 			if (jug_atacado->vector[i]->getPais()->getclave() == atacado->getclave())
 			{
-				jug_atacado->vector[i]->Imprimir();
+				cout<<*(jug_atacado->vector[i]);
 				cont1++;
 				cout << setw(16) << "|";
 			}
@@ -119,7 +119,7 @@ void cJugador::ImprimirTropasenPais(cPais * pais)
 	{
 		if (vector[i]->getPais()->getclave() == pais->getclave())
 		{
-			vector[i]->Imprimir();
+			cout<<*vector[i];
 		}
 	}
 }
@@ -131,7 +131,7 @@ void cJugador::ImprimirTropasenPais(string nombre)
 	{
 		if (vector[i]->getPais()->getNombre() == nombre)
 		{
-			vector[i]->Imprimir();
+			cout<<*vector[i];
 		}
 	}
 }
@@ -144,7 +144,7 @@ void cJugador::ImprimirTropasenPais(string nombre, string tipo)
 		if (vector[i]->getPais()->getNombre() == nombre)
 		{
 			if (vector[i]->getTipo() == tipo)
-			vector[i]->Imprimir();
+			cout<<*vector[i];
 		}
 	}
 }
@@ -157,7 +157,7 @@ void cJugador::ImprimirTropasenPais(cPais* pais, string tipo){
 		if (vector[i]->getPais()->getclave() == pais->getclave())
 		{
 			if (vector[i]->getTipo() == tipo)
-				vector[i]->Imprimir();
+				cout<<*vector[i];
 		}
 	}
 }
@@ -167,7 +167,7 @@ int cJugador::getATTOTAL()
 	int acum = 0;
 	for (unsigned int i = 0; i < CA; i++)
 	{
-		acum = vector[i]->getATtotal()+acum;
+		acum = vector[i]->getATTotal()+acum;
 	}
 	return acum;
 }
@@ -180,7 +180,7 @@ int cJugador::Contar_e_ImpTropasenPais(cPais * pais)
 	{
 		if (vector[i]->getPais() == pais)
 		{
-			vector[i]->Imprimir();
+			cout<<*vector[i];
 			N_tropas++;
 		}
 	}
