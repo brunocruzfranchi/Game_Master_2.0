@@ -8,7 +8,7 @@
 
 #include "cTropa.h"
 #include "cPais.h"
-
+#define N_MINIMO_TROPAS_ATAQUE 2
 cJugador::cJugador(int n_jugador):N_jugador(to_string(n_jugador+1)){
 	
 	this->PaisesDominados = new cListaT<cPais>(N_PAISES_TOTALES);
@@ -242,16 +242,31 @@ void cJugador::ListarPosiblesAtacantes()
 {
 	for (int i = 0; i < PaisesDominados->getCA(); i++)
 	{
-		if ((*PaisesDominados)[i]->getCA() > 0)
+		if (PaisValidoparaAtaque((*PaisesDominados)[i]->getclave())==true)
 			((*PaisesDominados)[i])->Imprimir();
 	}
 }
 
 bool cJugador::PaisValidoparaAtaque(string c)
 {
-	//Buscar pais, tiene uqe tener torpas en el pais, paises limitrofes no propios
+	
+	bool aux1 = false;
+	cPais*pais = PaisesDominados->BuscarItem(c);
+	//Limitrofe no propios
+	for (int i = 0; i < pais->getCA(); i++)
+	{
+		if ((*pais)[i]->getJugador() != this)
+		{
+			aux1 = true;
+			break;
+		}
+	}
+	//Tiene que tener mas de una tropa en el pais
+	if (Contar_Tropas_en_Pais(pais->getNombre()) < N_MINIMO_TROPAS_ATAQUE)
+		return false;
 
-	return false;
+		return aux1;
+
 }
 
 void cJugador::Imprimir()//terminar

@@ -601,8 +601,7 @@ cPais* cJuego::Buscar_p_atacante(int k){
 
 	cPais* aux_atacante=NULL;
 	string opcion_pais_atacante;
-	int pos_atacante;
-	
+	int pos_atacante=INT_MAX;
 	
 
 	do {		
