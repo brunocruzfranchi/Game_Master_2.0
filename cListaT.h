@@ -41,7 +41,6 @@ public:
 
 	void Listar();
 	T* BuscarItem(string clave);
-	T* operator==(unsigned int pos);
 	T* operator [](unsigned int pos);
 	T* getItem(unsigned int pos);
 	T* getHPMinimo();
@@ -254,12 +253,7 @@ void cListaT<T>::operator+(T * item) {
 	AgregarItem(item);
 }
 
-template<class T>
-T* cListaT<T>::operator==(unsigned int pos)
-{
-	T*aux = getItem(pos);
-	return aux;
-}
+
 
 template<class T>
 inline T * cListaT<T>::operator[](unsigned int pos)

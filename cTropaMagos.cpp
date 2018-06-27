@@ -183,9 +183,9 @@ void cTropaMagos::AtaqueMagico(cPais * pais, int ataque)
 	int cont = 0;
 	for (int i = 0; i < N_tropas; i++)
 	{
-		if ((*(jugador) == i)->getPais() == pais){
+		if ((*jugador)[i]->getPais() == pais){
 
-			(*(jugador) == (i))->RecibirDanio(ataque);
+			((*jugador)[i])->RecibirDanio(ataque);
 			//*(*(jugador) == (i)) != (ataque);
 			cont++;
 		}

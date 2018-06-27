@@ -229,6 +229,31 @@ int cJugador::Contar_Tropas_en_Pais(string nombre)
 	return cont;
 }
 
+bool cJugador::TropamePertenece(string c)
+{
+	cTropa* aux=BuscarItem(c);
+	if (aux != NULL)
+		return true;
+	else
+	return false;
+}
+
+void cJugador::ListarPosiblesAtacantes()
+{
+	for (int i = 0; i < PaisesDominados->getCA(); i++)
+	{
+		if ((*PaisesDominados)[i]->getCA() > 0)
+			((*PaisesDominados)[i])->Imprimir();
+	}
+}
+
+bool cJugador::PaisValidoparaAtaque(string c)
+{
+	//Buscar pais, tiene uqe tener torpas en el pais, paises limitrofes no propios
+
+	return false;
+}
+
 void cJugador::Imprimir()//terminar
 {
 	cout << "";

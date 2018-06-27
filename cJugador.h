@@ -45,7 +45,9 @@ public:
 		int Contar_Tropas_en_Pais(cPais*pais);
 		int Contar_Tropas_en_Pais(cPais*pais,string tipo);
 		int Contar_Tropas_en_Pais(string nombre);
-
+		bool TropamePertenece(string c);
+		void ListarPosiblesAtacantes();
+		bool PaisValidoparaAtaque(string c);
 		//getters
 		string getN_Jugador() const { return N_jugador; }
 		cListaT<cPais> *getPaisesD() { return PaisesDominados; }	// manejo de tipos de punteros
