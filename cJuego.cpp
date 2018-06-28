@@ -496,7 +496,7 @@ int cJuego::Jugar() {
 			{
 				//Hacer el cambio de turno
 
-				CambiarTurno(vector, k);
+				*(this) == k; //sobrecarga cambiar turno
 
 				//Buscar pais atacado, pais atacante, tropa atacante, tropa atacado
 
@@ -964,6 +964,11 @@ cJugador * cJuego::BuscarMax()
 	}
 
 	return Ganador;
+}
+
+void cJuego::operator==(int k)
+{
+	CambiarTurno(getvector(), k);
 }
 
 //IMPRIMIR

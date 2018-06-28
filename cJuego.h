@@ -11,7 +11,7 @@
 #include "cJugador.h"
 #include "cListaT.h"
 
-
+#include <stdio.h>
 #include <string>
 #include <iostream>
 #include <stdlib.h>
@@ -86,6 +86,7 @@ public:
 		cJugador* getGanador();
 		cJugador* Desempate(cJugador*j1, cJugador*j2);
 		cJugador* BuscarMax();
+		void operator == (int k);
 
 };
 #endif // !defined(EA_25249AF9_B8BF_441f_95EC_C0B1C8876E76__INCLUDED_)

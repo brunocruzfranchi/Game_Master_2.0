@@ -49,12 +49,19 @@ public:
 	unsigned int getMinimo;
 	unsigned int getCA();
 	unsigned int getTAM();
+	T** getvector();
 };
 
 template<class T>
 unsigned int cListaT<T>::getTAM()
 {
 	return TAM;
+}
+
+template<class T>
+inline T ** cListaT<T>::getvector()
+{
+	return vector;
 }
 
 template<class T>
@@ -68,7 +75,6 @@ template<class T>
 void cListaT<T>::Redimensionalizar()
 {
 }
-
 
 template<class T>
 
@@ -253,8 +259,6 @@ void cListaT<T>::operator+(T * item) {
 	AgregarItem(item);
 }
 
-
-
 template<class T>
 inline T * cListaT<T>::operator[](unsigned int pos)
 {
@@ -270,8 +274,5 @@ template<class T>
 void cListaT<T>::operator -(const T *item) {
 	Eliminar(item);
 }
-/*
-template<class T>
-void cListaT<T>::operator []() { Listar; }*/
 
 #endif // !defined(EA_B9741D49_13D8_46c1_8B11_F0F70B4304B8__INCLUDED_)

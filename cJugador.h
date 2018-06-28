@@ -59,7 +59,6 @@ public:
 		string getclave() const { return N_jugador; }
 		void ImprimirJugador() { cout << "Jugador " << N_jugador << endl;}
 		void Imprimir();
-	//	void operator+(cPais * item);
-		//void operator+(cTropa * item);
+	
 };
 #endif // !defined(EA_ECAD8CBF_DBA6_4277_A538_57274982E741__INCLUDED_)
