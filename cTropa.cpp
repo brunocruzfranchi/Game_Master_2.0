@@ -160,7 +160,7 @@ ostream& operator<<(ostream&out, cTropa&t) {
 		<< setw(13) << t.getTipo()
 		<< setw(18) << t.getATTotal()
 		<< setw(20) << t.getHPTotal()
-		<< setw(15) << t.getCA() << endl;
+		<< setw(15) << t.getCA();
 	//}
 	return out;
 	/*cout <<

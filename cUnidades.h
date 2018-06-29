@@ -16,28 +16,28 @@ using namespace std;
 class cUnidades
 {
 
-	public:
-		///Atributos
-		const string Tipo;
-		const string Clave;
-		static unsigned int Contador;
+public:
+	///Atributos
+	const string Tipo;
+	const string Clave;
+	static unsigned int Contador;
 
-		///Const. y Dest.
-		cUnidades(string tipo);
-		virtual ~cUnidades();
+	///Const. y Dest.
+	cUnidades(string tipo);
+	virtual ~cUnidades();
 
-		///Metodos
+	///Metodos
+	bool DisminuirHP(int v = 1);
 
-		bool DisminuirHP(int v = 1);
+	//getters
+	int getAT();
+	int getHP();
+	string getTipo() const { return Tipo; }
+	string getclave()const { return Clave; }
 
-			//getters
-			int getAT();
-			int getHP();
-			string getTipo() const {return Tipo;}
-			string getclave()const { return Clave; }
-			//setters
-			void setAT(int at);
-			void setHP(int hp);
+	//setters
+	void setAT(int at);
+	void setHP(int hp);
 		
 
 protected:

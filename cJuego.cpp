@@ -977,9 +977,9 @@ void cJuego::Imprimir() {
 }
 
 void cJuego::Bienvenida() {
-	
-	cout << "  BIENVENIDOS A : " << endl ;
-	
+
+	cout << "  BIENVENIDOS A : " << endl;
+
 	cout << R"(                                                                                                                                         
   -------------------------------------------------------------------------------------------------------------------------------------------------- 
   |      .#&@@@&&.      ,%%%%      ,%%%%,   ,%%%%*  %%%%%%%%%%       %%%%%    %%%%%      ,%%%%,      .&@@@   ,%%%%%%%%%%% %%%%%%%%%%  %%%%%%%%*    |  
@@ -992,7 +992,56 @@ void cJuego::Bienvenida() {
   -------------------------------------------------------------------------------------------------------------------------------------------------- 
 )" << '\n';
 
-	cout << "    LAS REGLAS, COMO FUNCIONA EL SISTEMA DE ATAQUE, TIPOS DE TROPAS, CONTRA QUIENES SON FUERTES, BLA BLA BLA" << endl;
+	cout << R"( 
+	                                                                                                                                                               
+                                                                                                                         (,*                                    
+     BIENVENIDOS JUGADORES.                                                                                           .*,,////////                               
+     CADA UNO DE USTEDES COMIENZA CON 5 PAISES Y 10 TROPAS. CADA TROPA ES DE UN UNICO TIPO DE UNIDAD Y               *,,,,,(%////(#&                            
+     POSEE DE 10-20 UNIDADES SI SON CABALLEROS, 15-30 SI SON ARQUEROS Y 20-40 SI SON MAGOS                         #,,,,,,@/(///(%(((/                        
+                                                                                                                  (..(,,,#//////////////                       
+     EN CADA TURNO, CADA JUGADOR PUEDE REALIZAR HASTA 3 ATAQUES DESDE UN PAIS A UN PAIS VECINO QUE               *.#####(/////////////%(//,                   
+     NO CONTROLE. SI EL ATACANTE GANA Y EL ATACADO SE QUEDA SIN TROPAS, EL JUGADOR GANA EL PAIS Y PUEDE          #####&///////////////////////(               
+     MOVER LA CANTIDAD DE TROPAS QUE DESEE A ESE PAIS.                                                             .####/////////////////////////(             
+                                                                                                                    *#####***////////////////////              
+     AL COMIENZO DE CADA RONDA, CADA JUGADOR OBTIENE (CA DE PAISES / 2) TROPAS ALETORIAS. EL JUGADOR                  .####/*****///////////////                
+     DEBE INDICAR EN QUE PAIS QUIERE COLOCAR CADA TROPA Y SI QUIERE MANTENERLA COMO UN GRUPO SEPARADO O                 *#*******&////////////                 
+     SUMARLA A UNA TROPA YA EXISTENTE EN ESE PAIS.                                                                       &%****((&///////////(                 
+                                                                                                                         (,%///((((/////////#                  
+     CARACTERISTICAS DE LAS UNIDADES:                                                                                    **//////((#///%                       
+                                                                                                                         ,////////&////                        
+     - LOS CABALLEROS TIENEN UN ATAQUE (AT) ENTRE 30-40 Y ENTRE 80 Y 100 DE VIDA (HP).                                    &///////%%/&.                         
+                                                                                                                         *(//////(%%                            
+     - LOS ARQUEROS TIENEN UN ATAQUE (AT) ENTRE 20-30 Y ENTRE 60 Y 80 DE VIDA (HP).                                     ,///////(                              
+                                                                                                                        *///%/                                 
+     - LOS MAGOS TIENEN UN ATAQUE (AT) ENTRE 10-20 Y ENTRE 40 Y 60 DE VIDA (HP)                                        .&///#                                  
+                                                                                                                       %,//&                                   
+                                                                                                                       @%/(                                    
+                                                                                                                        #&(                                    
+       
+                                                                HABILIDADES Y DEBILIDADES                                                                      
+                             @@@@@@@&                             
+                           @         &@                         - LOS CABALLEROS, TIENEN UN CONTRATAQUE CON UN 25% DE AUMENTO DE DAÑO CADA VEZ QUE SE 
+                         @@    @@%@    @                          LOS ATACO. LOS CABALLEROS SON FUERTES A LOS ARQUEROS.                              
+                         @    @         @                         
+                         @   .@         @                       - LOS ARQUEROS SON UNIDADES QUE ALEATORIAMENTE PUEDEN ATACAR UNA SEGUNDA VEZ CON UN 50% 
+                         @,   &@@@@    @                          DE AUMENTO DE DAÑO Y SON FUERTES CONTRA LOS MAGOS.
+                         /@@          @%                          
+                        /@@@\@@@...@@#%@.                       - LOS MAGOS SON UNIDADES QUE ATACAN EN ZONA, ES DECIR ATACAN A TODAS LAS UNIDADES 
+                       @@@@            '@&                        ENEMIGAS EN EL CAMPO DE BATALLA. POR SU PARTE LOS MAGOS SON FUERTES FRENTE A LOS CABALLEROS.
+                     #@ .*               @                       
+                    @,                     @ @                  - SER FUERTE FRENTE A OTRA CLASE SIGNIFICA QUE SE OBTIENE UN 25% DE AUMENTO DE INCREMENTO EN EL ATAQUE. 
+                   @@                     %@@@@                   
+                 .@                          @@(@@@                 
+             (@@------@@                    @@      @@             
+            @  &&    @  @                 @/     %    (@           
+           @   @&   @ @  @#/%            @/     @.%    .@          
+          ,@   @ @  @ %   @@@@@@@@@@@@@@@@     @...@    @          
+           @   @  @@  @  *@\@            @    @   @@@   @          
+           %@            @                @            @           
+             @&        @@                  @@        @@            
+                @@@@@#                        &@@@@@               
+ 
+)" << '\n';
 
 	system("pause");
 	system("cls");
@@ -1000,10 +1049,18 @@ void cJuego::Bienvenida() {
 
 void cJuego::ImprimirGanador() {
 
-	cJugador*Ganador;
+	cJugador* Ganador;
 	Ganador = getGanador();
-	if(Ganador!=NULL)
-	cout << endl <<  Ganador->getNombre() << " ha ganado";
+	if (Ganador != NULL) {
+
+		string ganador = Ganador->getclave();
+
+		if (ganador == "1")
+			GanadorJug1();
+		else
+			GanadorJug2();
+	}
+
 	system("pause");
 }
 
@@ -1021,20 +1078,20 @@ void cJuego::ImprimirTurnoAtarque() {
 
 	/*
 
-	cout << endl << R"(               
-                                                                                                                            ..,               .,,    
-                                                                                                                             ,...,         ....,     
-                                                                                                                              ,,....      ....,      
-  @@@@@@@/@@.  @@% @@@@@&  @@@.  @@. .&@@@@*     @@@@@&,  @@@@@@.      @@@   @@@@@@@/  ,@@@     %@@@@*  /@@   @@ *@@@@@@        .,....  ,..,,        
-    /@@   @@   @@/ @@. ,@& @@@@, @@ %@&   %@@    @@,  @@& @@/         @@,@@    /@@     @@#@%  %@@   %@@ #@@  .@@ /@@               ,..,..,.          
-    #@@   @@   @@, @@ @@,  @@ @@/@@ @@.   ,@@    @@.  &@@ @@@@@*     @@@@@@%   #@@   .@@@@@@* @@/   ,@@ &@&  *@@ (@@@@@             ...,,            
-    &@&   @@@@@@@  @@  @@  @@  %@@@  @@@@@@@     @@@@@@&  @@@@@@    @@/   @@/  &@&  /@@   ,@@. @@@@@@@@,/@@@@@@% &@@@@@%      .*, ..., .,., .**      
-                                                                                                                                ***,      ***,       
-                                                                                                                              .##/**,    **,##/      
-                                                                                                                            ,***             .***    
-                                                                                                                             *.                ,     
-         )" << '\n';
-		 */
+	cout << endl << R"(
+	..,               .,,
+	,...,         ....,
+	,,....      ....,
+	@@@@@@@/@@.  @@% @@@@@&  @@@.  @@. .&@@@@*     @@@@@&,  @@@@@@.      @@@   @@@@@@@/  ,@@@     %@@@@*  /@@   @@ *@@@@@@        .,....  ,..,,
+	/@@   @@   @@/ @@. ,@& @@@@, @@ %@&   %@@    @@,  @@& @@/         @@,@@    /@@     @@#@%  %@@   %@@ #@@  .@@ /@@               ,..,..,.
+	#@@   @@   @@, @@ @@,  @@ @@/@@ @@.   ,@@    @@.  &@@ @@@@@*     @@@@@@%   #@@   .@@@@@@* @@/   ,@@ &@&  *@@ (@@@@@             ...,,
+	&@&   @@@@@@@  @@  @@  @@  %@@@  @@@@@@@     @@@@@@&  @@@@@@    @@/   @@/  &@&  /@@   ,@@. @@@@@@@@,/@@@@@@% &@@@@@%      .*, ..., .,., .**
+	***,      ***,
+	.##/**,    **,##/
+	,***             .***
+	*.                ,
+	)" << '\n';
+	*/
 }
 
 void cJuego::ImprimirJugador(int k) {
@@ -1066,9 +1123,32 @@ void cJuego::PrintJug2() {
     )" << '\n';
 }
 
-void cJuego::EncabezadoPais()
-{ cout << setw(8) << "Clave" << setw(25) << "Nombre del Pais" << setw(8) << endl; }
+void cJuego::GanadorJug1() {
+	cout << endl << R"(                                                                                                                                                                                                             
+         &@@@(                         @@                       @@                         @@                 @@@      
+       @@%      @@@@  @@@@@  @@@@*  @@@@@  @@@&  @@@#   @@      @@ @@  @@  @@@@@ @@@@@  @@@@@  @@@@  @@@@    @@@&      
+       @@  @@@  @@@@ *@@ @@. &@@@@ @@  @@.@@  @@ @@            .@@ @@  @@ @@  @@ ,@@@@ @@  @@ @@  @@ @@       @@,      
+       (@@@@@@ @@&@@ @@  @@ @@@ @@ @@@@@@ @@@@@  @@     @@   @@@@, @@@@@@ @@@@@&*@@%@@ @@@@@@ @@@@@/ @@       @@       
+                                                                          @@&@@,                                                                               
+  )" << '\n';
+}
 
+void cJuego::GanadorJug2() {
+	cout << endl << R"(                                                                                                    
+         &@@@(                         @@                       @@                         @@               (@@@&      
+       @@%      @@@@  @@@@@  @@@@*  @@@@@  @@@&  @@@#   @@      @@ @@  @@  @@@@@ @@@@@  @@@@@  @@@@  @@@@      @@@     
+       @@  @@@  @@@@ *@@ @@. &@@@@ @@  @@.@@  @@ @@            .@@ @@  @@ @@  @@ ,@@@@ @@  @@ @@  @@ @@      ,@@       
+       (@@@@@@ @@&@@ @@  @@ @@@ @@ @@@@@@ @@@@@  @@     @@   @@@@, @@@@@@ @@@@@&*@@%@@ @@@@@@ @@@@@/ @@     @@@@@*     
+                                                                          @@&@@,                                                                               
+  )" << '\n';
+}
+
+void cJuego::EncabezadoPais()
+{
+	cout << setw(8) << "Clave" << setw(25) << "Nombre del Pais" << setw(8) << endl;
+}
+
+//FINAL
 void cJuego::CerrarJuego(){
 }
 

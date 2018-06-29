@@ -51,7 +51,7 @@ public:
 		void AsignarPaises();
 		void AsignarTropas(int n=1);
 		void AsignacionTropasInicial();
-
+		void Bienvenida();
 		
 		//Durante Juego
 		cPais* Buscar_p_atacante(int k);
@@ -74,20 +74,22 @@ public:
 		//extras
 		void ReasignarPais(cPais* atacado, cPais* atacante);
 		void CambiarTurno(cJugador **Jugador, int k);
-		void Imprimir();
-		void Bienvenida();
-		void ImprimirGanador();
-		void ImprimirTurnoAtarque();
-		void ImprimirJugador(int k);
-		void PrintJug1();
-		void PrintJug2();
-		void EncabezadoPais();
 		void CerrarJuego();
 		cJugador* getGanador();
 		cJugador* Desempate(cJugador*j1, cJugador*j2);
 		cJugador* BuscarMax();
 		void operator == (int k);
-		
+
+		//Imprimir
+		void Imprimir();
+		void ImprimirGanador();
+		void ImprimirTurnoAtarque();
+		void ImprimirJugador(int k);
+		void PrintJug1();
+		void PrintJug2();
+		void GanadorJug1();
+		void GanadorJug2();
+		void EncabezadoPais();
 
 };
 #endif // !defined(EA_25249AF9_B8BF_441f_95EC_C0B1C8876E76__INCLUDED_)
