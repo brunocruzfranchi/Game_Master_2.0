@@ -536,6 +536,7 @@ int cJuego::Jugar() {
 						cout << endl << "Desea continuar atacando? ( " << at_disp << " ataques disponibles)"
 							<< endl << "1. Si" << endl << "2. No" << endl;
 						cin >> opc_continuar; cout << endl;
+						system("cls");
 					} while (opc_continuar != 1 && opc_continuar != 2);
 
 					if (opc_continuar == 2)
@@ -720,6 +721,7 @@ cTropa* cJuego::Buscar_t_atacante(int k, cPais* atacante,cPais* atacado){
 
 	do {
 		cout << "Con que tropa desea atacar? " << endl << "Ingrese clave de la tropa: ";
+		getchar();
 		cin >> opcion_tropa; cout << endl; //pido clave de la tropa
 		aux_tropa_atacante = vector[k]->getItemPos(opcion_tropa);
 		if (vector[k]->TropamePertenece(opcion_tropa) == true)

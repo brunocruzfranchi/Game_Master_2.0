@@ -44,6 +44,7 @@ bool cJugador::MoverTropas(cPais*ganado , cPais*atacante){
 		vector[aux]->setPais(ganado);
 		cout <<endl<< "Tropa trasladada satisfactoriamente";
 		
+		if(Contar_Tropas_en_Pais(atacante)>1)
 		do {
 			cout << endl << "Desea mover mas tropas de "<<atacante->getNombre()<<" a "<<ganado->getNombre()<<"?" << endl << "1. Si " << endl << "2. No" << endl;
 			cin >> opcion_mover; cout << endl;
@@ -58,6 +59,11 @@ bool cJugador::MoverTropas(cPais*ganado , cPais*atacante){
 	}
 
 	cout <<endl<< "No es posible mover mas tropas" << endl;
+	int op;
+	cout << endl << "Desea movilizar tropas?" << endl<<"1. Si"<<endl<<"2. No"<< endl;
+	cin >> op;
+	if (op != 1)
+		return true;
 	return false;
 }
 
