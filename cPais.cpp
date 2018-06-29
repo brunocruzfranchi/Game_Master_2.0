@@ -94,6 +94,16 @@ bool cPais::TengoLimitrofesPropios() {
 	return flag;
 }
 
+void cPais::operator=(cJugador * j)// misma funcion que Reasignar pais - mover tropas
+{
+	(*(Jugador->PaisesDominados)) - (this);
+
+	*(j->getPaisesD()) + this;
+
+	Jugador=j;	
+	cout << endl << "Ha dominado " << Nombre;
+}
+
 /*
 void cPais::Distribuir(cTropa* t){
 

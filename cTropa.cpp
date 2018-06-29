@@ -148,9 +148,9 @@ void cTropa::operator<<(cTropa * t){
 	Contraatacar(t);
 }
 
-//void cTropa::operator!=(int i){
-//	RecibirDanio(i);
-//}
+void cTropa::operator!=(int i){ //sobrecarga hecha unicamente por pedido del enunciado
+	RecibirDanio(i);
+}
 
 ostream& operator<<(ostream&out, cTropa&t) {
 	//for (int i = 0; i < t.getCA(); i++)

@@ -25,11 +25,11 @@
 
 using namespace std;
 
-class cPais;
+
 class cTropa;
 class cJugador;
 class cJuego : public cListaT<cJugador>{
-
+	friend class cPais;
 public:
 	///Atributos
 	int Ronda;
@@ -87,6 +87,7 @@ public:
 		cJugador* Desempate(cJugador*j1, cJugador*j2);
 		cJugador* BuscarMax();
 		void operator == (int k);
+		
 
 };
 #endif // !defined(EA_25249AF9_B8BF_441f_95EC_C0B1C8876E76__INCLUDED_)

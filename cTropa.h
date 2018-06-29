@@ -46,7 +46,7 @@ public:
 	void operator ++ (int hpu);
 	bool operator >>(cTropa*t);
 	void operator <<(cTropa*t);
-	//void operator !=(int i);
+	void operator !=(int i);
 	void Morir(cUnidades * u);
 	void setPais(cPais*p) { Pais = p; };
 

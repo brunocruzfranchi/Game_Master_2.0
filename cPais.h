@@ -51,7 +51,7 @@ class cPais:public cListaT<cPais>{
 			string getNombre() const { return Nombre; }
 			cJugador* getJugador() { return Jugador; }
 			static cListaT<cPais>*getLista_Paises() { return &Lista_Paises; }
-		
+			void operator = (cJugador*j);
 			//Posibilidades
 			//void Distribuir(cTropa* t);
 			//cPais** getLimitrofes();

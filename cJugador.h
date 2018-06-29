@@ -53,6 +53,7 @@ public:
 		string getN_Jugador() const { return N_jugador; }
 		cListaT<cPais> *getPaisesD() { return PaisesDominados; }	// manejo de tipos de punteros
 		string getNombre()const { return Nombre; }
+		
 		//setters
 		//void setPaisesD(cListaT<class cPais> *listad) { PaisesDominados = listad; }
 

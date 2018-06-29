@@ -514,7 +514,8 @@ int cJuego::Jugar() {
 					bool aux_exito = *(tropa_atacante) >> (tropa_atacada);
 
 					if (pais_atacado->getCA() == 0) {
-						ReasignarPais(pais_atacado, pais_atacante);
+						*pais_atacado = pais_atacante->getJugador();
+						pais_atacante->getJugador()->MoverTropas(pais_atacado, pais_atacante);
 					}
 					
 				}
