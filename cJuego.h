@@ -37,12 +37,12 @@ public:
 	cListaT<cPais> *Paises;
 	
 	///Const y Dest
-	cJuego(string**n,int cant_jug=2);
+	cJuego(string*n,int cant_jug=2);
 	virtual ~cJuego();
 
 	///Metodos
 		//Crear
-		void CrearJugadores( string **nombres, int n = 2);
+		void CrearJugadores( string *nombres, int n = 2);
 		void CrearPaises();	
 
 		//Inicio Juego

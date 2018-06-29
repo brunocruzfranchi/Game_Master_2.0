@@ -3,7 +3,7 @@
 #include <ctime>
 #include "cJuego.h"
 #include "Funciones.h"
-
+#define N_JUGADORES 2
 
 int main() {
 	system("mode con: cols=1280 lines=720");
@@ -13,9 +13,8 @@ int main() {
 		int estado_juego;
 		int cant_jug = N_MAX_JUGADORES;
 
-		string** n= new string*;
-		for (int i=0; i < cant_jug; i++)
-			n[i] = new string;
+		string n[N_JUGADORES];
+	
 		cin >> n; //sobrecarga cin
 		cJuego* Juego = new cJuego(n,cant_jug);
 		system("cls");
@@ -25,9 +24,7 @@ int main() {
 		Juego->Iniciar_Partida();			
 		estado_juego = Juego->Jugar();
 		Juego->CerrarJuego();
-		for (int i = 0; i < cant_jug; i++) {
-			delete n[i];
-		}
+	
 		delete n;
 		delete Juego;
 

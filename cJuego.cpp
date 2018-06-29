@@ -21,7 +21,7 @@
 using namespace std;
 enum PAISES{ARGENTINA = 0, BOLIVIA, BRASIL, CHILE, COLOMBIA, ECUADOR, GUYANA, PARAGUAY, PERU, SURINAM, URUGUAY, VENEZUELA, GUAYANAFRANCESA};
 
-cJuego::cJuego(string ** n,int cant_jug):cListaT<cJugador>(cant_jug) {
+cJuego::cJuego(string * n,int cant_jug):cListaT<cJugador>(cant_jug) {
 	try {
 		CrearJugadores(n,cant_jug);
 	}
@@ -43,10 +43,10 @@ cJuego::~cJuego() {
 }
 
 //CREAR
-void cJuego::CrearJugadores(string ** nombres, int n) {
+void cJuego::CrearJugadores(string * nombres, int n) {
 	
 	for (int i = 0; i < n; i++) {
-		AgregarItem(new cJugador(i, *(nombres[i])));
+		AgregarItem(new cJugador(i, nombres[i]));
 	}
 }
 

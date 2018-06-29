@@ -3,4 +3,4 @@
 #include <ctime>
 #include "cJugador.h"
 
-istream& operator >> (istream& in, string**n);
+istream& operator >> (istream& in, string*n);
