@@ -21,9 +21,9 @@
 using namespace std;
 enum PAISES{ARGENTINA = 0, BOLIVIA, BRASIL, CHILE, COLOMBIA, ECUADOR, GUYANA, PARAGUAY, PERU, SURINAM, URUGUAY, VENEZUELA, GUAYANAFRANCESA};
 
-cJuego::cJuego(int cant_jug):cListaT<cJugador>(cant_jug) {
+cJuego::cJuego(string ** n,int cant_jug):cListaT<cJugador>(cant_jug) {
 	try {
-		CrearJugadores(cant_jug);
+		CrearJugadores(n,cant_jug);
 	}
 	catch (exception* x) {
 		cout << x->what() << endl;
@@ -43,10 +43,10 @@ cJuego::~cJuego() {
 }
 
 //CREAR
-void cJuego::CrearJugadores(int n) {
-
+void cJuego::CrearJugadores(string ** nombres, int n) {
+	
 	for (int i = 0; i < n; i++) {
-		AgregarItem(new cJugador(i));
+		AgregarItem(new cJugador(i, *(nombres[i])));
 	}
 }
 
@@ -649,7 +649,7 @@ cPais* cJuego::Buscar_p_atacante(int k){
 			ImprimirJugador(k);
 		}
 
-	} while (pos_atacante == INT_MAX);															// busco la posicion en la lista INT_MAX si no se encontro => vuelvo a pedir
+	} while (pos_atacante == INT_MAX);	// busco la posicion en la lista INT_MAX si no se encontro => vuelvo a pedir
 	
 	return aux_atacante;
 }
@@ -1002,7 +1002,7 @@ void cJuego::ImprimirGanador() {
 	cJugador*Ganador;
 	Ganador = getGanador();
 	if(Ganador!=NULL)
-	cout << endl << " El jugador " << Ganador->getN_Jugador() << " ha ganado";
+	cout << endl <<  Ganador->getNombre() << " ha ganado";
 	system("pause");
 }
 

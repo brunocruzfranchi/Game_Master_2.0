@@ -9,7 +9,7 @@
 #include "cTropa.h"
 #include "cPais.h"
 #define N_MINIMO_TROPAS_ATAQUE 2
-cJugador::cJugador(int n_jugador):N_jugador(to_string(n_jugador+1)){
+cJugador::cJugador(int n_jugador, string nombre):N_jugador(to_string(n_jugador+1)), Nombre(nombre){
 	
 	this->PaisesDominados = new cListaT<cPais>(N_PAISES_TOTALES);
 }

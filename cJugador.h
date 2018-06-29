@@ -23,10 +23,11 @@ class cJugador:public cListaT<class cTropa>{
 public:
 	///Atributos
 	const string N_jugador;
+	const string Nombre;
 	cListaT<cPais>* PaisesDominados;
 
 	///Const. y Dest.
-	cJugador(int n_jugador);
+	cJugador(int n_jugador, string nombre);
 	virtual ~cJugador();
 
 	///Metodos
@@ -51,7 +52,7 @@ public:
 		//getters
 		string getN_Jugador() const { return N_jugador; }
 		cListaT<cPais> *getPaisesD() { return PaisesDominados; }	// manejo de tipos de punteros
-
+		string getNombre()const { return Nombre; }
 		//setters
 		//void setPaisesD(cListaT<class cPais> *listad) { PaisesDominados = listad; }
 
