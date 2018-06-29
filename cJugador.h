@@ -32,7 +32,7 @@ public:
 
 	///Metodos
 		//principales
-		void MoverTropas(cPais *pais, cPais*atacante);
+		bool MoverTropas(cPais *pais, cPais*atacante);
 
 		void ImprimirTropas(cPais * atacante, cPais * atacado);
 
