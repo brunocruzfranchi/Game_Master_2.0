@@ -59,8 +59,9 @@ public:
 		cTropa* Buscar_t_atacante(int k, cPais* atacante,cPais * atacado);
 		cTropa* Buscar_t_atacada(int h, cPais*atacante,cPais* atacado);
 		cTropa* PedirTropaDistribucion(int tipo, int k);
-		bool Movilizar_tropas(int k);
+		void Movilizar_tropas(int k);
 		void AgregarTropaaPais(int k, int tam_tropa,cPais* pais, int aleatorio);
+
 		void AgregarTropaInicial(int k, int tam_tropa, cPais * pais, int aleatorio);
 
 		//getters

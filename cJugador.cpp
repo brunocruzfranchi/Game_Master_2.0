@@ -18,7 +18,7 @@ cJugador::~cJugador(){
 
 }
 
-bool cJugador::MoverTropas(cPais*ganado , cPais*atacante){
+void cJugador::MoverTropas(cPais*ganado , cPais*atacante){
 
 	string opcion_tropa;
 	int opcion_mover, N_tropas = 0, flag = 0;
@@ -43,15 +43,14 @@ bool cJugador::MoverTropas(cPais*ganado , cPais*atacante){
 		
 		vector[aux]->setPais(ganado);
 		cout <<endl<< "Tropa trasladada satisfactoriamente";
-		
-		if(Contar_Tropas_en_Pais(atacante)>1)
+
 		do {
 			cout << endl << "Desea mover mas tropas de "<<atacante->getNombre()<<" a "<<ganado->getNombre()<<"?" << endl << "1. Si " << endl << "2. No" << endl;
 			cin >> opcion_mover; cout << endl;
 			if(opcion_mover==2)
 			{
 				system ("cls");
-				return true;
+				return;
 			}
 		} while (opcion_mover != 1);
 		
@@ -59,12 +58,6 @@ bool cJugador::MoverTropas(cPais*ganado , cPais*atacante){
 	}
 
 	cout <<endl<< "No es posible mover mas tropas" << endl;
-	int op;
-	cout << endl << "Desea movilizar tropas?" << endl<<"1. Si"<<endl<<"2. No"<< endl;
-	cin >> op;
-	if (op != 1)
-		return true;
-	return false;
 }
 
 void cJugador::ImprimirTropas(cPais* atacante, cPais* atacado){
@@ -259,8 +252,6 @@ bool cJugador::PaisValidoparaAtaque(string c)
 	
 	bool aux1 = false;
 	cPais*pais = PaisesDominados->BuscarItem(c);
-	if (pais == NULL)
-		return false;
 	//Limitrofe no propios
 	for (int i = 0; i < pais->getCA(); i++)
 	{

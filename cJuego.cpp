@@ -347,9 +347,9 @@ void cJuego::AsignarTropas(int n) {
 			cPais* pais = vector[k]->PaisesDominados->BuscarItem(opcion_pais); //busco el pais elegido y lo guardo en un puntero
 
 			do {
-				cout << endl << "  Distribucion de tropa" << endl
+				cout << endl << "Distribucion de tropa" << endl
 					<< " 1. Mantener como tropa separada" << endl
-					<< " 2. Sumar a tropa existente" << endl;
+					<< "2. Sumar a tropa existente" << endl;
 				cin >> opcion_distribuir; cout << endl;
 
 				string opcion_tropa;
@@ -536,7 +536,6 @@ int cJuego::Jugar() {
 						cout << endl << "Desea continuar atacando? ( " << at_disp << " ataques disponibles)"
 							<< endl << "1. Si" << endl << "2. No" << endl;
 						cin >> opc_continuar; cout << endl;
-						system("cls");
 					} while (opc_continuar != 1 && opc_continuar != 2);
 
 					if (opc_continuar == 2)
@@ -545,17 +544,14 @@ int cJuego::Jugar() {
 			}
 
 			int op;
-			bool aux=false;
+
 			do {
-				cout << endl << "  Desea movilizar tropas?" << endl << "  1. Si" << endl << "  2. No" << endl;
+				cout << endl << "Desea movilizar tropas?" << endl << "1. Si" << endl << "2.No" << endl;
 				cin >> op; cout << endl;
 
 				if (op == 1) {
-					do
-					{
-						aux=Movilizar_tropas(k);
-						op = 2;
-					} while (aux == false);
+					Movilizar_tropas(k);
+					op = 2;
 				}
 
 				system("pause");
@@ -620,11 +616,15 @@ cPais* cJuego::Buscar_p_atacante(int k){
 		cout << endl;
 		if (vector[k]->PaisValidoparaAtaque(opcion_pais_atacante) == true)
 		{
-	
-			pos_atacante = vector[k]->getPaisesD()->getItemPos(opcion_pais_atacante);
-			getchar();
-			if(pos_atacante!=INT_MAX)
+			try {
+				pos_atacante = vector[k]->getPaisesD()->getItemPos(opcion_pais_atacante);
+			}
+			catch (exception* e) {
+				cout << e->what() << endl;
+			}
 			aux_atacante = vector[k]->PaisesDominados->BuscarItem(opcion_pais_atacante);
+
+			//TODO: VER SI POSEE UN PAIS LIMITROFE AL QUE PUEDA ATACAR
 
 			/*
 			//EXISTEN TROPAS?
@@ -717,11 +717,12 @@ cTropa* cJuego::Buscar_t_atacante(int k, cPais* atacante,cPais* atacado){
 
 	vector[k]->ImprimirTropas(atacante, atacado);
 
+	
+
 	int aux_tropa_atacante;
 
 	do {
 		cout << "Con que tropa desea atacar? " << endl << "Ingrese clave de la tropa: ";
-		getchar();
 		cin >> opcion_tropa; cout << endl; //pido clave de la tropa
 		aux_tropa_atacante = vector[k]->getItemPos(opcion_tropa);
 		if (vector[k]->TropamePertenece(opcion_tropa) == true)
@@ -759,7 +760,6 @@ cTropa* cJuego::Buscar_t_atacada(int h, cPais*atacante, cPais * atacado){
 		cout << endl << "Ingrese la clave de la tropa que desea atacar: ";
 		cin >> opcion_tropa; cout << endl; //pido clave de la tropa
 		aux_tropa_atacada = vector[k]->getItemPos(opcion_tropa);
-		if(aux_tropa_atacada!=INT_MAX)
 		if (vector[k]->TropamePertenece(opcion_tropa) == true)
 		{
 			if ((*vector[k])[(aux_tropa_atacada)]->getPais() != atacado)//chequeo que la tropa este en mi pais atacante
@@ -811,13 +811,13 @@ cTropa * cJuego::PedirTropaDistribucion(int tipo, int k)
 	return tropa_agregar;
 }
 
-bool cJuego::Movilizar_tropas(int k){
+void cJuego::Movilizar_tropas(int k){
 
 	string pais_origen, pais_destino;
 	int pos_origen, pos_destino;
 	
 	bool aux;
-	bool aux1 = false;
+
 	do //listo y pido pais origen
 	{
 		vector[k]->PaisesDominados->Listar();
@@ -830,7 +830,6 @@ bool cJuego::Movilizar_tropas(int k){
 		if (aux == false) {
 			cout << endl << "No hay paises a los que movilizar" << endl;
 			break;
-			return false;
 		}//no hay paises limitrofes del mismo jugador
 	} while (pos_origen == INT_MAX);
 
@@ -847,16 +846,13 @@ bool cJuego::Movilizar_tropas(int k){
 		{
 			destino = (*(vector[k]->getPaisesD()))[ pos_destino];
 			if (origen->getJugador() == destino->getJugador()) {
-				aux1=vector[k]->MoverTropas(destino, origen);//movilizo tropas
-				if(aux1 == false)  return false;
+				vector[k]->MoverTropas(destino, origen);//movilizo tropas
 			}
 			else
 				pos_destino = INT_MAX;
 		}
 
 	} while (pos_destino == INT_MAX);
-
-	return true;
 }
 
 void cJuego::AgregarTropaaPais(int k, int tam_tropa, cPais * pais, int aleatorio)
